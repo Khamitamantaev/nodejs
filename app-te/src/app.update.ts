@@ -4,11 +4,12 @@ import {
     Help,
     On,
     Hears,
+    Command,
   } from 'nestjs-telegraf';
     import {Context} from './interfaces/context.interface'
   
   @Update()
-  export class AppUpdate {
+  export class AppUpdate { 
   
     @Start()
     async startCommand(ctx: Context) {
@@ -24,6 +25,11 @@ import {
     async onSticker(ctx: Context) {
       await ctx.reply('👍');
     }
+
+    @Command('cats')
+    async helpCommandw(ctx: Context) {
+    await ctx.reply('Meow.');  
+  } 
   
     @Hears('hi')
     async hearsHi(ctx: Context) {
