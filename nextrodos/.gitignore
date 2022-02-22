@@ -4,5 +4,6 @@ node_modules
 .server-dist
 _logs/*
 .env
+.env.local
 
 !.gitkeep

@@ -6,6 +6,7 @@ import Router from 'next/router';
 import { Provider } from 'react-redux';
 import { withStore } from '../redux';
 import { ga } from '../helpers';
+import '../public/styles/global.css'
 
 if (process.browser) {
   Router.events.on('routeChangeComplete', url => ga.pageview(url));
