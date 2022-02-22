@@ -1,5 +1,5 @@
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, {Html, Head, Main, NextScript } from 'next/document';
 import { GA } from '../components/common';
 
 class MyDocument extends Document {
@@ -10,7 +10,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <html lang="en">
+      <Html>
         <Head>
           <meta charSet="utf-8" />
           <meta name="google" content="notranslate" />
@@ -22,7 +22,7 @@ class MyDocument extends Document {
           <NextScript />
           <GA />
         </body>
-      </html>
+      </Html>
     );
   }
 }
