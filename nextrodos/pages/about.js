@@ -20,10 +20,10 @@ class About extends PureComponent {
 At the moment I use such well-known technologies as:</p>
         <ul>
           <li>Apollo Graphql</li>
-          <li>NestJS</li>
+          <li>NestJS(NodeJS)</li>
           <li>TypeORM(ORM)</li>
           <li>Prisma(ORM)</li>
-          <li></li>
+          <li>NextJS(ReactJS)</li>
         </ul>
         </div>
       </DefaultLayout>
