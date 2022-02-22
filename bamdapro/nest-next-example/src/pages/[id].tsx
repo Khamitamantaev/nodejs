@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
 import { BlogPost } from 'src/shared/types/blog-post';
-
+import { fetch } from 'src/shared/utils/fetch';
 type TBlogProps = {
     post: BlogPost;
 };
@@ -16,10 +16,10 @@ const Blog: FC<TBlogProps> = ({ post = {} }) => {
     );
 };
 
-export const getServerSideProps: GetServerSideProps<TBlogProps> = async (
-    ctx,
-) => {
-    return { props: {} };
+export const getServerSideProps: GetServerSideProps<TBlogProps> = async (ctx,) => {
+    const id =  ctx.query.id;
+    const post = await fetch(`/api/blog-posts/${id}`);
+    return { props: { post } };
 };
 
 export default Blog;
