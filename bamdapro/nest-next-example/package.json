@@ -6,6 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "lint": "next lint",
     "prebuild": "rimraf dist",
     "build": "yarn build:next && yarn build:nest",
     "build:next": "next build",
@@ -15,7 +16,6 @@
     "start:dev": "cross-env NODE_ENV=development nest start --path ./tsconfig.server.json --watch",
     "start:debug": "nest start --path ./tsconfig.server.json --debug --watch",
     "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
