@@ -17,7 +17,7 @@ class MyDocument extends Document {
 
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.10.7/antd.min.css" />
         </Head>
-        <body>
+        <body className='bg-gray-300'>
           <Main />
           <NextScript />
           <GA />
