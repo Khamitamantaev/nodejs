@@ -3,7 +3,7 @@ const webpack = require('webpack'); // eslint-disable-line import/no-extraneous-
 require('dotenv').config();
 
 module.exports = {
-  distDir: '.client-dist',
+  distDir: '.next',
   webpack: (config) => {
     const env = Object.keys(process.env).reduce((acc, curr) => {
       acc[`process.env.${curr}`] = JSON.stringify(process.env[curr]);
