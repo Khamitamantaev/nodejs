@@ -13,7 +13,7 @@ const styles = {
 
 const DefaultFooter = () => (
   <Footer style={styles.footer}>
-    Oh My Code &copy;
+    Khammerson Inc &copy;
     {new Date().getFullYear()}
   </Footer>
 );

@@ -27,10 +27,7 @@ class Home extends PureComponent {
     return (
       <DefaultLayout>
         <div style={styles.wrapper}>
-          <h1>Hello World!</h1>
-          <p>{userAgent}</p>
-          <Counter />
-          <ApiStatus />
+          <h1>Hello, my dear employer!</h1>
         </div>
       </DefaultLayout>
     );
