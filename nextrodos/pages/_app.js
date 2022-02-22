@@ -32,7 +32,7 @@ class MyApp extends App {
     return (
       <>
         <Head>
-          <title>Oh My Full Stack</title>
+          <title>Khammerson App</title>
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         </Head>
         <Provider store={reduxStore}>
