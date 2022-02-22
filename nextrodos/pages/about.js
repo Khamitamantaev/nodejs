@@ -15,7 +15,8 @@ class About extends PureComponent {
     return (
       <DefaultLayout>
         <div style={styles.wrapper}>
-          <h1>About</h1>
+          <h1>This page about me.</h1>
+          <h1>My name is Khamit Amantaev Khalitovich!</h1>
         </div>
       </DefaultLayout>
     );
