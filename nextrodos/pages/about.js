@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { DefaultLayout } from '../components/layout';
+import Image from 'next/image'
 
 const styles = {
   wrapper: {
@@ -16,7 +17,15 @@ class About extends PureComponent {
       <DefaultLayout>
         <div style={styles.wrapper}>
           <h1>This page about me.</h1>
-          <p>My name is Hamit, and this is my first experience with NextJS, for example. I am a novice node js developer. In 2022, I want to get a job. At the moment I have several working projects, including this one, that I would like to demonstrate in order to impress you.
+          <Image
+         layout='responsive'
+         src="/me.jpg"
+         alt="Picture of the author"
+         width={300}
+         height={300}
+      />
+          <h1>My name is Hamit, and this is my first experience with NextJS, for example.</h1>
+          <p>I am a novice node js developer. In 2022, I want to get a job. At the moment I have several working projects, including this one, that I would like to demonstrate in order to impress you.
 At the moment I use such well-known technologies as:</p>
         <ul>
           <li>Apollo Graphql</li>
