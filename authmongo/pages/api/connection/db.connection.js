@@ -1,12 +1,11 @@
-const db = require("../models");
-
+import mongoose from "mongoose"
+const dbConfig = require("../config/db.config.js");
 const connectDB = async () => {
-    if (db.mongoose.connection.readyState >= 1) {
+    if (mongoose.connection.readyState >= 1) {
         return
     }
-
-    db.mongoose
-        .connect(db.url, {
+    mongoose
+        .connect(dbConfig.url, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
