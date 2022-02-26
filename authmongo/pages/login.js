@@ -1,5 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
+import cookie from 'js-cookie'
+
 const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -17,7 +19,8 @@ const Register = () => {
             { email, password }, 
             config
         )
-        console.log(data)
+        cookie.set('token', data.token)
+        cookie.set('user', data.user )
     }
 
     return (
