@@ -1,24 +1,22 @@
-module.exports = mongoose => {
-    const User = mongoose.model(
-        "User",
-        mongoose.Schema(
-            {
-                name: {
-                    type: String,
-                },
-                email: {
-                    type: String,
-                    required: true,
-                    unique: true
-                },
-                password: {
-                    type: String,
-                    required: true
-                },
+import mongoose from "mongoose"
 
-            },
-            { timestamps: true }
-        )
-    );
-    return User;
-};
+const userSchema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+    }
+  },
+  {
+    timestamps: true,
+  }
+)
+
+export default mongoose.models.User || mongoose.model("User", userSchema)
