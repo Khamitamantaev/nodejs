@@ -15,15 +15,19 @@ export default async (req, res) => {
             }
 
             const doMatch = await bcrypt.compare(password, user.password)
-            if (!doMatch) {
-                res.status(404).json({ message: "Incorrect Credentials" })
-            } else {
+            if (doMatch) {
                 const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
                     expiresIn: "7d"
                 })
-                res.status(201).json({ message: 'login success', user, token})
+
+                const { email, _id } = user
+
+                res.status(201).json({token, user: {email, _id}, message: 'login successful' })
+
+            } else {
+                res.status(404).json({ message: "Incorrect Credentials" })
             }
-            
+
         }
     } catch (error) {
         console.log(error)

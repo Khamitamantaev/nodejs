@@ -3,7 +3,6 @@ import axios from "axios"
 const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
     const config = {
         headers: {
             "Content-Type": "application/json",
