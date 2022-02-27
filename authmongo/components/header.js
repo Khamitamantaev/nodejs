@@ -52,10 +52,10 @@ export default function ButtonAppBar() {
                 <Button color="inherit" onClick={logoutHandler}>Logout</Button>
               </>) : (
               <>
-                <Link href={'./login'}>
+                <Link href={'/src/login'}>
                   <Button color="inherit">Login</Button>
                 </Link>
-                <Link href={'./register'}>
+                <Link href={'/src/register'}>
                   <Button color="inherit">Register</Button>
                 </Link>
               </>)}
