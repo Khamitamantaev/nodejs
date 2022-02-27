@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,12 +16,14 @@ import axios from "axios"
 import cookie from 'js-cookie'
 import { useSession, signIn, signOut, getSession } from "next-auth/react"
 import { useRouter } from "next/router"
+import { ToastContainer, toast } from 'react-toastify';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Khammerson Inc
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -33,29 +35,39 @@ const theme = createTheme();
 
 function Login() {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const { data: session } = useSession()
-    const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [conPassword, setConPassword] = useState('')
+  const { data: session } = useSession()
+  const router = useRouter()
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-            }
+    try {
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
         }
-
-        const { data } = await axios.post(
-            `/api/login`, 
-            { email, password }, 
-            config
-        )
-        cookie.set('token', data?.token)
-        cookie.set('user', JSON.stringify(data?.user))
-        router.push('/')
+      }
+  
+      const { data } = await axios.post(
+        `/api/login`,
+        { email, password },
+        config
+      )
+      cookie.set('token', data?.token)
+      cookie.set('user', JSON.stringify(data?.user))
+      toast.success(data.message)
+      router.push('/')
+      
+    } catch(error) {
+        toast.error(error.response.data.message)
     }
+
+   
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -86,8 +98,8 @@ function Login() {
               name="email"
               autoComplete="email"
               autoFocus
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -98,8 +110,20 @@ function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
-              value={password} 
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="confirm password"
+              label="Confirm Password"
+              type="password"
+              id="confirm password"
+              autoComplete="current-password"
+              value={conPassword}
+              onChange={(e) => setConPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -130,13 +154,13 @@ function Login() {
 }
 
 export async function getServerSideProps(context) {
-    const session = await getSession(context)
+  const session = await getSession(context)
 
-    return {
-        props: {
-            session
-        }
+  return {
+    props: {
+      session
     }
+  }
 }
 
 export default Login

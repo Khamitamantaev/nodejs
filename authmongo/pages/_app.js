@@ -6,6 +6,8 @@ import Head from 'next/head';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '../theme';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function MyApp({Component, pageProps: { session, ...pageProps}}) {
   React.useEffect(() => {
@@ -24,6 +26,7 @@ export default function MyApp({Component, pageProps: { session, ...pageProps}}) 
       <ThemeProvider theme={theme}>
         <SessionProvider session={session}>
           <Layout>
+          <ToastContainer />
             <Component {...pageProps} />
           </Layout>
         </SessionProvider>

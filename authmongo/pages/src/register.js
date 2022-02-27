@@ -14,6 +14,20 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from "react"
 import axios from "axios"
+import { ToastContainer, toast } from 'react-toastify';
+
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Khammerson Inc
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const theme = createTheme();
 
@@ -22,19 +36,33 @@ function Register() {
     const [password, setPassword] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
+    const [conPassword, setConPassword] = useState('')
     const handleSubmit = async (e) => {
+
         e.preventDefault()
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-            }
+
+        try {
+
+          if(password !== conPassword) {
+            console.log('pasword do not match')
+          }
+          const config = {
+              headers: {
+                  "Content-Type": "application/json",
+              }
+          }
+          const { data } = await axios.post(
+              `/api/register`, 
+              { email, password, firstName, lastName}, 
+              config
+          )
+          toast.success(data?.message)
+
+        } catch(error) {
+          toast.error(error.response.data.error)
         }
-        const { data } = await axios.post(
-            `/api/register`, 
-            { email, password, firstName, lastName}, 
-            config
-        )
-        console.log(data)
+
+        
     }
 
   return (
@@ -107,6 +135,19 @@ function Register() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="confirm password"
+                  label="Confirm Password"
+                  type="password"
+                  id="confirm password"
+                  autoComplete="new-password"
+                  value={conPassword} 
+                  onChange={(e) => setConPassword(e.target.value)}
+                />
+              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -125,6 +166,7 @@ function Register() {
             </Grid>
           </Box>
         </Box>
+        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
