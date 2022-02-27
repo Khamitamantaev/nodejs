@@ -17,12 +17,12 @@ import cookie from 'js-cookie'
 import { useSession, signIn, signOut, getSession } from "next-auth/react"
 import { useRouter } from "next/router"
 import { ToastContainer, toast } from 'react-toastify';
-
+import { GoogleLoginButton } from "react-social-login-buttons";
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://nodejs-gamma-orpin.vercel.app">
         Khammerson Inc
       </Link>{' '}
       {new Date().getFullYear()}
@@ -87,7 +87,6 @@ function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <button onClick={() => signIn()}>Sign in</button>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -125,6 +124,9 @@ function Login() {
               value={conPassword}
               onChange={(e) => setConPassword(e.target.value)}
             />
+            <Grid container  sx={{ mt: 3, mb: 2 }}>
+              <GoogleLoginButton onClick={() => signIn()}/>
+            </Grid>
             <Button
               type="submit"
               fullWidth

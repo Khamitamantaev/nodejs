@@ -3,7 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -15,12 +14,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from "react"
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
+import { GoogleLoginButton } from "react-social-login-buttons";
+import { useSession, signIn, signOut, getSession } from "next-auth/react"
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://nodejs-gamma-orpin.vercel.app">
         Khammerson Inc
       </Link>{' '}
       {new Date().getFullYear()}
@@ -149,6 +150,9 @@ function Register() {
                 />
               </Grid>
             </Grid>
+            <Grid container  sx={{ mt: 3, mb: 2 }}>
+              <GoogleLoginButton onClick={() => signIn()}/>
+            </Grid>
             <Button
               type="submit"
               fullWidth
@@ -171,5 +175,16 @@ function Register() {
     </ThemeProvider>
   );
 }
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+
+  return {
+    props: {
+      session
+    }
+  }
+}
+
 
 export default Register
