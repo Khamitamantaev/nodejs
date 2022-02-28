@@ -27,7 +27,8 @@ class Home extends PureComponent {
     return (
       <DefaultLayout>
         <div style={styles.wrapper}>
-          <h1 className='text-center'>Hello, my dear employer!</h1>
+          <h1 className='text-center'>Hello, my dear Employer!</h1>
+          <h1 className='text-center'>This is one of the test pages of my portfolio</h1>
         </div>
       </DefaultLayout>
     );
