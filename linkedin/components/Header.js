@@ -35,9 +35,9 @@ function Header() {
         {mounted && (
           <>
             {resolvedTheme === "dark" ? (
-              <HeaderLink Icon={WorkIcon} text="Khammerson" href="/" feed  />
+              <Image src="/logo/khammerson.png" width={80} height={60} />
             ) : (
-              <HeaderLink Icon={WorkIcon} text="Khammerson" href="/" feed  />
+              <Image src="/logo/khammerson.png" width={80} height={60} />
             )}
           </>
         )}
