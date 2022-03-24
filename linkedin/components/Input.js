@@ -29,7 +29,7 @@ function Input() {
             setModalType("dropIn");
           }}
         >
-          Start a post
+          Добавить запись
         </motion.button>
       </div>
       <div className="flex items-center flex-wrap gap-4 justify-center md:gap-x-10">
