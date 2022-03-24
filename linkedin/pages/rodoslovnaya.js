@@ -14,32 +14,29 @@ import Tree from 'react-d3-tree';
 import OrgChartTree from "../components/Tree";
 
 const orgChart = {
+    id: '0',
     name: 'CEO',
     children: [
       {
+        id: '1',
         name: 'Manager',
-        attributes: {
-          department: 'Production',
-        },
         children: [
           {
+            id: '2',
             name: 'Foreman',
-            attributes: {
-              department: 'Fabrication',
-            },
             children: [
               {
+                id: '3',
                 name: 'Worker',
               },
             ],
           },
           {
+            id: '4',
             name: 'Foreman',
-            attributes: {
-              department: 'Assembly',
-            },
             children: [
               {
+                id: '5',
                 name: 'Worker',
               },
             ],
@@ -61,6 +58,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
         },
     });
 
+  
     
 
     return (
