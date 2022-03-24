@@ -54,7 +54,7 @@ function Header() {
       {/* Right */}
 
       <div className="flex items-center space-x-6">
-        {/* <HeaderLink Icon={HomeRoundedIcon} text="Home" href="/" feed  /> */}
+        <HeaderLink Icon={HomeRoundedIcon} text="Home" href="/" feed  />
         <HeaderLink Icon={GroupIcon} text="My Network" href="/rodoslovnaya" feed />
         {/* <HeaderLink Icon={BusinessCenterIcon} text="Jobs" feed hidden />
         <HeaderLink Icon={ChatIcon} text="Messaging" feed />

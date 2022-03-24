@@ -10,8 +10,46 @@ import Modal from "../components/Modal";
 import Sidebar from "../components/Sidebar";
 import Widgets from "../components/Widgets";
 import { connectToDatabase } from "../util/mongodb";
+import Tree from 'react-d3-tree';
+import OrgChartTree from "../components/Tree";
 
-export default function Rodoslovnaya({ posts, articles }) {
+const orgChart = {
+    name: 'CEO',
+    children: [
+      {
+        name: 'Manager',
+        attributes: {
+          department: 'Production',
+        },
+        children: [
+          {
+            name: 'Foreman',
+            attributes: {
+              department: 'Fabrication',
+            },
+            children: [
+              {
+                name: 'Worker',
+              },
+            ],
+          },
+          {
+            name: 'Foreman',
+            attributes: {
+              department: 'Assembly',
+            },
+            children: [
+              {
+                name: 'Worker',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+
+export default function Rodoslovnaya({ posts, articles, rodos }) {
     const [modalOpen, setModalOpen] = useRecoilState(modalState);
     const [modalType, setModalType] = useRecoilState(modalTypeState);
     const router = useRouter();
@@ -23,10 +61,12 @@ export default function Rodoslovnaya({ posts, articles }) {
         },
     });
 
+    
+
     return (
         <div className="bg-[#F3F2EF] dark:bg-black dark:text-white h-screen overflow-y-scroll md:space-y-6">
             <Head>
-                <title>Feed | LinkedIn</title>
+                <title>Feed | Khammerson</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
@@ -36,7 +76,7 @@ export default function Rodoslovnaya({ posts, articles }) {
                     01
                 </div>
                 <div className="w-px ">
-                    02
+                    <OrgChartTree data={orgChart}/>
                 </div>
             </main>
         </div>
