@@ -12,7 +12,7 @@ function Home({ providers }) {
   return (
     <div className="space-y-10 relative">
       <Head>
-        <title>LinkedIn</title>
+        <title>Khammerson</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="flex justify-around items-center py-4">
@@ -21,10 +21,10 @@ function Home({ providers }) {
         </div>
         <div className="flex items-center sm:divide-x divide-gray-300">
           <div className="hidden sm:flex space-x-8 pr-4">
-            <HeaderLink Icon={ExploreIcon} text="Discover" />
+            {/* <HeaderLink Icon={ExploreIcon} text="Discover" />
             <HeaderLink Icon={GroupIcon} text="People" />
-            <HeaderLink Icon={OndemandVideoSharpIcon} text="Learning" />
-            <HeaderLink Icon={BusinessCenterIcon} text="Jobs" />
+            <HeaderLink Icon={OndemandVideoSharpIcon} text="Learning" /> */}
+            {/* <HeaderLink Icon={BusinessCenterIcon} text="Jobs" /> */}
           </div>
 
           {Object.values(providers).map((provider) => (

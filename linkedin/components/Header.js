@@ -6,12 +6,13 @@ import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import ChatIcon from "@mui/icons-material/Chat";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import LogoutIcon from '@mui/icons-material/Logout';
 import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
 import { Avatar } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
-
+import WorkIcon from '@mui/icons-material/Work';
 const spring = {
   type: "spring",
   stiffness: 700,
@@ -34,9 +35,9 @@ function Header() {
         {mounted && (
           <>
             {resolvedTheme === "dark" ? (
-              <Image src="/logo/linkedin.png" width={55} height={50} />
+              <HeaderLink Icon={WorkIcon} text="Khammerson" href="/" feed  />
             ) : (
-              <Image src="/logo/linkedin.png" width={55} height={50} />
+              <HeaderLink Icon={WorkIcon} text="Khammerson" href="/" feed  />
             )}
           </>
         )}
@@ -53,14 +54,14 @@ function Header() {
       {/* Right */}
 
       <div className="flex items-center space-x-6">
-        <HeaderLink Icon={HomeRoundedIcon} text="Home" feed active />
-        <HeaderLink Icon={GroupIcon} text="My Network" feed />
-        <HeaderLink Icon={BusinessCenterIcon} text="Jobs" feed hidden />
+        {/* <HeaderLink Icon={HomeRoundedIcon} text="Home" href="/" feed  /> */}
+        <HeaderLink Icon={GroupIcon} text="My Network" href="/rodoslovnaya" feed />
+        {/* <HeaderLink Icon={BusinessCenterIcon} text="Jobs" feed hidden />
         <HeaderLink Icon={ChatIcon} text="Messaging" feed />
         <HeaderLink Icon={NotificationsIcon} text="Notifications" feed />
-        <HeaderLink Icon={Avatar} text="Me" feed avatar hidden />
-        <HeaderLink Icon={AppsOutlinedIcon} text="Work" feed hidden />
-
+        
+        <HeaderLink Icon={AppsOutlinedIcon} text="Work" feed hidden /> */}
+        <HeaderLink Icon={LogoutIcon} text="Logout" href="/home" feed avatar hidden />
         {/* Dark mode toggle */}
         {mounted && (
           <div
