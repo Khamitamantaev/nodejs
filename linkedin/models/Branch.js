@@ -28,12 +28,12 @@ treeID: {
    default: null,
    ref: 'Tree'
 },
-parent: {
+parentID: {
   type: mongoose.Schema.Types.ObjectId,
   default: null,
   ref: 'Branch'
 },
-children: [{
+branches: [{
      _id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Branch",
