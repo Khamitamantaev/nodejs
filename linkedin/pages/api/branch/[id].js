@@ -2,17 +2,17 @@ import dbConnect from "../../../util/dbConnect"
 import Branch from '../../../models/Branch'
 import Tree from '../../../models/Tree'
 
-function deleteChilds(nodeList) {
-    await Branch.update({}, { $pull: { branches: { _id: nodeList._id } } }, { multi: true })
+async function deleteChilds(nodeList) {
+    await Branch.updateMany({}, { $pull: { branches: { _id: nodeList._id } } }, { multi: true })
     await Tree.update({}, { $pull: { branches: { _id: nodeList._id } } }, { multi: true })
     if (nodeList.branches) {
         await Promise.all(nodeList.branches.map(async node => {
-            const branch = await this.Branch.findOne(node)
+            const branch = await Branch.findOne(node)
 
             if (branch.branches) {
-                await this.deleteChilds(branch)
+                await deleteChilds(branch)
             }
-            await this.branchModel.deleteOne(node)
+            await Branch.deleteOne(node)
         }))
     }
 

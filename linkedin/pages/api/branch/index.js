@@ -16,18 +16,6 @@ export default async function handler(req, res) {
     //     res.status(400).json({ success: false })
     //   }
     //   break
-
-    // let parentBranch = await this.branchModel.findById(createBranchInput.parentID).exec()
-    //     let children = parentBranch.branches;
-    //     const newBranch = await this.branchModel.create(createBranchInput) //создаю ветку и там должна быть parentID
-    //     let currentTree = await this.treeModel.findById(createBranchInput.treeID).exec();
-    //     // console.log(currentTree)
-    //     let treebranches = currentTree.branches;
-    //     treebranches.push(newBranch)
-    //     children.push(newBranch)
-    //     await this.branchModel.findByIdAndUpdate(createBranchInput.parentID, { branches: children }, { useFindAndModify: false });
-    //     await this.treeModel.findByIdAndUpdate(currentTree.id, { branches: treebranches }, { useFindAndModify: false });
-    //     return newBranch.save()
     case 'POST':
       try {
         
