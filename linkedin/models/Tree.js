@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-
+import Branch from '../models/Branch'
 
 function slugify(string) {
    const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
@@ -19,11 +19,19 @@ function slugify(string) {
 const TreeSchema = new mongoose.Schema({
 name: String,
 slug: String,
+rootUser: {
+   type: mongoose.Schema.Types.ObjectId,
+   ref: 'User'
+},
 branches: [{
      _id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Branch",
-        index: true
+        index: true,
+        default: {
+           name: 'MainBranch',
+           children: []
+        }
      },
      name: String,
      slug: String

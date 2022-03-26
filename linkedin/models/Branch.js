@@ -19,6 +19,10 @@ function slugify(string) {
 const BranchSchema = new mongoose.Schema({
 name: String,
 slug: String,
+rootUser: {
+   type: mongoose.Schema.Types.ObjectId,
+   ref: 'User'
+},
 treeID: {
    type: mongoose.Schema.Types.ObjectId,
    default: null,
