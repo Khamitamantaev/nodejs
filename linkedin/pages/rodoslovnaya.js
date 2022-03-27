@@ -15,7 +15,8 @@ import OrgChartTree from "../components/Tree";
 import { Button, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { AddForm } from "../components/Form/AddTreeForm";
 import UserTrees from "../components/Form/UserTrees";
-
+import { useEffect } from "react";
+import { selectedTreeState, userTreeList } from "../atoms/treeAtom";
 const orgChart = {
   id: '0',
   name: 'CEO',
@@ -53,6 +54,23 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
 
+  const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
+  const user_trees = useRecoilStateLoadable(userTreeList);
+
+  useEffect(() => {
+    if (currentTree) {
+      var result = user_trees[0].contents.find(obj => obj._id === currentTree._id)
+      console.log(result)
+      // const nest = (items, _id = null, link = 'parentID') =>
+      //     items
+      //         .filter(item => item[link] === _id)
+      //         .map(item => ({ ...item, children: nest(items, item._id) }))
+      // if (result) {
+      //     setTree(nest(result.branches))
+      // }
+    }
+  })
+
 
   const router = useRouter();
   const { status } = useSession({
@@ -62,6 +80,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
       router.push("/home");
     },
   });
+
 
 
 
@@ -76,10 +95,10 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
       <main className="flex justify-start gap-x-5 px-4 sm:px-12">
         <div className="w-60 ">
           <AddForm />
-          <UserTrees/>
+          <UserTrees />
         </div>
         <div className="w-px ">
-        <OrgChartTree data={orgChart} />
+          <OrgChartTree data={orgChart} />
         </div>
       </main>
     </div>

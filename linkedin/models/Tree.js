@@ -27,7 +27,7 @@ branches: [{
      _id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Branch",
-        index: true
+        index: true,
      },
      name: String,
      slug: String
