@@ -22,3 +22,21 @@ export const userTreeList = atom({
   key: "userTreeList",
   default: userTreesState
 })
+
+
+//
+
+// const currentTree = selector({
+//   key: 'currentTree',
+//   get: async ({get}) => {
+//     let treeID = get(selectedTreeState)
+//     let response = await fetch(`/api/tree/${treeID}`);
+//     let json = await response.json()
+//     return json 
+//   },
+// });
+
+// export const userTree = atom({
+//   key: "userTree",
+//   default: currentTree
+// })

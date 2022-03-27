@@ -10,7 +10,21 @@ const UserSchema = new mongoose.Schema({
        index: true
     },
     name: String,
-    slug: String
+    slug: String,
+    branches: [{
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Branch",
+        index: true
+     },
+     name: String,
+     slug: String,
+     parentID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Branch",
+      index: true
+     }
+    }]
 }]
 })
 

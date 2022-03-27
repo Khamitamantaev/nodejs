@@ -1,10 +1,11 @@
 import dbConnect from '../../../util/dbConnect'
 import Branch from '../../../models/Branch'
 import Tree from '../../../models/Tree'
+import { getSession } from "next-auth/react"
 
 export default async function handler(req, res) {
   const { method } = req
-
+  const session = await getSession({ req })
   await dbConnect()
 
   switch (method) {

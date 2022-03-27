@@ -16,7 +16,7 @@ import { Button, List, ListItem, ListItemButton, ListItemText } from "@mui/mater
 import { AddForm } from "../components/Form/AddTreeForm";
 import UserTrees from "../components/Form/UserTrees";
 import { useEffect, useState } from "react";
-import { selectedTreeState, userTreeList } from "../atoms/treeAtom";
+import { selectedTreeState, userTree, userTreeList } from "../atoms/treeAtom";
 const orgChart = {
   id: '0',
   name: 'CEO',
@@ -56,13 +56,14 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
 
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const user_trees = useRecoilStateLoadable(userTreeList);
+  // const user_tree = useRecoilStateLoadable(userTree);
   const [tree, setTree] = useState({
     name: 'Root',
     children: []
 })
   useEffect( async () => {
     if (currentTree) {
-      var result = user_trees[0].contents.find(obj => obj._id === currentTree._id)
+      var result = user_trees[0].contents.find(obj => obj._id === currentTree)
       console.log(result)
       // let fetchTree = await response.json();
       // console.log(fetchTree)
