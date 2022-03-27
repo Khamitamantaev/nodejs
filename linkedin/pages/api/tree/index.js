@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
     case 'GET':
       try {
-       const user = await User.findOne({ email: session.user.email})
+       const user = await User.findOne({ email: "khamitamantaev@gmail.com"})
        console.log(user)
         // const user = await User.findOne({ email: session.user.email})
         // const allTrees = await Tree.find()
