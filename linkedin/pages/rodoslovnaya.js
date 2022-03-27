@@ -14,6 +14,7 @@ import Tree from 'react-d3-tree';
 import OrgChartTree from "../components/Tree";
 import { Button, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { AddForm } from "../components/Form/AddTreeForm";
+import UserTrees from "../components/Form/UserTrees";
 
 const orgChart = {
   id: '0',
@@ -75,6 +76,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
       <main className="flex justify-start gap-x-5 px-4 sm:px-12">
         <div className="w-60 ">
           <AddForm />
+          <UserTrees/>
         </div>
         <div className="w-px ">
         <OrgChartTree data={orgChart} />
