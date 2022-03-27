@@ -15,7 +15,7 @@ import OrgChartTree from "../components/Tree";
 import { Button, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { AddForm } from "../components/Form/AddTreeForm";
 import UserTrees from "../components/Form/UserTrees";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { selectedTreeState, userTreeList } from "../atoms/treeAtom";
 const orgChart = {
   id: '0',
@@ -56,11 +56,16 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
 
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const user_trees = useRecoilStateLoadable(userTreeList);
-
-  useEffect(() => {
+  const [tree, setTree] = useState({
+    name: 'Root',
+    children: []
+})
+  useEffect( async () => {
     if (currentTree) {
       var result = user_trees[0].contents.find(obj => obj._id === currentTree._id)
       console.log(result)
+      // let fetchTree = await response.json();
+      // console.log(fetchTree)
       // const nest = (items, _id = null, link = 'parentID') =>
       //     items
       //         .filter(item => item[link] === _id)
@@ -98,7 +103,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
           <UserTrees />
         </div>
         <div className="w-px ">
-          <OrgChartTree data={orgChart} />
+          <OrgChartTree data={tree} />
         </div>
       </main>
     </div>
