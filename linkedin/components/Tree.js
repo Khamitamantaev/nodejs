@@ -4,17 +4,15 @@ import Tree from 'react-d3-tree';
 import { useRecoilState } from 'recoil';
 import { CurrentBranchState } from '../atoms/branchAtom';
 import { modalState, modalTypeState } from '../atoms/modalAtom';
+import { selectedTreeState } from '../atoms/treeAtom';
 import { useCenteredTree } from "./helpers";
-// This is a simplified example of an org chart with a depth of 2.
-// Note how deeper levels are defined recursively via the `children` property.
-
 
 export default function OrgChartTree({ data }) {
   const [translate, containerRef] = useCenteredTree();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
   const [currentBranch, setCurrentBranch] = useRecoilState(CurrentBranchState);
-  
+  const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const handleClick = (nodeDatum) => {
     setCurrentBranch({
       _id: nodeDatum._id,
@@ -38,7 +36,7 @@ export default function OrgChartTree({ data }) {
       {/* `foreignObject` requires width & height to be explicitly set. */}
       <foreignObject {...foreignObjectProps}>
         <div style={{ border: "1px solid black", backgroundColor: "#eee8aa", fontSize: "12px" }} >
-          <button style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
+          <button disabled={!currentTree} style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
           <h3 style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
           {nodeDatum.children && (
             <button style={{ width: "100%" }} onClick={toggleNode}>
