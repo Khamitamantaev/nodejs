@@ -59,7 +59,7 @@ const initialState = {
         },
       ]
     },
-    
+
   ]
 }
 
@@ -67,27 +67,33 @@ const initialState = {
 export default function Rodoslovnaya({ posts, articles, rodos }) {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
-
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const user_trees = useRecoilStateLoadable(userTreeList);
   const [tree, setTree] = useState(initialState)
   const [handleBranch, setHandleBranch] = useRecoilState(handleBranchState);
 
-  useEffect( async () => {
+  useEffect(async () => {
     if (currentTree) {
-      var result = user_trees[0].contents.find(obj => obj._id === currentTree)
-      console.log(result)
-      const nest = (items, _id = null, link = 'parentID') => items.filter(item => item[link] === _id).map(item => ({
-        ...item,
-        children: nest(items, item._id)
-      }))
-      const json = nest(result.branches)
-      if(result) {
-        setTree(json)
+      const fetchTrees = async () => {
+        const response = await fetch("/api/tree", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
+        const responseData = await response.json();
+        var result = responseData.trees.find(obj => obj._id === currentTree)
+        const nest = (items, _id = null, link = 'parentID') => items.filter(item => item[link] === _id).map(item => ({
+          ...item,
+          children: nest(items, item._id)
+        }))
+        const json = nest(result.branches)
+        if (result) {
+          setTree(json)
+        }
         setHandleBranch(false)
-      }
+      };
+      fetchTrees();
     }
-  },[currentTree,handleBranch])
+  }, [currentTree, handleBranch])
 
 
   const router = useRouter();
