@@ -56,7 +56,6 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
 
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const user_trees = useRecoilStateLoadable(userTreeList);
-  // const user_tree = useRecoilStateLoadable(userTree);
   const [tree, setTree] = useState({
     name: 'Root',
     children: []
@@ -64,18 +63,16 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
   useEffect( async () => {
     if (currentTree) {
       var result = user_trees[0].contents.find(obj => obj._id === currentTree)
-      console.log(result)
-      // let fetchTree = await response.json();
-      // console.log(fetchTree)
-      // const nest = (items, _id = null, link = 'parentID') =>
-      //     items
-      //         .filter(item => item[link] === _id)
-      //         .map(item => ({ ...item, children: nest(items, item._id) }))
-      // if (result) {
-      //     setTree(nest(result.branches))
-      // }
+      const nest = (items, id = null, link = 'parentID') => items.filter(item => item[link] === id).map(item => ({
+        name: item.name,
+        children: nest(items, item._id)
+      }))
+      const json = nest(result.branches)
+      if(result) {
+        setTree(json)
+      }
     }
-  })
+  },[currentTree])
 
 
   const router = useRouter();
