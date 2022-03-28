@@ -20,14 +20,14 @@ export default async function handler(req, res) {
     //   break
     case 'POST':
       try {
-        const user = await User.findOne({ email: "khamitamantaev@gmail.com" })
+        const user = await User.findOne({ email: session.user.email })
         console.log(user)
         let parentBranch = await Branch.findById(req.body.parentID).exec()
         let children = parentBranch.branches;
 
         const newBranch = await Branch.create({
           name: req.body.name,
-          rootUser: req.body.rootUser,
+          rootUser: user._id,
           treeID: req.body.treeID,
           parentID: req.body.parentID
         })
@@ -35,12 +35,8 @@ export default async function handler(req, res) {
         let currentTree = await Tree.findById(req.body.treeID).exec();
 
         let treebranches = currentTree.branches;
-
         treebranches.push(newBranch)
-
         children.push(newBranch)
-
-
         await Branch.findByIdAndUpdate(req.body.parentID, { branches: children }, { useFindAndModify: false });
         await Tree.findByIdAndUpdate(currentTree.id, { branches: treebranches }, { useFindAndModify: false });
         await User.update(

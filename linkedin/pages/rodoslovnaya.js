@@ -17,38 +17,52 @@ import { AddForm } from "../components/Form/AddTreeForm";
 import UserTrees from "../components/Form/UserTrees";
 import { useEffect, useState } from "react";
 import { selectedTreeState, userTree, userTreeList } from "../atoms/treeAtom";
-const orgChart = {
-  id: '0',
-  name: 'CEO',
+import { handleBranchState } from "../atoms/branchAtom";
+
+const initialState = {
+  name: "Ваши возможности",
   children: [
     {
-      id: '1',
-      name: 'Manager',
+      name: "Создать дерево приватное",
       children: [
         {
-          id: '2',
-          name: 'Foreman',
+          name: "Создать ветку в текущем дереве",
           children: [
             {
-              id: '3',
-              name: 'Worker',
+              name: "Создать комментарии в текущей ветке",
+              children: []
             },
-          ],
+          ]
         },
         {
-          id: '4',
-          name: 'Foreman',
+          name: "Удалить ветку в текущем дереве",
+          children: []
+        },
+      ]
+    },
+
+    {
+      name: "Создать дерево публичное",
+      children: [
+        {
+          name: "Создать ветку в текущем дереве",
           children: [
             {
-              id: '5',
-              name: 'Worker',
+              name: "Создать комментарии в текущей ветке",
+              children: []
             },
-          ],
+          ]
         },
-      ],
+        {
+          name: "Удалить ветку в текущем дереве",
+          children: []
+        },
+      ]
     },
-  ],
-};
+    
+  ]
+}
+
 
 export default function Rodoslovnaya({ posts, articles, rodos }) {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
@@ -56,23 +70,24 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
 
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const user_trees = useRecoilStateLoadable(userTreeList);
-  const [tree, setTree] = useState({
-    name: 'Root',
-    children: []
-})
+  const [tree, setTree] = useState(initialState)
+  const [handleBranch, setHandleBranch] = useRecoilState(handleBranchState);
+
   useEffect( async () => {
     if (currentTree) {
       var result = user_trees[0].contents.find(obj => obj._id === currentTree)
-      const nest = (items, id = null, link = 'parentID') => items.filter(item => item[link] === id).map(item => ({
-        name: item.name,
+      console.log(result)
+      const nest = (items, _id = null, link = 'parentID') => items.filter(item => item[link] === _id).map(item => ({
+        ...item,
         children: nest(items, item._id)
       }))
       const json = nest(result.branches)
       if(result) {
         setTree(json)
+        setHandleBranch(false)
       }
     }
-  },[currentTree])
+  },[currentTree,handleBranch])
 
 
   const router = useRouter();
@@ -103,6 +118,11 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
         <div className="w-px ">
           <OrgChartTree data={tree} />
         </div>
+        <AnimatePresence>
+          {modalOpen && (
+            <Modal handleClose={() => setModalOpen(false)} type={modalType} />
+          )}
+        </AnimatePresence>
       </main>
     </div>
   );

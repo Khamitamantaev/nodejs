@@ -1,6 +1,9 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import Tree from 'react-d3-tree';
+import { useRecoilState } from 'recoil';
+import { CurrentBranchState } from '../atoms/branchAtom';
+import { modalState, modalTypeState } from '../atoms/modalAtom';
 import { useCenteredTree } from "./helpers";
 // This is a simplified example of an org chart with a depth of 2.
 // Note how deeper levels are defined recursively via the `children` property.
@@ -8,9 +11,18 @@ import { useCenteredTree } from "./helpers";
 
 export default function OrgChartTree({ data }) {
   const [translate, containerRef] = useCenteredTree();
-
+  const [modalOpen, setModalOpen] = useRecoilState(modalState);
+  const [modalType, setModalType] = useRecoilState(modalTypeState);
+  const [currentBranch, setCurrentBranch] = useRecoilState(CurrentBranchState);
+  
   const handleClick = (nodeDatum) => {
-    console.log(nodeDatum)
+    setCurrentBranch({
+      _id: nodeDatum._id,
+      name: nodeDatum.name,
+    })
+    console.log(currentBranch)
+    setModalOpen(true);
+    setModalType("addBranch");
   }
 
   const renderForeignObjectNode = ({
@@ -45,7 +57,7 @@ export default function OrgChartTree({ data }) {
       : `M${source.x},${source.y}L${target.x},${target.y}`;
   };
   const nodeSize = { x: 200, y: 120 };
-  const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: 20 };
+  const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: 10 };
 
   return (
     // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
