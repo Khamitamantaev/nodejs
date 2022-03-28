@@ -18,3 +18,8 @@ export const userTreeList = atom({
   key: "userTreeList",
   default: userTreesState
 })
+
+export const handleTreeState = atom({
+  key: "handleTreeState",
+  default: false,
+});

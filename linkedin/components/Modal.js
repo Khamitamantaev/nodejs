@@ -10,6 +10,7 @@ import { getPostState } from "../atoms/postAtom";
 import Post from "./Post";
 import AddBranchForm from "./Form/addBranchForm";
 import DeleteBranch from "./Form/deleteBranch";
+import AddTreeForm from "./Form/AddTreeForm";
 
 const dropIn = {
   hidden: {
@@ -54,6 +55,27 @@ const addBranch = {
 };
 
 const deleteBranch = {
+  hidden: {
+    y: "-100vh",
+    opacity: 0,
+  },
+  visible: {
+    y: "0",
+    opacity: 1,
+    transition: {
+      duration: 0.1,
+      type: "spring",
+      damping: 25,
+      stiffness: 500,
+    },
+  },
+  exit: {
+    y: "100vh",
+    opacity: 0,
+  },
+};
+
+const addTree = {
   hidden: {
     y: "-100vh",
     opacity: 0,
@@ -169,7 +191,26 @@ const Modal = ({ handleClose, type }) => {
           </div>
 
           <div className="p-4 space-y-2">
-            <DeleteBranch/>
+            <DeleteBranch />
+          </div>
+        </motion.div>
+      )}
+
+      {type === "addTree" && (
+        <motion.div
+          onClick={(e) => e.stopPropagation()}
+          className="rounded-xl flex flex-col justify-center bg-white dark:bg-[#1D2226] w-full max-w-lg md:-mt-96 mx-6"
+          variants={addTree}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+          <div className="flex items-center justify-between border-b border-white/75 px-4 py-2.5">
+            <h4 className="text-xl">Добавить дерево</h4>
+          </div>
+
+          <div className="p-4 space-y-2">
+            <AddTreeForm />
           </div>
         </motion.div>
       )}

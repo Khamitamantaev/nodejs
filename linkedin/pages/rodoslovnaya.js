@@ -16,7 +16,7 @@ import { Button, List, ListItem, ListItemButton, ListItemText } from "@mui/mater
 import { AddForm } from "../components/Form/AddTreeForm";
 import UserTrees from "../components/Form/UserTrees";
 import { useEffect, useState } from "react";
-import { selectedTreeState, userTree, userTreeList } from "../atoms/treeAtom";
+import { handleTreeState, selectedTreeState, userTree, userTreeList } from "../atoms/treeAtom";
 import { handleBranchState } from "../atoms/branchAtom";
 
 const initialState = {
@@ -43,7 +43,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
   const user_trees = useRecoilStateLoadable(userTreeList);
   const [tree, setTree] = useState(initialState)
   const [handleBranch, setHandleBranch] = useRecoilState(handleBranchState);
-
+  const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
   useEffect(async () => {
     if (currentTree) {
       const fetchTrees = async () => {
@@ -62,6 +62,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
           setTree(json)
         }
         setHandleBranch(false)
+        setHandleTree(false)
       };
       fetchTrees();
     }
@@ -77,6 +78,10 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
     },
   });
 
+  const handleAddClick = () => {
+    setModalOpen(true);
+    setModalType("addTree");
+  }
 
 
 
@@ -90,7 +95,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
       <Header />
       <main className="flex justify-start gap-x-5 px-4 sm:px-12">
         <div className="w-60 ">
-          <AddForm />
+          <Button onClick={handleAddClick}>Добавить дерево</Button>
           <UserTrees />
         </div>
         <div className="w-px">
