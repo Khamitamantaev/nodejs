@@ -14,9 +14,6 @@ export default async function handler(req, res) {
     case 'GET':
       try {
        const user = await User.findOne({ email: session.user.email})
-       console.log(user)
-        // const user = await User.findOne({ email: session.user.email})
-        // const allTrees = await Tree.find()
         res.status(201).json({
           trees: user.trees
         })
@@ -28,7 +25,7 @@ export default async function handler(req, res) {
     case 'POST':
       try {
         const user = await User.findOne({ email: session.user.email})
-        console.log(user)
+        // console.log(user)
         const tree = await Tree.create({
           name: req.body.name,
           rootUser: user._id
