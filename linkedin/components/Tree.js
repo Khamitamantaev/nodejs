@@ -69,7 +69,7 @@ export default function OrgChartTree({ data }) {
 
   return (
     // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
-    <div id="treeWrapper" style={{ width: '50em', height: '40em' }}>
+    <div id="treeWrapper" style={{ width: '64em', height: '40em' }}>
       <Tree
         data={data}
         renderCustomNodeElement={(rd3tProps) =>

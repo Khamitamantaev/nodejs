@@ -93,7 +93,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
           <AddForm />
           <UserTrees />
         </div>
-        <div className="w-px ">
+        <div className="w-px">
           <OrgChartTree data={tree} />
         </div>
         <AnimatePresence>
