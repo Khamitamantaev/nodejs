@@ -66,7 +66,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
       };
       fetchTrees();
     }
-  }, [currentTree, handleBranch])
+  }, [currentTree, handleBranch, handleTree])
 
 
   const router = useRouter();

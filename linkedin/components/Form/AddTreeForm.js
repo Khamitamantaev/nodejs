@@ -45,7 +45,7 @@ function AddTreeForm() {
         name="treename"
         onChange={formik.handleChange}
       />
-      <button type="submit">Добавить</button>
+      <button type="submit" disabled={formik.values.treename ? false: true}>Добавить</button>
     </form>
   );
 }
