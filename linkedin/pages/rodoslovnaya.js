@@ -57,8 +57,9 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
           ...item,
           children: nest(items, item._id)
         }))
-        const json = nest(result.branches)
+        
         if (result) {
+          const json = nest(result.branches)
           setTree(json)
         }
         setHandleBranch(false)
@@ -94,8 +95,9 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
 
       <Header />
       <main className="flex justify-start gap-x-5 px-4 sm:px-12">
+      
         <div className="w-60 ">
-          <Button onClick={handleAddClick}>Добавить дерево</Button>
+        <Button className="pl-8" onClick={handleAddClick}>Добавить дерево</Button>
           <UserTrees />
         </div>
         <div className="w-px">

@@ -11,6 +11,7 @@ import Post from "./Post";
 import AddBranchForm from "./Form/addBranchForm";
 import DeleteBranch from "./Form/deleteBranch";
 import AddTreeForm from "./Form/AddTreeForm";
+import DeleteTree from "./Form/deleteTree";
 
 const dropIn = {
   hidden: {
@@ -76,6 +77,27 @@ const deleteBranch = {
 };
 
 const addTree = {
+  hidden: {
+    y: "-100vh",
+    opacity: 0,
+  },
+  visible: {
+    y: "0",
+    opacity: 1,
+    transition: {
+      duration: 0.1,
+      type: "spring",
+      damping: 25,
+      stiffness: 500,
+    },
+  },
+  exit: {
+    y: "100vh",
+    opacity: 0,
+  },
+};
+
+const deleteTree = {
   hidden: {
     y: "-100vh",
     opacity: 0,
@@ -214,6 +236,26 @@ const Modal = ({ handleClose, type }) => {
           </div>
         </motion.div>
       )}
+
+      {type === "deleteTree" && (
+        <motion.div
+          onClick={(e) => e.stopPropagation()}
+          className="rounded-xl flex flex-col justify-center bg-white dark:bg-[#1D2226] w-full max-w-lg md:-mt-96 mx-6"
+          variants={deleteTree}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+          <div className="flex items-center justify-between border-b border-white/75 px-4 py-2.5">
+            <h4 className="text-xl">Удалить дерево</h4>
+          </div>
+
+          <div className="p-4 space-y-2">
+            <DeleteTree />
+          </div>
+        </motion.div>
+      )}
+
 
       {type === "gifYouUp" && (
         <motion.div
