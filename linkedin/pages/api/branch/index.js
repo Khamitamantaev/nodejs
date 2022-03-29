@@ -10,18 +10,9 @@ export default async function handler(req, res) {
   await dbConnect()
 
   switch (method) {
-    // case 'GET':
-    //   try {
-    //     const users = await User.find({})
-    //     res.status(200).json({ success: true, data: users })
-    //   } catch (error) {
-    //     res.status(400).json({ success: false })
-    //   }
-    //   break
     case 'POST':
       try {
         const user = await User.findOne({ email: session.user.email })
-        // console.log(user)
         let parentBranch = await Branch.findById(req.body.parentID).exec()
         let children = parentBranch.branches;
 
@@ -50,7 +41,6 @@ export default async function handler(req, res) {
         newBranch.save()
         res.status(201).json({ success: true, newBranch: newBranch })
       } catch (error) {
-        console.log(error)
         res.status(400).json({ success: false })
       }
       break

@@ -14,12 +14,11 @@ export default function OrgChartTree({ data }) {
   const [currentBranch, setCurrentBranch] = useRecoilState(CurrentBranchState);
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const handleClick = (nodeDatum) => {
-    console.log(nodeDatum)
+    // console.log(nodeDatum)
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
     })
-    console.log(currentBranch)
     setModalOpen(true);
     setModalType("addBranch");
   }

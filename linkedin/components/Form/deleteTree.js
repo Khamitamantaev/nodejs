@@ -18,7 +18,6 @@ function DeleteTree() {
 
   const deleteTree = async (e) => {
     e.preventDefault();
-    console.log(currentBranch._id)
      await fetch(`/api/tree/${currentTree}`, {
       method: "DELETE",
       headers: {

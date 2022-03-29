@@ -30,8 +30,6 @@ function AddTreeForm() {
 
   useEffect(() => {
     setHandleTree(false)
-    console.log("handle HERE")
-    console.log(handleTree)
   },[handleTree])
 
   const formik = useFormik({

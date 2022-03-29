@@ -18,7 +18,6 @@ function DeleteBranch() {
 
   const deleteBranch = async (e) => {
     e.preventDefault();
-    console.log(currentBranch._id)
      await fetch(`/api/branch/${currentBranch._id}`, {
       method: "DELETE",
       body: JSON.stringify({

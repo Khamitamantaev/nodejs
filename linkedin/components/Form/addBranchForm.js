@@ -29,10 +29,6 @@ function AddBranchForm() {
         "Content-Type": "application/json",
       },
     });
-
-    const responseData = await response.json();
-    console.log(responseData);
-    
     setHandleBranch(true);
     setModalOpen(false);
   };

@@ -18,7 +18,6 @@ export default async function handler(req, res) {
           trees: user.trees
         })
       } catch(error) {
-        console.log(error)
         res.status(400).json({ success: false })
       }
       break
@@ -44,7 +43,6 @@ export default async function handler(req, res) {
         await user.save()
         res.status(201).json({ success: true, tree: tree, branch: branch }) //NEED FIX
       } catch (error) {
-        console.log(error)
         res.status(400).json({ success: false })
       }
       break
