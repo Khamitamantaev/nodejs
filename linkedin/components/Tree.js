@@ -52,10 +52,7 @@ export default function OrgChartTree({ data }) {
         {nodeDatum._id ? 
         <div style={{ border: "1px solid black", backgroundColor: "#eee8aa", fontSize: "12px" }} >
         <button  style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-        {nodeDatum.parentID === null ?  <button disabled={true} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button> : 
-          <button   style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
-        }
-        <button  style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+        <button disabled={!nodeDatum.parentID} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
         <h3 onClick={() => handleTestClick(nodeDatum)}  style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
         {nodeDatum.children && (
           <button style={{ width: "100%" }} onClick={toggleNode}>
