@@ -20,15 +20,15 @@ import { handleTreeState, selectedTreeState, userTree, userTreeList } from "../a
 import { handleBranchState } from "../atoms/branchAtom";
 
 const initialState = {
-  name: "Ваши возможности",
+  name: "Пример",
   children: [
     {
-      name: "Создать дерево приватное",
+      name: "Пример",
       children: []
     },
 
     {
-      name: "Создать дерево публичное",
+      name: "Пример",
       children: []
     },
 
@@ -61,6 +61,8 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
         if (result) {
           const json = nest(result.branches)
           setTree(json)
+        } else {
+          setTree(initialState)
         }
         setHandleBranch(false)
         setHandleTree(false)
@@ -101,6 +103,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
           <UserTrees />
         </div>
         <div className="w-px">
+          {}
           <OrgChartTree data={tree} />
         </div>
         <AnimatePresence>

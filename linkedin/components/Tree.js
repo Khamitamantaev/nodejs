@@ -14,6 +14,7 @@ export default function OrgChartTree({ data }) {
   const [currentBranch, setCurrentBranch] = useRecoilState(CurrentBranchState);
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const handleClick = (nodeDatum) => {
+    console.log(nodeDatum)
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
@@ -44,16 +45,28 @@ export default function OrgChartTree({ data }) {
       <circle r={15} fill="#1e90ff" ></circle>
       {/* `foreignObject` requires width & height to be explicitly set. */}
       <foreignObject {...foreignObjectProps}>
+        {nodeDatum._id ? 
         <div style={{ border: "1px solid black", backgroundColor: "#eee8aa", fontSize: "12px" }} >
-          <button disabled={!currentTree} style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-          <button disabled={!currentTree} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
-          <h3 style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
-          {nodeDatum.children && (
-            <button style={{ width: "100%" }} onClick={toggleNode}>
-              {nodeDatum.__rd3t.collapsed ? "Развернуть" : "Свернуть"}
-            </button>
-          )}
-        </div>
+        <button  style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
+        <button  style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+        <h3 style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
+        {nodeDatum.children && (
+          <button style={{ width: "100%" }} onClick={toggleNode}>
+            {nodeDatum.__rd3t.collapsed ? "Развернуть" : "Свернуть"}
+          </button>
+        )}
+      </div>: 
+      <div style={{ border: "1px solid black", backgroundColor: "#eee8aa", fontSize: "12px" }} >
+      <h3 style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
+      {nodeDatum.children && (
+        <button style={{ width: "100%" }} onClick={toggleNode}>
+          {nodeDatum.__rd3t.collapsed ? "Развернуть" : "Свернуть"}
+        </button>
+      )}
+    </div>
+      
+      }
+        
       </foreignObject>
     </g>
   );
