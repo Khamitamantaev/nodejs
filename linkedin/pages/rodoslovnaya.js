@@ -24,7 +24,16 @@ const initialState = {
   children: [
     {
       name: "Пример",
-      children: []
+      children: [
+        {
+          name: "Пример",
+          children: []
+        },
+        {
+          name: "Пример",
+          children: []
+        }
+      ]
     },
 
     {

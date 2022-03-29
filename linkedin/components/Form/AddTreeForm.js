@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { CurrentBranchState } from "../../atoms/branchAtom";
 import { modalState } from "../../atoms/modalAtom";
@@ -27,6 +27,12 @@ function AddTreeForm() {
     setHandleTree(true)
     setModalOpen(false);
   }
+
+  useEffect(() => {
+    setHandleTree(false)
+    console.log("handle HERE")
+    console.log(handleTree)
+  },[handleTree])
 
   const formik = useFormik({
     initialValues: {
