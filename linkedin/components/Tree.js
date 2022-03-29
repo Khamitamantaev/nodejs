@@ -46,11 +46,13 @@ export default function OrgChartTree({ data }) {
 
   (
     <g>
-      <circle r={15} fill="#1e90ff" ></circle>
+      <circle className="stroke-cyan-500" r={12} fill="#1e90ff" ></circle>
       {/* `foreignObject` requires width & height to be explicitly set. */}
       <foreignObject {...foreignObjectProps}>
         {nodeDatum._id ? 
-        <div style={{ border: "1px solid black", backgroundColor: "#eee8aa", fontSize: "12px" }} >
+        <div className='rounded-full bg-cyan-500 hover:bg-sky-400 static'>
+          
+        
         <button  style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
         <button disabled={!nodeDatum.parentID} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
         <h3 onClick={() => handleTestClick(nodeDatum)}  style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
@@ -84,7 +86,7 @@ export default function OrgChartTree({ data }) {
       ? `M${source.y},${source.x}L${target.y},${target.x}`
       : `M${source.x},${source.y}L${target.x},${target.y}`;
   };
-  const nodeSize = { x: 200, y: 120 };
+  const nodeSize = { x: 300, y: 180 };
   const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: 10 };
 
   return (
