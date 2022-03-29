@@ -32,6 +32,11 @@ export default function OrgChartTree({ data }) {
     setModalType("deleteBranch");
   }
 
+  const handleTestClick = (nodeDatum) => {
+    setModalOpen(true);
+    setModalType("editBranch");
+  }
+
   const renderForeignObjectNode = ({
     nodeDatum,
     toggleNode,
@@ -48,7 +53,7 @@ export default function OrgChartTree({ data }) {
         <div style={{ border: "1px solid black", backgroundColor: "#eee8aa", fontSize: "12px" }} >
         <button  style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
         <button  style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
-        <h3 style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
+        <h3 onClick={() => handleTestClick(nodeDatum)}  style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
         {nodeDatum.children && (
           <button style={{ width: "100%" }} onClick={toggleNode}>
             {nodeDatum.__rd3t.collapsed ? "Развернуть" : "Свернуть"}
@@ -58,7 +63,8 @@ export default function OrgChartTree({ data }) {
       <div style={{ border: "1px solid black", backgroundColor: "#eee8aa", fontSize: "12px" }} >
         <button disabled={true}  style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
         <button disabled={true}  style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
-      <h3 style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
+        
+      <h3 onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
       {nodeDatum.children && (
         <button style={{ width: "100%" }} onClick={toggleNode}>
           {nodeDatum.__rd3t.collapsed ? "Развернуть" : "Свернуть"}
