@@ -55,9 +55,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
   useEffect(async () => {
     if (currentTree) {
-      console.log(currentTree)
       const fetchTrees = async () => {
-       
         const response = await fetch(`/api/tree/${currentTree}`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -69,7 +67,6 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
         }))
         if (responseData.tree) {
           const json = nest(responseData.tree.branches)
-          console.log(json)
           setTree(json)
         } else {
           setTree(initialState)
@@ -113,7 +110,6 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
           <UserTrees />
         </div>
         <div className="w-px">
-          {}
           <OrgChartTree data={tree} />
         </div>
         <AnimatePresence>

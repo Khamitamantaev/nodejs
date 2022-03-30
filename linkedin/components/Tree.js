@@ -83,7 +83,7 @@ export default function OrgChartTree({ data }) {
       ? `M${source.y},${source.x}L${target.y},${target.x}`
       : `M${source.x},${source.y}L${target.x},${target.y}`;
   };
-  const nodeSize = { x: 300, y: 180 };
+  const nodeSize = { x: 200, y: 180 };
   const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: 10 };
 
   return (
@@ -98,6 +98,7 @@ export default function OrgChartTree({ data }) {
         translate={translate}
         nodeSize={nodeSize}
         orientation={"vertical"}
+        depthFactor={200}
       />
     </div>
   );
