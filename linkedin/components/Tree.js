@@ -104,7 +104,7 @@ export default function OrgChartTree({ data }) {
         translate={translate}
         nodeSize={nodeSize}
         orientation={"vertical"}
-        depthFactor={300}
+        depthFactor={200}
       />
     </div>
   );

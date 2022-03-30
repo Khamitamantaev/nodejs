@@ -205,14 +205,14 @@ const Modal = ({ handleClose, type }) => {
           exit="exit"
         >
           <div className="flex items-center justify-between border-b border-white/75 px-4 py-2.5">
-            <h4 className="text-xl">Текущая ветка</h4>
+            <h4 className="text-xl pt-20">Текущее изображение этой ветки</h4>
             <IconButton onClick={handleClose}>
               <CloseRoundedIcon className="h-7 w-7 dark:text-white/75" />
             </IconButton>
           </div>
 
           <div className="p-4 space-y-2">
-          <img src={currentBranch.imageBranch}></img>
+          {currentBranch.imageBranch ?  <img className="w-full cursor-pointer" src={currentBranch.imageBranch}></img>: <div>Без картинки</div> }
             {/* <div className="flex items-center space-x-2">
               <Avatar src={session?.user?.image} className="!h-11 !w-11" />
               <h6>{session?.user?.name}</h6>
