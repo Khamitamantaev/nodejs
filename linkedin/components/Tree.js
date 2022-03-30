@@ -57,7 +57,7 @@ export default function OrgChartTree({ data }) {
       {/* `foreignObject` requires width & height to be explicitly set. */}
       <foreignObject {...foreignObjectProps}>
         {nodeDatum._id ?
-          <div className='rounded-full bg-cyan-500 hover:bg-sky-400 static'>
+          <div className='rounded-full bg-yellow-300 hover:bg-sky-400 static'>
             <button style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
             <button disabled={!nodeDatum.parentID} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
             <h3 onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
@@ -67,7 +67,7 @@ export default function OrgChartTree({ data }) {
               </button>
             )}
           </div> :
-          <div className='rounded-full bg-cyan-500 hover:bg-sky-400 static'>
+          <div className='rounded-full bg-yellow-300 hover:bg-sky-400 static'>
             <button disabled={true} style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
             <button disabled={true} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
             <h3 onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
