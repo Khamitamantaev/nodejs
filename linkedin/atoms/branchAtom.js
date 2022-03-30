@@ -4,7 +4,8 @@ export const CurrentBranchState = atom({
   key: "CurrentBranchState",
   default: {
     _id: "",
-    name: ""
+    name: "",
+    imageBranch:""
   },
 });
 

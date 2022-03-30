@@ -5,13 +5,14 @@ import IconButton from "@mui/material/IconButton";
 import { useSession } from "next-auth/react";
 import { Avatar, Button } from "@mui/material";
 import Form from "./Form";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { getPostState } from "../atoms/postAtom";
 import Post from "./Post";
 import AddBranchForm from "./Form/addBranchForm";
 import DeleteBranch from "./Form/deleteBranch";
 import AddTreeForm from "./Form/AddTreeForm";
 import DeleteTree from "./Form/deleteTree";
+import { CurrentBranchState } from "../atoms/branchAtom";
 
 const dropIn = {
   hidden: {
@@ -165,7 +166,7 @@ const gifYouUp = {
 const Modal = ({ handleClose, type }) => {
   const { data: session } = useSession();
   const post = useRecoilValue(getPostState);
-
+  const [currentBranch, setCurrentBranch] = useRecoilState(CurrentBranchState);
   return (
     <Backdrop onClick={handleClose}>
       {type === "dropIn" && (
@@ -211,6 +212,7 @@ const Modal = ({ handleClose, type }) => {
           </div>
 
           <div className="p-4 space-y-2">
+          <img src={currentBranch.imageBranch}></img>
             {/* <div className="flex items-center space-x-2">
               <Avatar src={session?.user?.image} className="!h-11 !w-11" />
               <h6>{session?.user?.name}</h6>

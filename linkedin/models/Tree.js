@@ -33,7 +33,8 @@ const TreeSchema = new mongoose.Schema({
          type: mongoose.Schema.Types.ObjectId,
          ref: "Branch",
          index: true,
-      },
+      }, 
+      imageBranch: String, 
       name: String,
       slug: String
    }]

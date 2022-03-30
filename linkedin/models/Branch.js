@@ -33,6 +33,7 @@ parentID: {
   default: null,
   ref: 'Branch'
 },
+imageBranch: String, 
 branches: [{
      _id: {
         type: mongoose.Schema.Types.ObjectId,

@@ -18,6 +18,7 @@ export default function OrgChartTree({ data }) {
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
+      imageBranch: nodeDatum.imageBranch
     })
     setModalOpen(true);
     setModalType("addBranch");
@@ -27,12 +28,18 @@ export default function OrgChartTree({ data }) {
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
+      imageBranch: nodeDatum.imageBranch
     })
     setModalOpen(true);
     setModalType("deleteBranch");
   }
 
   const handleTestClick = (nodeDatum) => {
+    setCurrentBranch({
+      _id: nodeDatum._id,
+      name: nodeDatum.name,
+      imageBranch: nodeDatum.imageBranch
+    })
     setModalOpen(true);
     setModalType("editBranch");
   }
@@ -51,8 +58,6 @@ export default function OrgChartTree({ data }) {
       <foreignObject {...foreignObjectProps}>
         {nodeDatum._id ?
           <div className='rounded-full bg-cyan-500 hover:bg-sky-400 static'>
-
-
             <button style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
             <button disabled={!nodeDatum.parentID} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
             <h3 onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
@@ -66,6 +71,7 @@ export default function OrgChartTree({ data }) {
             <button disabled={true} style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
             <button disabled={true} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
             <h3 onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
+
             {nodeDatum.children && (
               <button style={{ width: "100%" }} onClick={toggleNode}>
                 {nodeDatum.__rd3t.collapsed ? "Развернуть" : "Свернуть"}
@@ -98,7 +104,7 @@ export default function OrgChartTree({ data }) {
         translate={translate}
         nodeSize={nodeSize}
         orientation={"vertical"}
-        depthFactor={200}
+        depthFactor={300}
       />
     </div>
   );
