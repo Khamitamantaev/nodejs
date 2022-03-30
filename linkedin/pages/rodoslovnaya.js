@@ -55,20 +55,21 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
   useEffect(async () => {
     if (currentTree) {
+      console.log(currentTree)
       const fetchTrees = async () => {
-        const response = await fetch("/api/tree", {
+       
+        const response = await fetch(`/api/tree/${currentTree}`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });
         const responseData = await response.json();
-        var result = responseData.trees.find(obj => obj._id === currentTree)
         const nest = (items, _id = null, link = 'parentID') => items.filter(item => item[link] === _id).map(item => ({
           ...item,
           children: nest(items, item._id)
         }))
-        
-        if (result) {
-          const json = nest(result.branches)
+        if (responseData.tree) {
+          const json = nest(responseData.tree.branches)
+          console.log(json)
           setTree(json)
         } else {
           setTree(initialState)

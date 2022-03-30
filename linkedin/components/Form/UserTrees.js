@@ -17,6 +17,7 @@ const UserTrees = () => {
       });
       const responseData = await response.json();
       setTrees(responseData.trees)
+      console.log(trees)
     };
     fetchTrees();
   }, [handleTree])

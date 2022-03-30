@@ -14,8 +14,9 @@ export default async function handler(req, res) {
     case 'GET':
       try {
        const user = await User.findOne({ email: session.user.email})
+       const trees = await Tree.find({ rootUser: user._id})
         res.status(201).json({
-          trees: user.trees
+          trees: trees
         })
       } catch(error) {
         res.status(400).json({ success: false })
@@ -38,10 +39,7 @@ export default async function handler(req, res) {
         let treebranches = tree.branches;
         treebranches.push(branch)
         await tree.save()
-        let userTrees = user.trees
-        userTrees.push(tree)
-        await user.save()
-        res.status(201).json({ success: true, tree: tree, branch: branch }) //NEED FIX
+        res.status(201).json({ success: true }) //NEED FIX
       } catch (error) {
         res.status(400).json({ success: false })
       }

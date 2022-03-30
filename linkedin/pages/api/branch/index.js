@@ -30,14 +30,6 @@ export default async function handler(req, res) {
         children.push(newBranch)
         await Branch.findByIdAndUpdate(req.body.parentID, { branches: children }, { useFindAndModify: false });
         await Tree.findByIdAndUpdate(currentTree.id, { branches: treebranches }, { useFindAndModify: false });
-        await User.update(
-          { _id: user._id, "trees._id": currentTree._id },
-          {
-            $set: {
-              "trees.$.branches": treebranches,
-            }
-          }
-        )
         newBranch.save()
         res.status(201).json({ success: true, newBranch: newBranch })
       } catch (error) {

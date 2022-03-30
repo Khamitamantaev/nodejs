@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     if (method === 'GET') {
         try {
             const tree = await Tree.findOne({
-                id: id
+                _id: id
             })
             res.status(201).json({
                 tree: tree
@@ -30,7 +30,6 @@ export default async function handler(req, res) {
         try {
             await Tree.findByIdAndDelete(id)
             await Branch.deleteMany({ treeID: id })
-            await User.update({email: session.user.email}, { $pull: { trees: { _id: id } } }, { multi: true })
             res.status(200).json({ message: "The Tree has been deleted!!" });
         } catch (error) {
             res.status(500).json(error);
