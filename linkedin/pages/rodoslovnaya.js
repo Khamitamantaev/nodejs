@@ -53,9 +53,19 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
   const [tree, setTree] = useState(initialState)
   const [handleBranch, setHandleBranch] = useRecoilState(handleBranchState);
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
+  const [trees, setTrees] = useRecoilState(userTreeList)
   useEffect(async () => {
     if (currentTree) {
       const fetchTrees = async () => {
+        const response = await fetch("/api/tree", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
+        const responseData = await response.json();
+        setTrees(responseData.trees)
+      };
+      fetchTrees();
+      const fetchTree = async () => {
         const response = await fetch(`/api/tree/${currentTree}`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -76,7 +86,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
         setHandleBranch(false)
         setHandleTree(false)
       };
-      fetchTrees();
+      fetchTree();
     }
   }, [currentTree, handleBranch, handleTree])
 

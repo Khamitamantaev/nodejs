@@ -10,15 +10,7 @@ const UserTrees = () => {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
   useEffect(() => {
-    const fetchTrees = async () => {
-      const response = await fetch("/api/tree", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      const responseData = await response.json();
-      setTrees(responseData.trees)
-    };
-    fetchTrees();
+    
   }, [handleTree])
 
   const handleTreeClick = (id) => {
