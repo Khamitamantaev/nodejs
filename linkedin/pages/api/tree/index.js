@@ -32,10 +32,11 @@ export default async function handler(req, res) {
           isPrivate: req.body.isPrivate
         })
         const branch = await Branch.create({
-          name: "Your First Branch",
+          name: "Первая ветка",
           treeID: tree._id,
           parentID: null,
           rootUser: req.body.rootUser,
+          description: 'Это ваша первая ветка, с нее вы начать строить дерево'
         })
         let treebranches = tree.branches;
         treebranches.push(branch)
