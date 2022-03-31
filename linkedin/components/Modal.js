@@ -41,7 +41,7 @@ const editBranch = {
     opacity: 0,
   },
   visible: {
-    y: "0",
+    y: "20vh",
     opacity: 1,
     transition: {
       duration: 0.1,
