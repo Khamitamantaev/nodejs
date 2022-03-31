@@ -79,6 +79,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
         if (responseData.tree) {
           const json = nest(responseData.tree.branches)
           setTree(json)
+          console.log(tree)
 
         } else {
           setTree(initialState)

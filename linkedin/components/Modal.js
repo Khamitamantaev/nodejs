@@ -211,11 +211,36 @@ const Modal = ({ handleClose, type }) => {
             </IconButton>
           </div>
           <div className="p-4 space-y-2">
-            {currentBranch.name ? <h2 className="text-xl">{currentBranch.name}</h2>: ""}
+            {currentBranch.name ? <h2 className="text-xl">{currentBranch.name}</h2> : ""}
           </div>
-          
+          <div className="p-4">
+            <textarea
+              value={currentBranch.description}
+              disabled={true}
+              className="
+              form-control
+              block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                     "
+              id="exampleFormControlTextarea1"
+              rows="3"
+              placeholder="Описание"
+            ></textarea>
+          </div>
           <div className="p-4 space-y-2">
-          {currentBranch.imageBranch ?  <img className="w-full cursor-pointer" src={currentBranch.imageBranch}></img>: <div>Без картинки</div> }
+            {currentBranch.imageBranch ? <img className="w-full cursor-pointer" src={currentBranch.imageBranch}></img> : <div>Без картинки</div>}
           </div>
         </motion.div>
       )}
@@ -237,10 +262,6 @@ const Modal = ({ handleClose, type }) => {
           </div>
 
           <div className="p-4 space-y-2">
-            <div className="flex items-center space-x-2">
-              <Avatar src={session?.user?.image} className="!h-11 !w-11" />
-              <h6>{session?.user?.name}</h6>
-            </div>
             <AddBranchForm />
           </div>
         </motion.div>

@@ -25,10 +25,11 @@ export default async function handler(req, res) {
     case 'POST':
       try {
         const user = await User.findOne({ email: session.user.email})
-        // console.log(user)
+        console.log(req.body)
         const tree = await Tree.create({
           name: req.body.name,
-          rootUser: user._id
+          rootUser: user._id,
+          isPrivate: req.body.isPrivate
         })
         const branch = await Branch.create({
           name: "Your First Branch",

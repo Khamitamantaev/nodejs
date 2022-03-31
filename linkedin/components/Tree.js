@@ -18,7 +18,8 @@ export default function OrgChartTree({ data }) {
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
-      imageBranch: nodeDatum.imageBranch
+      imageBranch: nodeDatum.imageBranch,
+      description: nodeDatum.description
     })
     setModalOpen(true);
     setModalType("addBranch");
@@ -35,10 +36,12 @@ export default function OrgChartTree({ data }) {
   }
 
   const handleTestClick = (nodeDatum) => {
+    console.log(nodeDatum)
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
-      imageBranch: nodeDatum.imageBranch
+      imageBranch: nodeDatum.imageBranch,
+      description: nodeDatum.description
     })
     setModalOpen(true);
     setModalType("editBranch");

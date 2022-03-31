@@ -19,6 +19,7 @@ function slugify(string) {
 const BranchSchema = new mongoose.Schema({
 name: String,
 slug: String,
+description: String,
 rootUser: {
    type: mongoose.Schema.Types.ObjectId,
    ref: 'User'
@@ -40,6 +41,7 @@ branches: [{
         ref: "Branch",
         index: true
      },
+     description: String,
      name: String,
      slug: String
 }]

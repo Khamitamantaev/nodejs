@@ -6,77 +6,46 @@ import { modalState } from "../../atoms/modalAtom";
 import { handleBranchState } from "../../atoms/branchAtom";
 import { handlePostState } from "../../atoms/postAtom";
 import { handleTreeState, selectedTreeState } from "../../atoms/treeAtom";
-import { useFormik } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
-function AddTreeForm() {
-  const [input, setInput] = useState("");
-  const [photoUrl, setPhotoUrl] = useState("");
-  const { data: session } = useSession();
+const AddTreeForm = () => {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
-  const [currentBranch, setCurrentBranch] = useRecoilState(CurrentBranchState);
-  const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState)
-
 
   const onSubmitTree = async (values) => {
-    fetch('/api/tree', {
+    console.log(values)
+   await fetch('/api/tree', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: values.treename })
+      body: JSON.stringify({ name: values.treeName, isPrivate: values.isPrivate })
     })
     setHandleTree(true)
     setModalOpen(false);
   }
 
-  useEffect(() => {
-    setHandleTree(false)
-  },[handleTree])
-
-  const validate = values => {
-    const errors = {};
-    if (!values.treename) {
-      errors.treename = 'Пустое имя';
-    } else if (values.treename.length > 10) {
-      errors.treename = 'Должно быть меньше 10 символов';
-    }
-  
-    // if (!values.lastName) {
-    //   errors.lastName = 'Required';
-    // } else if (values.lastName.length > 20) {
-    //   errors.lastName = 'Must be 20 characters or less';
-    // }
-  
-    // if (!values.email) {
-    //   errors.email = 'Required';
-    // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    //   errors.email = 'Invalid email address';
-    // }
-  
-    return errors;
-  };
-
-  const formik = useFormik({
-    initialValues: {
-      treename: '',
-    },
-    validate,
-    onSubmit: onSubmitTree,
-  });
-
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <input
-        type="text"
-        placeholder="Add tree (Optional)"
-        className="bg-transparent focus:outline-none truncate max-w-xs md:max-w-sm dark:placeholder-white/75"
-        value={formik.values.treename}
-        name="treename"
-        onChange={formik.handleChange}
-      />
-      {formik.errors.treename ? <div>{formik.errors.treename}</div> : null}
-      <button type="submit" disabled={formik.errors.treename ? true: false}>Добавить</button>
-    </form>
+    <Formik
+      initialValues={{ treeName: '', isPrivate: '0'}}
+      validationSchema={Yup.object({
+        treeName: Yup.string()
+          .max(10, 'Must be 10 characters or less')
+          .required('Required'),
+      })}
+      onSubmit={onSubmitTree}
+    >
+      <Form>
+        <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Tree name" name="treeName"/>
+        <ErrorMessage name="treeName" />
+
+        <Field className="mt-3" as="select" name="isPrivate">
+             <option value="1">Private</option>
+             <option value="0">Public</option>
+           </Field>
+        <button type="submit">Добавить</button>
+      </Form>
+    </Formik>
   );
-}
+};
 
 export default AddTreeForm;
