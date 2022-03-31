@@ -71,7 +71,6 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
           headers: { "Content-Type": "application/json" },
         });
         const responseData = await response.json();
-        console.log(responseData.tree)
         const nest = (items, _id = null, link = 'parentID') => items.filter(item => item[link] === _id).map(item => ({
           ...item,
           children: nest(items, item._id)
@@ -79,7 +78,6 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
         if (responseData.tree) {
           const json = nest(responseData.tree.branches)
           setTree(json)
-          console.log(tree)
 
         } else {
           setTree(initialState)

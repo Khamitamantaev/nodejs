@@ -26,10 +26,9 @@ const UserTrees = () => {
           {trees.map(tree => (
             <li className="py-3 sm:py-4 " key={tree._id}>
               <div className="flex items-end space-x-4">
-                <Button className='bg-green-500' onClick={() => setCurrentTree(tree._id)} >{tree.name}</Button>
-                <Button className='bg-red-400' onClick={() => handleTreeClick(tree._id)}>Удалить</Button>
+                <Button variant="contained bg-green-500 border-2"  onClick={() => setCurrentTree(tree._id)} >{tree.name}</Button>
+                <Button variant="outlined" color="error" onClick={() => handleTreeClick(tree._id)}>Удалить</Button>
               </div>
-              
             </li>
           ))}
         </ul>) : ""}
