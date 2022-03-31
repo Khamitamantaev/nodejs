@@ -55,16 +55,16 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
   const [trees, setTrees] = useRecoilState(userTreeList)
   useEffect(async () => {
+    const fetchTrees = async () => {
+      const response = await fetch("/api/tree", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const responseData = await response.json();
+      setTrees(responseData.trees)
+    };
+    fetchTrees();
     if (currentTree) {
-      const fetchTrees = async () => {
-        const response = await fetch("/api/tree", {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        });
-        const responseData = await response.json();
-        setTrees(responseData.trees)
-      };
-      fetchTrees();
       const fetchTree = async () => {
         const response = await fetch(`/api/tree/${currentTree}`, {
           method: "GET",
@@ -79,7 +79,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
         if (responseData.tree) {
           const json = nest(responseData.tree.branches)
           setTree(json)
-          
+
         } else {
           setTree(initialState)
         }
@@ -116,9 +116,9 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
 
       <Header />
       <main className="flex justify-start gap-x-5 px-4 sm:px-12">
-      
+
         <div className="w-60 ">
-        <Button className="pl-8" onClick={handleAddClick}>Добавить дерево</Button>
+          <Button className="pl-8" onClick={handleAddClick}>Добавить дерево</Button>
           <UserTrees />
         </div>
         <div className="w-px">
