@@ -53,14 +53,14 @@ export default function OrgChartTree({ data }) {
 
   (
       <g>
-      <image  className='' href={nodeDatum.imageBranch}preserveAspectRatio="xMidYMid slice" height="103" width="60" x={210}  />
+        
+      {/* <image  className='' href={nodeDatum.imageBranch}preserveAspectRatio="xMidYMid slice" height="103" width="60" x={210}  /> */}
         <circle className="stroke-cyan-500 " r={12} fill="#1e90ff" ></circle>
 
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps} >
           {nodeDatum._id ?
             <div className='bg-green-500 hover:bg-sky-400 static rounded-l-lg border-double border-4 border-indigo-600'>
-
               <button className='hover:bg-sky-700 rounded-[8px]' style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
               <button className='hover:bg-sky-700 rounded-[8px]' disabled={!nodeDatum.parentID} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
               <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
