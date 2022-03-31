@@ -210,7 +210,10 @@ const Modal = ({ handleClose, type }) => {
               <CloseRoundedIcon className="h-7 w-7 dark:text-white/75" />
             </IconButton>
           </div>
-
+          <div className="p-4 space-y-2">
+            {currentBranch.name ? <h2 className="text-xl">{currentBranch.name}</h2>: ""}
+          </div>
+          
           <div className="p-4 space-y-2">
           {currentBranch.imageBranch ?  <img className="w-full cursor-pointer" src={currentBranch.imageBranch}></img>: <div>Без картинки</div> }
           </div>

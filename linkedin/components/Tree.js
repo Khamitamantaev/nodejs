@@ -58,22 +58,22 @@ export default function OrgChartTree({ data }) {
       <foreignObject {...foreignObjectProps} >
         {nodeDatum._id ?
           <div className='bg-green-500 hover:bg-sky-400 static rounded-[18px] border-double border-4 border-indigo-600'>
-            <button className='hover:bg-sky-700' style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-            <button className='hover:bg-sky-700' disabled={!nodeDatum.parentID} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+            <button className='hover:bg-sky-700 rounded-[18px]' style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
+            <button className='hover:bg-sky-700 rounded-[18px]' disabled={!nodeDatum.parentID} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
             <h3 onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
             {nodeDatum.children && (
-              <button className='hover:bg-sky-700' style={{ width: "100%" }} onClick={toggleNode}>
+              <button className='hover:bg-sky-700 rounded-[18px]' style={{ width: "100%" }} onClick={toggleNode}>
                 {nodeDatum.__rd3t.collapsed ? "Развернуть" : "Свернуть"}
               </button>
             )}
           </div> :
           <div className='bg-green-500 hover:bg-sky-400 static rounded-[18px] border-double border-4 border-indigo-600'>
-            <button className='hover:bg-sky-700'  disabled={true} style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-            <button className='hover:bg-sky-700' disabled={true} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+            <button className='hover:bg-sky-700 rounded-[18px]'  disabled={true} style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
+            <button className='hover:bg-sky-700 rounded-[18px]' disabled={true} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
             <h3 onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
 
             {nodeDatum.children && (
-              <button className='hover:bg-sky-700' style={{ width: "100%" }} onClick={toggleNode}>
+              <button className='hover:bg-sky-700 rounded-[18px]' style={{ width: "100%" }} onClick={toggleNode}>
                 {nodeDatum.__rd3t.collapsed ? "Развернуть" : "Свернуть"}
               </button>
             )}
