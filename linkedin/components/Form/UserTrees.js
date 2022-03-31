@@ -20,16 +20,16 @@ const UserTrees = () => {
   }
 
   return (
-    <div className="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-      <div className="flow-root">
+    <div className="p-4">
+      <div className="">
         {trees && trees.length ? (<ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
           {trees.map(tree => (
             <li className="py-3 sm:py-4 " key={tree._id}>
-              <div className="flex items-center space-x-4">
-                <Button onClick={() => setCurrentTree(tree._id)} >{tree.name}</Button>
-                <Button onClick={() => handleTreeClick(tree._id)}>Удалить</Button>
+              <div className="flex items-end space-x-4">
+                <Button className='bg-green-500' onClick={() => setCurrentTree(tree._id)} >{tree.name}</Button>
+                <Button className='bg-red-400' onClick={() => handleTreeClick(tree._id)}>Удалить</Button>
               </div>
-
+              
             </li>
           ))}
         </ul>) : ""}

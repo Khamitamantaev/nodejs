@@ -32,10 +32,34 @@ function AddTreeForm() {
     setHandleTree(false)
   },[handleTree])
 
+  const validate = values => {
+    const errors = {};
+    if (!values.treename) {
+      errors.treename = 'Пустое имя';
+    } else if (values.treename.length > 10) {
+      errors.treename = 'Должно быть меньше 10 символов';
+    }
+  
+    // if (!values.lastName) {
+    //   errors.lastName = 'Required';
+    // } else if (values.lastName.length > 20) {
+    //   errors.lastName = 'Must be 20 characters or less';
+    // }
+  
+    // if (!values.email) {
+    //   errors.email = 'Required';
+    // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    //   errors.email = 'Invalid email address';
+    // }
+  
+    return errors;
+  };
+
   const formik = useFormik({
     initialValues: {
       treename: '',
     },
+    validate,
     onSubmit: onSubmitTree,
   });
 
@@ -49,7 +73,8 @@ function AddTreeForm() {
         name="treename"
         onChange={formik.handleChange}
       />
-      <button type="submit" disabled={formik.values.treename ? false: true}>Добавить</button>
+      {formik.errors.treename ? <div>{formik.errors.treename}</div> : null}
+      <button type="submit" disabled={formik.errors.treename ? true: false}>Добавить</button>
     </form>
   );
 }
