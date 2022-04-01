@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button } from '@mui/material';
 
-const TreeItem = ({tree, handleTreeNameClick, handleTreeClick}) => {
+const TreeItem = ({key, tree, handleTreeNameClick, handleTreeClick}) => {
     return (
-        <li className="py-3 sm:py-4" key={tree._id}>
+        <li className="py-3 sm:py-4" key={key}>
             <div className="flex items-end space-x-4">
                 <Button className='text-[8px]' variant="contained bg-green-500 border-2" onClick={() => handleTreeNameClick(tree._id)} >{tree.name}</Button>
 

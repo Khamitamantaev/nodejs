@@ -40,13 +40,13 @@ const UserTrees = ({data}) => {
       {!useSSRTrees ? <div className="">
         {trees && trees.length ? (<ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
           {trees.map(tree => (
-            <TreeItem tree={tree} handleTreeNameClick={handleTreeNameClick} handleTreeClick={handleTreeClick}  /> 
+            <TreeItem key={tree._id} tree={tree} handleTreeNameClick={handleTreeNameClick} handleTreeClick={handleTreeClick}  /> 
           ))}
         </ul>) : ""}
       </div> : <div className=''>
         {data && data.length ? (<ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
           {data.map(tree => (
-           <TreeItem tree={tree} handleTreeNameClick={handleTreeNameClick} handleTreeClick={handleTreeClick}  /> 
+           <TreeItem key={tree._id} tree={tree} handleTreeNameClick={handleTreeNameClick} handleTreeClick={handleTreeClick}  /> 
           ))}
         </ul>) : ""}
       </div>}
