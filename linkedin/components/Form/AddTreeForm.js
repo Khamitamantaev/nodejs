@@ -5,14 +5,15 @@ import { CurrentBranchState } from "../../atoms/branchAtom";
 import { modalState } from "../../atoms/modalAtom";
 import { handleBranchState } from "../../atoms/branchAtom";
 import { handlePostState } from "../../atoms/postAtom";
-import { handleTreeState, selectedTreeState } from "../../atoms/treeAtom";
+import { handleTreeState, selectedTreeState, useSSRTreesState } from "../../atoms/treeAtom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+
 
 const AddTreeForm = () => {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
-
+  // const [useSSRTrees, setUseSSRTrees] = useRecoilState(useSSRTreesState)
   const onSubmitTree = async (values) => {
     console.log(values)
    await fetch('/api/tree', {

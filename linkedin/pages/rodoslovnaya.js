@@ -16,7 +16,7 @@ import { Button, List, ListItem, ListItemButton, ListItemText } from "@mui/mater
 import { AddForm } from "../components/Form/AddTreeForm";
 import UserTrees from "../components/Form/UserTrees";
 import { useEffect, useState } from "react";
-import { handleTreeState, selectedTreeState, userTree, userTreeList } from "../atoms/treeAtom";
+import { handleTreeState, selectedTreeState, userTree, userTreeList, useSSRTreesState } from "../atoms/treeAtom";
 import { handleBranchState } from "../atoms/branchAtom";
 
 const initialState = {
@@ -45,7 +45,7 @@ const initialState = {
 }
 
 
-export default function Rodoslovnaya({ posts, articles, rodos }) {
+export default function Rodoslovnaya({ data, articles, rodos }) {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
@@ -53,17 +53,9 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
   const [tree, setTree] = useState(initialState)
   const [handleBranch, setHandleBranch] = useRecoilState(handleBranchState);
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
-  const [trees, setTrees] = useRecoilState(userTreeList)
+  // const [trees, setTrees] = useRecoilState(userTreeList)
   useEffect(async () => {
-    const fetchTrees = async () => {
-      const response = await fetch("/api/tree", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      const responseData = await response.json();
-      setTrees(responseData.trees)
-    };
-    fetchTrees();
+   
     if (currentTree) {
       const fetchTree = async () => {
         const response = await fetch(`/api/tree/${currentTree}`, {
@@ -118,7 +110,7 @@ export default function Rodoslovnaya({ posts, articles, rodos }) {
 
         <div className="w-60 ">
           <Button className="pl-8" onClick={handleAddClick}>Добавить дерево</Button>
-          <UserTrees />
+          <UserTrees data={data} />
         </div>
         <div className="w-px">
           <OrgChartTree data={tree} />
@@ -145,12 +137,21 @@ export async function getServerSideProps(context) {
     };
   }
 
-  // Get posts on SSR
   const { db } = await connectToDatabase();
+  const user = await db.collection("users").findOne({ email: session.user.email})
+  const trees = await db
+    .collection("trees")
+    .find({ rootUser: user._id})
+    .sort({ timestamp: -1 })
+    .toArray()
 
   return {
     props: {
       session,
+      data: trees.map((tree) => ({
+        _id: tree._id.toString(),
+        name: tree.name
+      })),
     },
   };
 }

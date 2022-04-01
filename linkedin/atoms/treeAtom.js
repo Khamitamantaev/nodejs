@@ -14,3 +14,8 @@ export const handleTreeState = atom({
   key: "handleTreeState",
   default: false,
 });
+
+export const useSSRTreesState = atom({
+  key: "useSSRTreesState",
+  default: true,
+});
