@@ -10,17 +10,18 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 
+
 const AddTreeForm = () => {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
-  // const [useSSRTrees, setUseSSRTrees] = useRecoilState(useSSRTreesState)
+  const [useSSRTrees, setUseSSRTrees] = useRecoilState(useSSRTreesState)
   const onSubmitTree = async (values) => {
-    console.log(values)
    await fetch('/api/tree', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: values.treeName, isPrivate: values.isPrivate })
     })
+    setUseSSRTrees(false)
     setHandleTree(true)
     setModalOpen(false);
   }

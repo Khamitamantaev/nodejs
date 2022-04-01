@@ -2,13 +2,15 @@ import { Button } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import { modalState, modalTypeState } from '../../atoms/modalAtom';
-import { handleTreeState, selectedTreeState, userTreeList } from '../../atoms/treeAtom';
+import { handleTreeState, selectedTreeState, userTreeList, useSSRTreesState } from '../../atoms/treeAtom';
 const UserTrees = ({data}) => {
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState)
   const [trees, setTrees] = useRecoilState(userTreeList)
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
+  const [useSSRTrees, setUseSSRTrees] = useRecoilState(useSSRTreesState)
+
   useEffect(() => {
     const fetchTrees = async () => {
       const response = await fetch("/api/tree", {
@@ -19,7 +21,12 @@ const UserTrees = ({data}) => {
       setTrees(responseData.trees)
     };
     fetchTrees();
-  }, [handleTree])
+  }, [handleTree, useSSRTrees])
+
+  const handleTreeNameClick = (id) => {
+    setCurrentTree(id)
+    setUseSSRTrees(false)
+  }
 
   const handleTreeClick = (id) => {
     setCurrentTree(id)
@@ -29,12 +36,12 @@ const UserTrees = ({data}) => {
 
   return (
     <div className="p-4">
-      {currentTree ? <div className="">
+      {!useSSRTrees ? <div className="">
         {trees && trees.length ? (<ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
           {trees.map(tree => (
             <li className="py-3 sm:py-4 " key={tree._id}>
               <div className="flex items-end space-x-4">
-                <Button variant="contained bg-green-500 border-2"  onClick={() => setCurrentTree(tree._id)} >{tree.name}</Button>
+                <Button variant="contained bg-green-500 border-2"  onClick={() => handleTreeNameClick(tree._id)} >{tree.name}</Button>
                 <Button variant="outlined" color="error" onClick={() => handleTreeClick(tree._id)}>Удалить</Button>
               </div>
             </li>
@@ -45,7 +52,7 @@ const UserTrees = ({data}) => {
           {data.map(tree => (
             <li className="py-3 sm:py-4 " key={tree._id}>
               <div className="flex items-end space-x-4">
-                <Button variant="contained bg-green-500 border-2"  onClick={() => setCurrentTree(tree._id)} >{tree.name}</Button>
+                <Button variant="contained bg-green-500 border-2"  onClick={() => handleTreeNameClick(tree._id)} >{tree.name}</Button>
                 <Button variant="outlined" color="error" onClick={() => handleTreeClick(tree._id)}>Удалить</Button>
               </div>
             </li>
