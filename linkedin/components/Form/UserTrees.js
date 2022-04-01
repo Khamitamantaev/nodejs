@@ -47,7 +47,7 @@ const UserTrees = ({data}) => {
             </li>
           ))}
         </ul>) : ""}
-      </div> : <div className="border-2 border-rose-600">
+      </div> : <div className=''>
         {data && data.length ? (<ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
           {data.map(tree => (
             <li className="py-3 sm:py-4 " key={tree._id}>
