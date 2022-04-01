@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import { modalState, modalTypeState } from '../../atoms/modalAtom';
 import { handleTreeState, selectedTreeState, userTreeList, useSSRTreesState } from '../../atoms/treeAtom';
+import TreeItem from '../TreeItem';
 const UserTrees = ({data}) => {
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState)
   const [trees, setTrees] = useRecoilState(userTreeList)
@@ -39,27 +40,13 @@ const UserTrees = ({data}) => {
       {!useSSRTrees ? <div className="">
         {trees && trees.length ? (<ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
           {trees.map(tree => (
-            <li className="py-3 sm:py-4 " key={tree._id}>
-              <div className="flex items-end space-x-4">
-                <Button variant="contained bg-green-500 border-2"  onClick={() => handleTreeNameClick(tree._id)} >{tree.name}</Button>
-               
-                <Button variant="outlined" color="error" onClick={() => handleTreeClick(tree._id)}>Удалить</Button>
-              </div>
-              {tree.isPrivate === true ? <label className=''>private</label> : <label className=''>public</label>}
-            </li>
+            <TreeItem tree={tree} handleTreeNameClick={handleTreeNameClick} handleTreeClick={handleTreeClick}  /> 
           ))}
         </ul>) : ""}
       </div> : <div className=''>
         {data && data.length ? (<ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
           {data.map(tree => (
-            <li className="py-3 sm:py-4 " key={tree._id}>
-              <div className="flex items-end space-x-4">
-                <Button variant="contained bg-green-500 border-2"  onClick={() => handleTreeNameClick(tree._id)} >{tree.name}</Button>
-               
-                <Button variant="outlined" color="error" onClick={() => handleTreeClick(tree._id)}>Удалить</Button>
-              </div>
-              {tree.isPrivate === true ? <label className=''>private</label> : <label className=''>public</label>}
-            </li>
+           <TreeItem tree={tree} handleTreeNameClick={handleTreeNameClick} handleTreeClick={handleTreeClick}  /> 
           ))}
         </ul>) : ""}
       </div>}
