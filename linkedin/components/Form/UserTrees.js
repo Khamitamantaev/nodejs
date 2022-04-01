@@ -42,8 +42,10 @@ const UserTrees = ({data}) => {
             <li className="py-3 sm:py-4 " key={tree._id}>
               <div className="flex items-end space-x-4">
                 <Button variant="contained bg-green-500 border-2"  onClick={() => handleTreeNameClick(tree._id)} >{tree.name}</Button>
+               
                 <Button variant="outlined" color="error" onClick={() => handleTreeClick(tree._id)}>Удалить</Button>
               </div>
+              {tree.isPrivate === true ? <label className=''>private</label> : <label className=''>public</label>}
             </li>
           ))}
         </ul>) : ""}
@@ -53,8 +55,10 @@ const UserTrees = ({data}) => {
             <li className="py-3 sm:py-4 " key={tree._id}>
               <div className="flex items-end space-x-4">
                 <Button variant="contained bg-green-500 border-2"  onClick={() => handleTreeNameClick(tree._id)} >{tree.name}</Button>
+               
                 <Button variant="outlined" color="error" onClick={() => handleTreeClick(tree._id)}>Удалить</Button>
               </div>
+              {tree.isPrivate === true ? <label className=''>private</label> : <label className=''>public</label>}
             </li>
           ))}
         </ul>) : ""}
