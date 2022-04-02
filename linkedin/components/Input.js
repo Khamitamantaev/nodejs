@@ -26,10 +26,10 @@ function Input() {
           className="rounded-full border border-gray-400 py-2.5 px-3 opacity-80 hover:opacity-100 font-medium w-full text-left"
           onClick={() => {
             setModalOpen(true);
-            setModalType("dropIn");
+            setModalType("addTree");
           }}
         >
-          Добавить запись
+          Добавить дерево
         </motion.button>
       </div>
       <div className="flex items-center flex-wrap gap-4 justify-center md:gap-x-10">
