@@ -1,9 +1,9 @@
 import { Button } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
-import { modalState, modalTypeState } from '../../atoms/modalAtom';
-import { handleTreeState, selectedTreeState, userTreeList, useSSRTreesState } from '../../atoms/treeAtom';
-import TreeItem from '../TreeItem';
+import { modalState, modalTypeState } from '../atoms/modalAtom';
+import { handleTreeState, selectedTreeState, userTreeList, useSSRTreesState } from '../atoms/treeAtom';
+import TreeItem from './TreeItem';
 const UserTrees = ({data}) => {
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState)
   const [trees, setTrees] = useRecoilState(userTreeList)
