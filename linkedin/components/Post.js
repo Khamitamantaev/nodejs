@@ -45,7 +45,7 @@ function Post({ post, modalPost }) {
         <Avatar src={post.userImg} className="!h-10 !w-10 cursor-pointer" />
         <div className="mr-auto ml-2 leading-none">
           <h6 className="font-medium hover:text-blue-500 hover:underline">
-            {post.username}
+            {post.name}
           </h6>
           <p className="text-sm dark:text-white/75 opacity-80">{post.email}</p>
           <TimeAgo

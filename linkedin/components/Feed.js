@@ -10,14 +10,16 @@ function Feed({ posts }) {
   const [useSSRPosts, setUseSSRPosts] = useRecoilState(useSSRPostsState);
 
   useEffect(() => {
+    
     const fetchPosts = async () => {
-      const response = await fetch("/api/posts", {
+      const response = await fetch("/api/public", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
 
       const responseData = await response.json();
-      setRealtimePosts(responseData);
+      console.log(responseData)
+      setRealtimePosts(responseData.trees);
       setHandlePost(false);
       setUseSSRPosts(false);
     };

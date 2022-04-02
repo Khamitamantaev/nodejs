@@ -11,7 +11,7 @@ import Sidebar from "../components/Sidebar";
 import Widgets from "../components/Widgets";
 import { connectToDatabase } from "../util/mongodb";
 
-export default function Home({ posts, articles }) {
+export default function Home({ posts, articles, data }) {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function Home({ posts, articles }) {
       <main className="flex justify-center gap-x-5 px-4 sm:px-12">
         <div className="flex flex-col md:flex-row gap-5">
           <Sidebar />
-          <Feed posts={posts} />
+          <Feed posts={data} />
         </div>
         <Widgets articles={articles} />
         <AnimatePresence>
@@ -68,6 +68,13 @@ export async function getServerSideProps(context) {
     .sort({ timestamp: -1 })
     .toArray();
 
+  const user = await db.collection("users").findOne({ email: session.user.email })
+  const trees = await db
+    .collection("trees")
+    .find({ rootUser: user._id, isPrivate: false })
+    .sort({ timestamp: -1 })
+    .toArray()
+
   // Get Google News API
   const results = await fetch(
     `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_API_KEY}`
@@ -85,6 +92,10 @@ export async function getServerSideProps(context) {
         email: post.email,
         userImg: post.userImg,
         createdAt: post.createdAt,
+      })),
+      data: trees.map((tree) => ({
+        _id: tree._id.toString(),
+        name: tree.name
       })),
     },
   };
