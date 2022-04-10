@@ -78,20 +78,20 @@ export default function OrgChartTree({ data }) {
           <motion.div animate={{ x: 0, y:0}} transition={{ ease: "easeOut", duration: 1 }}>
              {nodeDatum._id ?
             <div >
-              <button className='hover:bg-sky-700 rounded-[8px] ml-6' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-              <button className='hover:bg-sky-700 rounded-[8px]' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
-              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '20x' }}>{nodeDatum.name}</h3>
+              <button className='hover:bg-sky-700 rounded-[8px] ml-8' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
+              <button className='hover:bg-sky-700 rounded-[8px] ml-2' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '26x' }}>{nodeDatum.name}</h3>
             </div> :
             <div >
-              <button className='hover:bg-sky-700 rounded-[8px] ml-6' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-              <button className='hover:bg-sky-700 rounded-[8px]' disabled={true} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
-              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
+              <button className='hover:bg-sky-700 rounded-[8px] ml-8' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
+              <button className='hover:bg-sky-700 rounded-[8px] ml-2' disabled={true} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '26px' }}>{nodeDatum.name}</h3>
             </div>
           }
           </motion.div>
           :   
           <motion.div animate={{ x: 0, y: 0, opacity: 0.75}} transition={{ ease: "easeOut", duration: 1 }}>
-             <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '16px' }}>{nodeDatum.name}</h3>
+             <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
             </motion.div>}
           
         </foreignObject>
@@ -104,7 +104,7 @@ export default function OrgChartTree({ data }) {
       ? `M${source.y},${source.x}L${target.y},${target.x}`
       : `M${source.x},${source.y}L${target.x},${target.y}`;
   };
-  const nodeSize = { x: 300, y: 180 };
+  const nodeSize = { x: 260, y: 180 };
   const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: 0 };
 
   return (
@@ -115,11 +115,11 @@ export default function OrgChartTree({ data }) {
         renderCustomNodeElement={(rd3tProps) =>
           renderForeignObjectNode({ ...rd3tProps, foreignObjectProps, handleClick })
         }
-        // pathFunc={straightPathFunc}
+        pathFunc={straightPathFunc}
         translate={translate}
         nodeSize={nodeSize}
         orientation={"vertical"}
-        depthFactor={200}
+        depthFactor={180}
       />
     </div>
   );
