@@ -49,15 +49,15 @@ function Home({ providers }) {
           </h1>
           <div className="space-y-4">
             <div className="intent">
-              <h2 className="text-xl">Поиск работы</h2>
+              <h2 className="text-xl">Интеллектуальная карта</h2>
               <ArrowForwardIosRoundedIcon className="text-gray-700" />
             </div>
             <div className="intent">
-              <h2 className="text-xl">Поиск персонала</h2>
+              <h2 className="text-xl">Удобное хранение данных</h2>
               <ArrowForwardIosRoundedIcon className="text-gray-700" />
             </div>
             <div className="intent">
-              <h2 className="text-xl">Обучение</h2>
+              <h2 className="text-xl">Обучение и развитие</h2>
               <ArrowForwardIosRoundedIcon className="text-gray-700" />
             </div>
           </div>
