@@ -106,15 +106,11 @@ export default function Rodoslovnaya({ data, articles, rodos }) {
       </Head>
 
       <Header />
-      <main className="flex justify-start gap-x-5 px-4 sm:px-12">
-
-        <div className="w-60 text-center border-2">
-          <Button className="hover:bg-green-500 mr-4" onClick={handleAddClick}>Добавить дерево</Button>
-          <UserTrees data={data}/>
+      <main className="flex justify-center gap-x-5 px-4 sm:px-12">
+        <div className="flex flex-col md:flex-row gap-5">
+          <UserTrees data={data} handleAddClick={handleAddClick} />
         </div>
-        <div className="w-px">
-          <OrgChartTree data={tree} />
-        </div>
+        <OrgChartTree data={tree} />
         <AnimatePresence>
           {modalOpen && (
             <Modal handleClose={() => setModalOpen(false)} type={modalType} />
@@ -136,6 +132,8 @@ export async function getServerSideProps(context) {
       },
     };
   }
+
+  
 
   const { db } = await connectToDatabase();
   const user = await db.collection("users").findOne({ email: session.user.email})
