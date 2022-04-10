@@ -79,14 +79,14 @@ export default function OrgChartTree({ data }) {
           <motion.div animate={{ x: 0, y:0}} transition={{ ease: "easeOut", duration: 1 }}>
              {nodeDatum._id ?
             <div >
-              <button className='hover:bg-sky-700 rounded-[8px] ml-6' style={{ width: "70%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-              <button className='hover:bg-sky-700 rounded-[8px]' disabled={!nodeDatum.parentID} style={{ width: "70%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
-              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '25x' }}>{nodeDatum.name}</h3>
+              <button className='hover:bg-sky-700 rounded-[8px] ml-6' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
+              <button className='hover:bg-sky-700 rounded-[8px]' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '20x' }}>{nodeDatum.name}</h3>
             </div> :
             <div >
-              <button className='hover:bg-sky-700 rounded-[8px]' disabled={true} style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-              <button className='hover:bg-sky-700 rounded-[8px]' disabled={true} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
-              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '25px' }}>{nodeDatum.name}</h3>
+              <button className='hover:bg-sky-700 rounded-[8px] ml-6' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
+              <button className='hover:bg-sky-700 rounded-[8px]' disabled={true} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
             </div>
           }
           </motion.div>
