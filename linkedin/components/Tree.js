@@ -1,18 +1,20 @@
 import { Button } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import Tree from 'react-d3-tree';
 import { useRecoilState } from 'recoil';
 import { CurrentBranchState } from '../atoms/branchAtom';
+import { buttonsVisible } from '../atoms/branchAtom';
 import { modalState, modalTypeState } from '../atoms/modalAtom';
 import { selectedTreeState } from '../atoms/treeAtom';
 import { useCenteredTree } from "./helpers";
-
+import { motion } from 'framer-motion'
 export default function OrgChartTree({ data }) {
   const [translate, containerRef] = useCenteredTree();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
   const [currentBranch, setCurrentBranch] = useRecoilState(CurrentBranchState);
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
+  const [buttonsVis, setButtonsVis] = useRecoilState(buttonsVisible)
   const handleClick = (nodeDatum) => {
     // console.log(nodeDatum)
     setCurrentBranch({
@@ -21,6 +23,7 @@ export default function OrgChartTree({ data }) {
       imageBranch: nodeDatum.imageBranch,
       description: nodeDatum.description
     })
+    setButtonsVis(false)
     setModalOpen(true);
     setModalType("addBranch");
   }
@@ -47,6 +50,16 @@ export default function OrgChartTree({ data }) {
     setModalType("editBranch");
   }
 
+  const animateVisible = () => {
+    console.log('entered')
+    setButtonsVis(true)
+  }
+
+  const animateNotVisible = () => {
+    console.log('exit')
+    setButtonsVis(false)
+  }
+
   const renderForeignObjectNode = ({
     nodeDatum,
     toggleNode,
@@ -55,36 +68,33 @@ export default function OrgChartTree({ data }) {
   }) =>
 
   (
-      <g>
+      <g onMouseLeave={animateNotVisible} className="">
         
-      {/* <image  className='' href={nodeDatum.imageBranch}preserveAspectRatio="xMidYMid slice" height="103" width="60" x={210}  /> */}
-        <circle className="stroke-cyan-500 " r={12} fill="#1e90ff" ></circle>
-
+      
+        <circle onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="white" ></circle>
+        {/* <image  className='' href={nodeDatum.imageBranch} preserveAspectRatio="xMidYMid slice" height="103" width="60" x={210} clip-path="url(#myCircle)"  /> */}
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps} >
-          {nodeDatum._id ?
-            <div className='bg-green-500 hover:bg-sky-400 static rounded-l-lg border-double border-4 border-indigo-600'>
-              <button className='hover:bg-sky-700 rounded-[8px]' style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-              <button className='hover:bg-sky-700 rounded-[8px]' disabled={!nodeDatum.parentID} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
-              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
-              {nodeDatum.children && (
-                <button className='hover:bg-sky-700 rounded-[8px]' style={{ width: "100%" }} onClick={toggleNode}>
-                  {nodeDatum.__rd3t.collapsed ? "Развернуть" : "Свернуть"}
-                </button>
-              )}
+          {buttonsVis ? 
+          <motion.div animate={{ x: 0, y:0}} transition={{ ease: "easeOut", duration: 1 }}>
+             {nodeDatum._id ?
+            <div >
+              <button className='hover:bg-sky-700 rounded-[8px] ml-6' style={{ width: "70%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
+              <button className='hover:bg-sky-700 rounded-[8px]' disabled={!nodeDatum.parentID} style={{ width: "70%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '25x' }}>{nodeDatum.name}</h3>
             </div> :
-            <div className='bg-green-500 hover:bg-sky-400 static rounded-[18px] border-double border-4 border-indigo-600'>
+            <div >
               <button className='hover:bg-sky-700 rounded-[8px]' disabled={true} style={{ width: "100%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
               <button className='hover:bg-sky-700 rounded-[8px]' disabled={true} style={{ width: "100%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
-              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "center", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
-
-              {nodeDatum.children && (
-                <button className='hover:bg-sky-700 rounded-[8px]' style={{ width: "100%" }} onClick={toggleNode}>
-                  {nodeDatum.__rd3t.collapsed ? "Развернуть" : "Свернуть"}
-                </button>
-              )}
+              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '25px' }}>{nodeDatum.name}</h3>
             </div>
           }
+          </motion.div>
+          :   
+          <motion.div animate={{ x: 0, y: 0, opacity: 0.75}} transition={{ ease: "easeOut", duration: 1 }}>
+             <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '16px' }}>{nodeDatum.name}</h3>
+            </motion.div>}
+          
         </foreignObject>
       </g>
   );
@@ -95,8 +105,8 @@ export default function OrgChartTree({ data }) {
       ? `M${source.y},${source.x}L${target.y},${target.x}`
       : `M${source.x},${source.y}L${target.x},${target.y}`;
   };
-  const nodeSize = { x: 200, y: 180 };
-  const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: 10 };
+  const nodeSize = { x: 300, y: 180 };
+  const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: 0 };
 
   return (
     // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
@@ -106,7 +116,7 @@ export default function OrgChartTree({ data }) {
         renderCustomNodeElement={(rd3tProps) =>
           renderForeignObjectNode({ ...rd3tProps, foreignObjectProps, handleClick })
         }
-        pathFunc={straightPathFunc}
+        // pathFunc={straightPathFunc}
         translate={translate}
         nodeSize={nodeSize}
         orientation={"vertical"}

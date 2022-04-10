@@ -15,3 +15,9 @@ export const handleBranchState = atom({
 });
 
 
+export const buttonsVisible = atom({
+  key: "buttonsVisible",
+  default: false
+})
+
+
