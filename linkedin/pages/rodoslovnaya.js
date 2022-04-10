@@ -108,9 +108,9 @@ export default function Rodoslovnaya({ data, articles, rodos }) {
       <Header />
       <main className="flex justify-start gap-x-5 px-4 sm:px-12">
 
-        <div className="w-60 ">
-          <Button className="pl-8" onClick={handleAddClick}>Добавить дерево</Button>
-          <UserTrees data={data} />
+        <div className="w-60 text-center border-2">
+          <Button className="hover:bg-green-500 mr-4" onClick={handleAddClick}>Добавить дерево</Button>
+          <UserTrees data={data}/>
         </div>
         <div className="w-px">
           <OrgChartTree data={tree} />

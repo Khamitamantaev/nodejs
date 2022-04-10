@@ -36,7 +36,7 @@ const UserTrees = ({data}) => {
   }
 
   return (
-    <div className="p-4">
+    <div className="">
       {!useSSRTrees ? <div className="">
         {trees && trees.length ? (<ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
           {trees.map(tree => (
