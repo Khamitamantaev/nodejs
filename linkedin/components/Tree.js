@@ -70,8 +70,7 @@ export default function OrgChartTree({ data }) {
   (
       <g onMouseLeave={animateNotVisible} className="">
         
-      
-        <circle onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="white" ></circle>
+        {buttonsVis ? <motion.circle transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="#3b82f6" ></motion.circle> : <motion.circle transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={22} fill="#3b82f6" ></motion.circle>}}
         {/* <image  className='' href={nodeDatum.imageBranch} preserveAspectRatio="xMidYMid slice" height="103" width="60" x={210} clip-path="url(#myCircle)"  /> */}
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps} >
