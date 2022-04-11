@@ -69,11 +69,8 @@ export default function OrgChartTree({ data }) {
 
   (
       <g onMouseLeave={animateNotVisible} className="">
+        <motion.circle animate={buttonsVis ? { scale: 1.6 }: {scale: 1}} transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="#3b82f6" ></motion.circle> 
         
-        {buttonsVis ? 
-        <motion.circle transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="#3b82f6" ></motion.circle> 
-        : 
-        <motion.circle transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={22} fill="#3b82f6" ></motion.circle>}
         {/* <image  className='' href={nodeDatum.imageBranch} preserveAspectRatio="xMidYMid slice" height="103" width="60" x={210} clip-path="url(#myCircle)"  /> */}
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps} >
@@ -81,8 +78,8 @@ export default function OrgChartTree({ data }) {
           <motion.div animate={{ x: 0, y:0}} transition={{ ease: "easeOut", duration: 1 }}>
              {nodeDatum._id ?
             <div >
-              <button className='hover:bg-sky-700 rounded-[8px] ml-8' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-              <button className='hover:bg-sky-700 rounded-[8px] ml-2' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+              <button className='hover:bg-sky-700 rounded-[8px] ml-12' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
+              <button className='hover:bg-sky-700 rounded-[8px] ml-4' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
               <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '26x' }}>{nodeDatum.name}</h3>
             </div> :
             <div >
