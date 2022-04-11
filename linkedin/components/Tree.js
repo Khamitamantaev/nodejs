@@ -39,7 +39,6 @@ export default function OrgChartTree({ data }) {
   }
 
   const handleTestClick = (nodeDatum) => {
-    console.log(nodeDatum)
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
@@ -51,12 +50,10 @@ export default function OrgChartTree({ data }) {
   }
 
   const animateVisible = () => {
-    console.log('entered')
     setButtonsVis(true)
   }
 
   const animateNotVisible = () => {
-    console.log('exit')
     setButtonsVis(false)
   }
 
@@ -69,28 +66,27 @@ export default function OrgChartTree({ data }) {
 
   (
       <g onMouseLeave={animateNotVisible} className="">
-        <motion.circle animate={buttonsVis ? { scale: 1.6 }: {scale: 1}} transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="#3b82f6" ></motion.circle> 
-        
+        <motion.circle animate={buttonsVis ? { scale: 1.3 }: {scale: 0.8}} transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="#3b82f6" ></motion.circle> 
         {/* <image  className='' href={nodeDatum.imageBranch} preserveAspectRatio="xMidYMid slice" height="103" width="60" x={210} clip-path="url(#myCircle)"  /> */}
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps} >
           {buttonsVis ? 
-          <motion.div animate={{ x: 0, y:0}} transition={{ ease: "easeOut", duration: 1 }}>
+          <motion.div animate={{ x: 0, y:0}} transition={{ ease: "easeOut", duration: 3 }}>
              {nodeDatum._id ?
             <div >
               <button className='hover:bg-sky-700 rounded-[8px] ml-12' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-              <button className='hover:bg-sky-700 rounded-[8px] ml-4' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+              <button className='hover:bg-sky-700 rounded-[8px] ml-6' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
               <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '26x' }}>{nodeDatum.name}</h3>
             </div> :
             <div >
-              <button className='hover:bg-sky-700 rounded-[8px] ml-8' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
-              <button className='hover:bg-sky-700 rounded-[8px] ml-2' disabled={true} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
+              <button className='hover:bg-sky-700 rounded-[8px] ml-12' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить элемент</button>
+              <button className='hover:bg-sky-700 rounded-[8px] ml-6' disabled={true} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить элемент</button>
               <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '26px' }}>{nodeDatum.name}</h3>
             </div>
           }
           </motion.div>
           :   
-          <motion.div animate={{ x: 0, y: 0, opacity: 0.75}} transition={{ ease: "easeOut", duration: 1 }}>
+          <motion.div animate={{ x: 0, y: 0, opacity: 0.75}} transition={{ ease: "easeOut", duration: 3 }}>
              <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
             </motion.div>}
           
@@ -119,7 +115,7 @@ export default function OrgChartTree({ data }) {
         translate={translate}
         nodeSize={nodeSize}
         orientation={"vertical"}
-        depthFactor={180}
+        depthFactor={200}
       />
     </div>
   );
