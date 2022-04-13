@@ -50,7 +50,7 @@ function Home({ providers }) {
           </h1>
           <div className="space-y-4">
             <div className="intent">
-              <h2 className="text-xl">Интеллектуальная карта</h2>
+              <h2 className="text-xl">Рабочая карта</h2>
               <ArrowForwardIosRoundedIcon className="text-gray-700" />
             </div>
             <div className="intent">
