@@ -8,6 +8,7 @@ import { modalState, modalTypeState } from '../atoms/modalAtom';
 import { selectedTreeState } from '../atoms/treeAtom';
 import { useCenteredTree } from "./helpers";
 import { motion } from 'framer-motion'
+import Circle from './svg/Circle';
 export default function OrgChartTree({ data }) {
   const [translate, containerRef] = useCenteredTree();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
@@ -66,37 +67,7 @@ export default function OrgChartTree({ data }) {
 
   (
       <g onMouseLeave={animateNotVisible} className="">
-        <defs>
-        <clipPath id='circleView'>
-         
-          <motion.circle
-      animate={buttonsVis ? { scale: 1.3}: { scale: 0.8 }}
-      onMouseEnter={animateVisible}
-      transition={{ ease: "easeOut", duration: 2 }}
-      onClick={toggleNode}
-        cx={50}
-        cy={50}
-        r={38}
-        fill='none'
-        // className="stroke-cyan-500"
-        strokeWidth='2'>
-      </motion.circle>
-        </clipPath>
-      </defs>
-      <motion.image
-      animate={buttonsVis ? { x: 0, y: 50}: { x: -50, y: -50}}
-      transition={{ ease: "easeOut", duration: 2 }}
-        x='0'
-        y='15'
-        width='100'
-        height='70'
-        xlinkHref={nodeDatum.imageBranch}
-        clipPath='url(#circleView)'
-      />
-       {/* <motion.circle cx={50} cy={50} r={50} fill='none' stroke='#FF62E1' strokeWidth={2} /> */}
-       <motion.circle animate={buttonsVis ? { scale: 1.3 }: {scale: 0.8}} transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="#3b82f6"  ></motion.circle> 
-      
-       
+        <Circle animateVisible={animateVisible} buttonsVis={buttonsVis} nodeDatum={nodeDatum} toggleNode={toggleNode}/>
         {/* <image  className='' href={nodeDatum.imageBranch} preserveAspectRatio="xMidYMid slice" height="103" width="60" x={210} clip-path="url(#myCircle)"  /> */}
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps} >
@@ -145,7 +116,7 @@ export default function OrgChartTree({ data }) {
         translate={translate}
         nodeSize={nodeSize}
         orientation={"vertical"}
-        depthFactor={200}
+        depthFactor={160}
       />
     </div>
   );
