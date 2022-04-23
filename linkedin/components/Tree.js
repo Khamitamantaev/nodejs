@@ -66,7 +66,29 @@ export default function OrgChartTree({ data }) {
 
   (
       <g onMouseLeave={animateNotVisible} className="">
-        <motion.circle animate={buttonsVis ? { scale: 1.3 }: {scale: 0.8}} transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="#3b82f6" ></motion.circle> 
+        <defs>
+        <clipPath id='circleView'>
+          <circle cx={24} cy={24} r={24} fill='none' stroke='#FF62E1' strokeWidth={2} />
+        </clipPath>
+      </defs>
+      <image
+        x='0'
+        y='0'
+        width='48'
+        height='48'
+        xlinkHref={nodeDatum.imageBranch}
+        clipPath='url(#circleView)'
+      />
+       {/* <motion.circle animate={buttonsVis ? { scale: 1.3 }: {scale: 0.8}} transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="#3b82f6" ></motion.circle>  */}
+      <circle
+        cx='24'
+        cy='24'
+        r='22'
+        fill='none'
+        stroke='#FF62E1'
+        strokeWidth='2'>
+      </circle>
+       
         {/* <image  className='' href={nodeDatum.imageBranch} preserveAspectRatio="xMidYMid slice" height="103" width="60" x={210} clip-path="url(#myCircle)"  /> */}
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps} >
