@@ -74,18 +74,18 @@ export default function OrgChartTree({ data }) {
             <div >
               <button className='hover:bg-sky-700 rounded-[8px] ml-8' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить</button>
               <button className='hover:bg-sky-700 rounded-[8px] ml-2' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить</button>
-              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>Просмотр</button>
+              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>{nodeDatum.name}</button>
             </div> :
             <div >
               <button className='hover:bg-sky-700 rounded-[8px] ml-8' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить </button>
               <button className='hover:bg-sky-700 rounded-[8px] ml-2' disabled={true} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить </button>
-              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >Просмотр</button>
+              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
             </div>
           }
           </motion.div>
           :   
           <motion.div animate={{ x: 0, y: 0, opacity: 0.75}} transition={{ ease: "easeOut", duration: 3 }}>
-              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >Просмотр</button>
+              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
             </motion.div>}
           
         </foreignObject>
