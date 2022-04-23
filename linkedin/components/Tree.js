@@ -9,7 +9,7 @@ import { selectedTreeState } from '../atoms/treeAtom';
 import { useCenteredTree } from "./helpers";
 import { motion } from 'framer-motion'
 import Circle from './svg/Circle';
-export default function OrgChartTree({ data }) {
+export default function OrgChartTree({ data, userId }) {
   const [translate, containerRef] = useCenteredTree();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
@@ -39,11 +39,14 @@ export default function OrgChartTree({ data }) {
   }
 
   const handleTestClick = (nodeDatum) => {
+    console.log(userId)
+    console.log(nodeDatum.rootUser)
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
       imageBranch: nodeDatum.imageBranch,
-      description: nodeDatum.description
+      description: nodeDatum.description,
+      rootUser: nodeDatum.rootUser
     })
     setModalOpen(true);
     setModalType("editBranch");
@@ -70,11 +73,13 @@ export default function OrgChartTree({ data }) {
         <foreignObject {...foreignObjectProps} >
           {buttonsVis ? 
           <motion.div animate={{ x: 0, y:0}} transition={{ ease: "easeOut", duration: 3 }}>
-             {nodeDatum._id ?
+             {nodeDatum._id ? 
             <div >
-              <button className='hover:bg-sky-700 rounded-[8px] ml-8' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить</button>
+              {nodeDatum.rootUser === userId ? <> <button className='hover:bg-sky-700 rounded-[8px] ml-8' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить</button>
               <button className='hover:bg-sky-700 rounded-[8px] ml-2' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить</button>
               <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>{nodeDatum.name}</button>
+              </>: 
+              <><button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>{nodeDatum.name}</button></> }
             </div> :
             <div >
               <button className='hover:bg-sky-700 rounded-[8px] ml-8' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить </button>

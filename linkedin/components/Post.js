@@ -12,6 +12,8 @@ import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import { modalState, modalTypeState } from "../atoms/modalAtom";
 import TimeAgo from "timeago-react";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { selectedTreeState, useSSRTreesState } from "../atoms/treeAtom";
 
 function Post({ post, modalPost }) {
   const { data: session } = useSession();
@@ -21,7 +23,8 @@ function Post({ post, modalPost }) {
   const [showInput, setShowInput] = useState(false);
   const [liked, setLiked] = useState(false);
   const [handlePost, setHandlePost] = useRecoilState(handlePostState);
-
+  const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState)
+  const [useSSRTrees, setUseSSRTrees] = useRecoilState(useSSRTreesState)
   const truncate = (string, n) =>
     string?.length > n ? string.substr(0, n - 1) + "...see more" : string;
 
@@ -35,6 +38,11 @@ function Post({ post, modalPost }) {
     setModalOpen(false);
   };
 
+  const handleClickPublicPage = (id, post) => {
+    setCurrentTree(id)
+    setUseSSRTrees(false)
+  }
+
   return (
     <div
       className={`bg-white dark:bg-[#1D2226] ${
@@ -44,9 +52,12 @@ function Post({ post, modalPost }) {
       <div className="flex items-center px-2.5 cursor-pointer">
         <Avatar src={post.userImg} className="!h-10 !w-10 cursor-pointer" />
         <div className="mr-auto ml-2 leading-none">
-          <h6 className="font-medium hover:text-blue-500 hover:underline">
+        <Link href="/rodoslovnaya">
+        <h6 className="font-medium hover:text-blue-500 hover:underline" onClick={() => handleClickPublicPage(post._id, post)} >
             {post.name}
           </h6>
+        </Link>
+          
           <p className="text-sm dark:text-white/75 opacity-80">{post.email}</p>
           <TimeAgo
             datetime={post.createdAt}
@@ -88,43 +99,6 @@ function Post({ post, modalPost }) {
           }}
         />
       )}
-
-      <div className="flex justify-evenly items-center dark:border-t border-gray-600/80 mx-2.5 pt-2 text-black/60 dark:text-white/75">
-        {modalPost ? (
-          <button className="postButton">
-            <CommentOutlinedIcon />
-            <h4>Comment</h4>
-          </button>
-        ) : (
-          <button
-            className={`postButton ${liked && "text-blue-500"}`}
-            onClick={() => setLiked(!liked)}
-          >
-            {liked ? (
-              <ThumbUpOffAltRoundedIcon className="-scale-x-100" />
-            ) : (
-              <ThumbUpOffAltOutlinedIcon className="-scale-x-100" />
-            )}
-
-            <h4>Like</h4>
-          </button>
-        )}
-
-        {session?.user?.email === post.email ? (
-          <button
-            className="postButton focus:text-red-400"
-            onClick={deletePost}
-          >
-            <DeleteRoundedIcon />
-            <h4>Delete post</h4>
-          </button>
-        ) : (
-          <button className="postButton ">
-            <ReplyRoundedIcon className="-scale-x-100" />
-            <h4>Share</h4>
-          </button>
-        )}
-      </div>
     </div>
   );
 }

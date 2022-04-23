@@ -1,13 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode}) => {
+const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
     return (
         <>
             {nodeDatum.imageBranch ?
                 <>
                     <motion.image
-                    onClick={toggleNode}
+                        onClick={toggleNode}
                         onMouseEnter={animateVisible}
                         animate={buttonsVis ? { x: -50, y: -50, scale: 2 } : { x: -50, y: -50, scale: 1.2 }}
                         transition={{ ease: "easeOut", duration: 2 }}

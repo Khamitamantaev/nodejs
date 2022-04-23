@@ -45,7 +45,7 @@ const initialState = {
 }
 
 
-export default function Rodoslovnaya({ data, articles, rodos }) {
+export default function Rodoslovnaya({ data, userData }) {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
@@ -53,9 +53,11 @@ export default function Rodoslovnaya({ data, articles, rodos }) {
   const [tree, setTree] = useState(initialState)
   const [handleBranch, setHandleBranch] = useRecoilState(handleBranchState);
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
+
+  const { data: session } = useSession()
   // const [trees, setTrees] = useRecoilState(userTreeList)
   useEffect(async () => {
-   
+    console.log(userData)
     if (currentTree) {
       const fetchTree = async () => {
         const response = await fetch(`/api/tree/${currentTree}`, {
@@ -70,7 +72,6 @@ export default function Rodoslovnaya({ data, articles, rodos }) {
         if (responseData.tree) {
           const json = nest(responseData.tree.branches)
           setTree(json)
-
         } else {
           setTree(initialState)
         }
@@ -110,7 +111,7 @@ export default function Rodoslovnaya({ data, articles, rodos }) {
         <div className="flex flex-col md:flex-row gap-5">
           <UserTrees data={data} handleAddClick={handleAddClick} />
         </div>
-        <OrgChartTree data={tree} />
+        <OrgChartTree data={tree} userId={userData}/>
         <AnimatePresence>
           {modalOpen && (
             <Modal handleClose={() => setModalOpen(false)} type={modalType} />
@@ -142,7 +143,6 @@ export async function getServerSideProps(context) {
     .find({ rootUser: user._id})
     .sort({ timestamp: -1 })
     .toArray()
-
   return {
     props: {
       session,
@@ -150,6 +150,7 @@ export async function getServerSideProps(context) {
         _id: tree._id.toString(),
         name: tree.name
       })),
+      userData: user._id.toString()
     },
   };
 }

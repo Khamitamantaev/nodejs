@@ -30,6 +30,11 @@ const TreeSchema = new mongoose.Schema({
          ref: "Branch",
          index: true,
       },
+      rootUser: {
+         type: mongoose.Schema.Types.ObjectId,
+         ref: "User",
+         index: true,
+      },
       parentID: {
          type: mongoose.Schema.Types.ObjectId,
          ref: "Branch",

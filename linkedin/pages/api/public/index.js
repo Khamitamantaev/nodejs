@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     case 'GET':
       try {
        const user = await User.findOne({ email: session.user.email})
-       const trees = await Tree.find({ rootUser: user._id, isPrivate: false})
+       const trees = await Tree.find({ isPrivate: false})
         res.status(201).json({
           trees: trees
         })
