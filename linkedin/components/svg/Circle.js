@@ -11,7 +11,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode}) => {
                         onMouseEnter={animateVisible}
                         animate={buttonsVis ? { x: -50, y: -50, scale: 2 } : { x: -50, y: -50, scale: 1.2 }}
                         transition={{ ease: "easeOut", duration: 2 }}
-                        x={-10}
+                        x={0}
                         y={19}
                         width='100'
                         height='70'

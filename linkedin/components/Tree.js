@@ -17,7 +17,6 @@ export default function OrgChartTree({ data }) {
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const [buttonsVis, setButtonsVis] = useRecoilState(buttonsVisible)
   const handleClick = (nodeDatum) => {
-    // console.log(nodeDatum)
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
@@ -68,8 +67,6 @@ export default function OrgChartTree({ data }) {
   (
       <g onMouseLeave={animateNotVisible} className="">
         <Circle animateVisible={animateVisible} buttonsVis={buttonsVis} nodeDatum={nodeDatum} toggleNode={toggleNode}/>
-        {/* <image  className='' href={nodeDatum.imageBranch} preserveAspectRatio="xMidYMid slice" height="103" width="60" x={210} clip-path="url(#myCircle)"  /> */}
-        {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps} >
           {buttonsVis ? 
           <motion.div animate={{ x: 0, y:0}} transition={{ ease: "easeOut", duration: 3 }}>
@@ -77,18 +74,18 @@ export default function OrgChartTree({ data }) {
             <div >
               <button className='hover:bg-sky-700 rounded-[8px] ml-8' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить</button>
               <button className='hover:bg-sky-700 rounded-[8px] ml-2' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить</button>
-              <h3 className='hover:bg-sky-700 rounded-[8px] ml-10' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '26x' }}>{nodeDatum.name}</h3>
+              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>Просмотр</button>
             </div> :
             <div >
               <button className='hover:bg-sky-700 rounded-[8px] ml-8' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить </button>
               <button className='hover:bg-sky-700 rounded-[8px] ml-2' disabled={true} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить </button>
-              <h3 className='hover:bg-sky-700 rounded-[8px] ml-10'  onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '26px' }}>{nodeDatum.name}</h3>
+              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >Просмотр</button>
             </div>
           }
           </motion.div>
           :   
           <motion.div animate={{ x: 0, y: 0, opacity: 0.75}} transition={{ ease: "easeOut", duration: 3 }}>
-             <h3 className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} style={{ textAlign: "left", font: "bold italic large serif", color: "#191970", fontSize: '20px' }}>{nodeDatum.name}</h3>
+              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >Просмотр</button>
             </motion.div>}
           
         </foreignObject>
@@ -105,7 +102,6 @@ export default function OrgChartTree({ data }) {
   const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: 0 };
 
   return (
-    // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
     <div id="treeWrapper" style={{ width: '64em', height: '40em' }}>
       <Tree
         data={data}

@@ -205,7 +205,7 @@ const Modal = ({ handleClose, type }) => {
           exit="exit"
         >
           <div className="flex items-center justify-between border-white/75 px-4 py-2.5">
-            <h4 className="text-xl">Текущее изображение</h4>
+            <h4 className="text-xl">Текущая ветка</h4>
             <IconButton onClick={handleClose}>
               <CloseRoundedIcon className="h-7 w-7 dark:text-white/75" />
             </IconButton>
@@ -239,9 +239,9 @@ const Modal = ({ handleClose, type }) => {
               placeholder="Описание"
             ></textarea>
           </div>
-          <div className="p-4 space-y-2">
+          {/* <div className="p-4 space-y-2">
             {currentBranch.imageBranch ? <img className="w-full cursor-pointer" src={currentBranch.imageBranch}></img> : <div>Без картинки</div>}
-          </div>
+          </div> */}
         </motion.div>
       )}
 

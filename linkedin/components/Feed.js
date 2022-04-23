@@ -18,7 +18,6 @@ function Feed({ posts }) {
       });
 
       const responseData = await response.json();
-      console.log(responseData)
       setRealtimePosts(responseData.trees);
       setHandlePost(false);
       setUseSSRPosts(false);
