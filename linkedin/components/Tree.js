@@ -68,26 +68,32 @@ export default function OrgChartTree({ data }) {
       <g onMouseLeave={animateNotVisible} className="">
         <defs>
         <clipPath id='circleView'>
-          <circle cx={24} cy={24} r={24} fill='none' stroke='#FF62E1' strokeWidth={2} />
+         
+          <motion.circle
+      animate={buttonsVis ? { scale: 1.3}: { scale: 0.8 }}
+      onMouseEnter={animateVisible}
+      transition={{ ease: "easeOut", duration: 2 }}
+      onClick={toggleNode}
+        cx={50}
+        cy={50}
+        r={38}
+        fill='#circleView'
+        className="stroke-cyan-500"
+        strokeWidth='2'>
+      </motion.circle>
         </clipPath>
       </defs>
-      <image
+      <motion.image
         x='0'
-        y='0'
-        width='48'
-        height='48'
+        y='15'
+        width='100'
+        height='70'
         xlinkHref={nodeDatum.imageBranch}
         clipPath='url(#circleView)'
       />
-       {/* <motion.circle animate={buttonsVis ? { scale: 1.3 }: {scale: 0.8}} transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="#3b82f6" ></motion.circle>  */}
-      <circle
-        cx='24'
-        cy='24'
-        r='22'
-        fill='none'
-        stroke='#FF62E1'
-        strokeWidth='2'>
-      </circle>
+       {/* <motion.circle cx={50} cy={50} r={50} fill='none' stroke='#FF62E1' strokeWidth={2} /> */}
+       <motion.circle animate={buttonsVis ? { scale: 1.3 }: {scale: 0.8}} transition={{ ease: "easeOut", duration: 2 }}  onMouseEnter={animateVisible} onClick={toggleNode}  className="stroke-cyan-500" id='myCircle' r={42} fill="#3b82f6" ></motion.circle> 
+      
        
         {/* <image  className='' href={nodeDatum.imageBranch} preserveAspectRatio="xMidYMid slice" height="103" width="60" x={210} clip-path="url(#myCircle)"  /> */}
         {/* `foreignObject` requires width & height to be explicitly set. */}
