@@ -39,8 +39,6 @@ export default function OrgChartTree({ data, userId }) {
   }
 
   const handleTestClick = (nodeDatum) => {
-    console.log(userId)
-    console.log(nodeDatum.rootUser)
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,

@@ -57,7 +57,6 @@ export default function Rodoslovnaya({ data, userData }) {
   const { data: session } = useSession()
   // const [trees, setTrees] = useRecoilState(userTreeList)
   useEffect(async () => {
-    console.log(userData)
     if (currentTree) {
       const fetchTree = async () => {
         const response = await fetch(`/api/tree/${currentTree}`, {
