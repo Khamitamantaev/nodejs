@@ -3,7 +3,7 @@ import Backdrop from "./Backdrop";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import IconButton from "@mui/material/IconButton";
 import { useSession } from "next-auth/react";
-import { Avatar, Button } from "@mui/material";
+import { Avatar, Box, Button } from "@mui/material";
 import Form from "./Form";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { getPostState } from "../atoms/postAtom";
@@ -163,6 +163,7 @@ const gifYouUp = {
   },
 };
 
+
 const Modal = ({ handleClose, type }) => {
   const { data: session } = useSession();
   const post = useRecoilValue(getPostState);
@@ -213,6 +214,7 @@ const Modal = ({ handleClose, type }) => {
           <div className="p-4 space-y-2">
             {currentBranch.name ? <h2 className="text-xl">{currentBranch.name}</h2> : ""}
           </div>
+          {currentBranch.imageBranch ? <div className="p-4"><img className="rounded-full" width={180} height={180} src={currentBranch.imageBranch} /></div> : <div className="p-4">Без картинки</div>}
           <div className="p-4">
             <textarea
               value={currentBranch.description}
@@ -240,7 +242,7 @@ const Modal = ({ handleClose, type }) => {
             ></textarea>
           </div>
           {/* <div className="p-4 space-y-2">
-            {currentBranch.imageBranch ? <img className="w-full cursor-pointer" src={currentBranch.imageBranch}></img> : <div>Без картинки</div>}
+            {currentBranch.imageBranch ? <img className="w-full cursor-pointer" ></img> : <div>Без картинки</div>}
           </div> */}
         </motion.div>
       )}

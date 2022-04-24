@@ -106,8 +106,8 @@ export default function Rodoslovnaya({ data, userData }) {
       </Head>
 
       <Header />
-      <main className="flex justify-center gap-x-5 px-4 sm:px-12">
-        <div className="flex flex-col md:flex-row gap-5">
+      <main className="flex justify-center gap-x-5 px-4 sm:px-12 ml-14">
+        <div className="flex flex-col md:flex-row gap-5 ">
           <UserTrees data={data} handleAddClick={handleAddClick} />
         </div>
         <OrgChartTree data={tree} userId={userData}/>

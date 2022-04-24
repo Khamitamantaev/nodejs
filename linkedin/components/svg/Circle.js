@@ -37,7 +37,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                     </defs>
                 </> :
                 <>
-                    <motion.circle animate={buttonsVis ? { scale: 1.3 } : { scale: 0.4 }} transition={{ ease: "easeOut", duration: 2 }} onMouseEnter={animateVisible} onClick={toggleNode} className="stroke-cyan-500" id='myCircle' r={50} fill="#3b82f6"  ></motion.circle>
+                    <motion.circle animate={buttonsVis ? { scale: 1 } : { scale: 0.4 }} transition={{ ease: "easeOut", duration: 2 }} onMouseEnter={animateVisible} onClick={toggleNode} className="stroke-cyan-500" id='myCircle' r={50} fill="#3b82f6"  ></motion.circle>
                 </>
             }
         </>
