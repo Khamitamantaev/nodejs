@@ -3,7 +3,7 @@ import Backdrop from "./Backdrop";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import IconButton from "@mui/material/IconButton";
 import { useSession } from "next-auth/react";
-import { Avatar, Box, Button } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Avatar, Box, Button, Typography } from "@mui/material";
 import Form from "./Form";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { getPostState } from "../atoms/postAtom";
@@ -13,7 +13,10 @@ import DeleteBranch from "./Form/deleteBranch";
 import AddTreeForm from "./Form/AddTreeForm";
 import DeleteTree from "./Form/deleteTree";
 import { CurrentBranchState } from "../atoms/branchAtom";
-
+import { CopyBlock, dracula } from "react-code-blocks";
+import { sample } from "./codeblock";
+import { useState } from "react";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const dropIn = {
   hidden: {
     y: "-100vh",
@@ -168,6 +171,10 @@ const Modal = ({ handleClose, type }) => {
   const { data: session } = useSession();
   const post = useRecoilValue(getPostState);
   const [currentBranch, setCurrentBranch] = useRecoilState(CurrentBranchState);
+  const codeString = '(num) => num + 1';
+  const [languageDemo, changeDemo] = useState(sample["jsx"]);
+  const [language, changeLanguage] = useState("jsx");
+  const [lineNumbers, toggleLineNumbers] = useState(true);
   return (
     <Backdrop onClick={handleClose}>
       {type === "dropIn" && (
@@ -240,7 +247,37 @@ const Modal = ({ handleClose, type }) => {
               rows="3"
               placeholder="Описание"
             ></textarea>
+            <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>Code</Typography>
+          
+        </AccordionSummary>
+        <AccordionDetails>
+        <div className="mt-4">
+            {currentBranch.code? <CopyBlock
+          language={language}
+          text={currentBranch.code}
+          showLineNumbers={lineNumbers}
+          theme={dracula}
+          wrapLines={true}
+          codeBlock
+        />:<CopyBlock
+        text={"No Code"}
+        theme={dracula}
+        wrapLines={true}
+        codeBlock
+      />}
+            </div>
+        </AccordionDetails>
+      </Accordion>
+            
+           
           </div>
+          
           {/* <div className="p-4 space-y-2">
             {currentBranch.imageBranch ? <img className="w-full cursor-pointer" ></img> : <div>Без картинки</div>}
           </div> */}

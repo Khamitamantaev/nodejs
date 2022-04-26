@@ -20,6 +20,7 @@ const BranchSchema = new mongoose.Schema({
 name: String,
 slug: String,
 description: String,
+code: String,
 rootUser: {
    type: mongoose.Schema.Types.ObjectId,
    ref: 'User'

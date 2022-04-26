@@ -6,10 +6,14 @@ import { modalState } from "../../atoms/modalAtom";
 import { handleBranchState } from "../../atoms/branchAtom";
 import { handlePostState } from "../../atoms/postAtom";
 import { selectedTreeState } from "../../atoms/treeAtom";
+import { CopyBlock, dracula } from "react-code-blocks";
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function AddBranchForm() {
   const [input, setInput] = useState("");
   const [description, setDescription] = useState("");
+  const [code, setCode] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const { data: session } = useSession();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
@@ -26,7 +30,8 @@ function AddBranchForm() {
         treeID: currentTree,
         parentID: currentBranch._id,
         imageBranch: photoUrl,
-        description: description
+        description: description,
+        code: code
       }),
       headers: {
         "Content-Type": "application/json",
@@ -52,6 +57,31 @@ function AddBranchForm() {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
+      <textarea
+        rows="4"
+        placeholder="Code here"
+        className="bg-transparent focus:outline-none dark:placeholder-white/75"
+        value={code}
+        onChange={(e) => setCode(e.target.value)}
+      />
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>Code</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <CopyBlock
+          text={code}
+          theme={dracula}
+          wrapLines={true}
+          codeBlock
+        />
+        </AccordionDetails>
+      </Accordion>
+      
       <input
         type="text"
         placeholder="Add a photo URL (optional)"

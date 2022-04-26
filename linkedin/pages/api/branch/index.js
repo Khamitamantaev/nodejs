@@ -22,8 +22,10 @@ export default async function handler(req, res) {
           treeID: req.body.treeID,
           parentID: req.body.parentID,
           imageBranch: req.body.imageBranch,
-          description: req.body.description
+          description: req.body.description,
+          code: req.body.code
         })
+        console.log(newBranch)
 
         let currentTree = await Tree.findById(req.body.treeID).exec();
 

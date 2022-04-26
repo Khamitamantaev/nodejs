@@ -17,11 +17,13 @@ export default function OrgChartTree({ data, userId }) {
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const [buttonsVis, setButtonsVis] = useRecoilState(buttonsVisible)
   const handleClick = (nodeDatum) => {
+    console.log(nodeDatum)
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
       imageBranch: nodeDatum.imageBranch,
-      description: nodeDatum.description
+      description: nodeDatum.description,
+      code: nodeDatum.code
     })
     setButtonsVis(false)
     setModalOpen(true);
@@ -32,19 +34,22 @@ export default function OrgChartTree({ data, userId }) {
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
-      imageBranch: nodeDatum.imageBranch
+      imageBranch: nodeDatum.imageBranch,
+      code: nodeDatum.code
     })
     setModalOpen(true);
     setModalType("deleteBranch");
   }
 
   const handleTestClick = (nodeDatum) => {
+    console.log(nodeDatum)
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
       imageBranch: nodeDatum.imageBranch,
       description: nodeDatum.description,
-      rootUser: nodeDatum.rootUser
+      rootUser: nodeDatum.rootUser,
+      code: nodeDatum.code
     })
     setModalOpen(true);
     setModalType("editBranch");

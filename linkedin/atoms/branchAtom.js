@@ -6,7 +6,8 @@ export const CurrentBranchState = atom({
     _id: "",
     name: "",
     imageBranch:"",
-    rootUser: ""
+    rootUser: "",
+    code: ""
   },
 });
 
