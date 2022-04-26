@@ -221,7 +221,7 @@ const Modal = ({ handleClose, type }) => {
           <div className="p-4 space-y-2">
             {currentBranch.name ? <h2 className="text-xl">{currentBranch.name}</h2> : ""}
           </div>
-          {currentBranch.imageBranch ? <div className="p-4"><img className="rounded-full" width={180} height={180} src={currentBranch.imageBranch} /></div> : <div className="p-4">Без картинки</div>}
+          {currentBranch.imageBranch ? <div className="p-4"><img className="rounded-full" width={180} height={180} src={currentBranch.imageBranch} /></div> : <div className="p-4"><img className="rounded-full" width={180} height={180} src='/tree/tree.jpg' /></div>}
           <div className="p-4">
             <textarea
               value={currentBranch.description}
