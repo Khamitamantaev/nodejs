@@ -11,6 +11,7 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { signOut, useSession } from "next-auth/react";
 
 const UserTrees = ({data, handleAddClick}) => {
+  const [disableTreeBut, setDisableTreeBut] = useState(false)
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState)
   const [trees, setTrees] = useRecoilState(userTreeList)
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
@@ -27,6 +28,10 @@ const UserTrees = ({data, handleAddClick}) => {
       });
       const responseData = await response.json();
       setTrees(responseData.trees)
+      if(trees.length > 3) {
+        setDisableTreeBut(true)
+      }
+      else setDisableTreeBut(false)
     };
     fetchTrees();
   }, [handleTree, useSSRTrees])
@@ -66,15 +71,15 @@ const UserTrees = ({data, handleAddClick}) => {
       <div className="hidden md:inline text-left dark:text-white/75 text-sm">
 
         <div className="sidebarButton">
-          <h4 onClick={handleAddClick} className="leading-4 text-xs">
+          <Button onClick={handleAddClick} disabled={disableTreeBut} className="leading-2 text-xs">
             Добавить дерево 
-          </h4>
+          </Button>
         </div>
 
-        <div className="sidebarButton flex items-center space-x-1.5">
+        {/* <div className="sidebarButton flex items-center space-x-1.5">
           <BookmarkOutlinedIcon className="!-ml-1" />
           <h4 className="dark:text-white font-medium">My trees</h4>
-        </div>
+        </div> */}
       </div>
     </div>
     {/* Bottom */}
