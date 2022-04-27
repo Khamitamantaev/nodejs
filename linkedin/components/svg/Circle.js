@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 
 const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
+    const [scale, setScale] = useState(1.2)
+
+    const actionVisible = () => {
+        animateVisible()
+        setScale(4)
+    }
+
+    const actionNotVisible = () => {
+        animateVisible()
+        setScale(1.2)
+    }
+
     return (
         <>
             {nodeDatum.imageBranch ?
                 <>
                     <motion.image
                         onClick={toggleNode}
-                        onMouseEnter={animateVisible}
-                        animate={buttonsVis ? { x: -50, y: -50, scale: 2 } : { x: -50, y: -50, scale: 1.2 }}
+                        onMouseEnter={actionVisible}
+                        onMouseOut={actionNotVisible}
+                        animate={buttonsVis ? { x: -50, y: -50, scale: scale } : { x: -50, y: -50, scale: scale }}
                         transition={{ ease: "easeOut", duration: 2 }}
                         x={0}
                         y={19}
@@ -20,10 +33,8 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                     />
                     <defs>
                         <clipPath id='circleView'>
-
                             <motion.circle
                                 animate={buttonsVis ? { scale: 1.3 } : { scale: 0.8 }}
-
                                 transition={{ ease: "easeOut", duration: 2 }}
                                 onClick={toggleNode}
                                 cx={50}
@@ -39,8 +50,9 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                 <>
                    <motion.image
                         onClick={toggleNode}
-                        onMouseEnter={animateVisible}
-                        animate={buttonsVis ? { x: -50, y: -50, scale: 2 } : { x: -50, y: -50, scale: 1.2 }}
+                        onMouseEnter={actionVisible}
+                        onMouseOut={actionNotVisible}
+                        animate={buttonsVis ? { x: -50, y: -50, scale: scale } : { x: -50, y: -50, scale: scale }}
                         transition={{ ease: "easeOut", duration: 2 }}
                         x={0}
                         y={19}

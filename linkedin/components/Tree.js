@@ -71,33 +71,38 @@ export default function OrgChartTree({ data, userId }) {
   }) =>
 
   (
-      <g onMouseLeave={animateNotVisible} className="">
-        <Circle animateVisible={animateVisible} buttonsVis={buttonsVis} nodeDatum={nodeDatum} toggleNode={toggleNode}/>
-        <foreignObject {...foreignObjectProps} >
-          {buttonsVis ? 
-          <motion.div animate={{ x: 0, y:0}} transition={{ ease: "easeOut", duration: 3 }}>
-             {nodeDatum._id ? 
-            <div >
-              {nodeDatum.rootUser === userId ? <> <button className='hover:bg-sky-700 rounded-[8px] ml-8' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить</button>
-              <button className='hover:bg-sky-700 rounded-[8px] ml-2' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить</button>
-              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>{nodeDatum.name}</button>
-              </>: 
-              <><button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>{nodeDatum.name}</button></> }
-            </div> :
-            <div >
-              <button className='hover:bg-sky-700 rounded-[8px] ml-8' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить </button>
-              <button className='hover:bg-sky-700 rounded-[8px] ml-2' disabled={true} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить </button>
-              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
-            </div>
-          }
+    <g onMouseLeave={animateNotVisible} className="">
+      <Circle animateVisible={animateVisible} buttonsVis={buttonsVis} nodeDatum={nodeDatum} toggleNode={toggleNode} />
+      <foreignObject {...foreignObjectProps} >
+        {buttonsVis ?
+          <motion.div animate={{ x: 0, y: 0 }} transition={{ ease: "easeOut", duration: 3 }}>
+            {nodeDatum._id ?
+              <div >
+                {nodeDatum.rootUser === userId ?
+                  <>
+                    <button className='hover:bg-sky-700 rounded-[8px] ml-16' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить</button>
+                    <button className='hover:bg-sky-700 rounded-[8px] ml-12' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить</button>
+                    <button className='hover:bg-sky-700 rounded-[8px] ml-10' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>Просмотр</button>
+                  </> :
+                  <>
+                    <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>{nodeDatum.name}</button>
+                  </>
+                }
+              </div> :
+              <div >
+                <button className='hover:bg-sky-700 rounded-[8px] ml-16' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить </button>
+                <button className='hover:bg-sky-700 rounded-[8px] ml-12' disabled={true} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить </button>
+                <button className='hover:bg-sky-700 rounded-[8px] ml-10' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
+              </div>
+            }
           </motion.div>
-          :   
-          <motion.div animate={{ x: 0, y: 0, opacity: 0.75}} transition={{ ease: "easeOut", duration: 3 }}>
-              <button className='hover:bg-sky-700 rounded-[8px]'  onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
-            </motion.div>}
-          
-        </foreignObject>
-      </g>
+          :
+          <motion.div animate={{ x: 0, y: 0, opacity: 0.75 }} transition={{ ease: "easeOut", duration: 3 }}>
+            <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
+          </motion.div>}
+
+      </foreignObject>
+    </g>
   );
 
   const straightPathFunc = (linkDatum, orientation) => {
@@ -106,7 +111,7 @@ export default function OrgChartTree({ data, userId }) {
       ? `M${source.y},${source.x}L${target.y},${target.x}`
       : `M${source.x},${source.y}L${target.x},${target.y}`;
   };
-  const nodeSize = { x: 260, y: 180 };
+  const nodeSize = { x: 333, y: 180 };
   const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: 0 };
 
   return (
@@ -116,7 +121,6 @@ export default function OrgChartTree({ data, userId }) {
         renderCustomNodeElement={(rd3tProps) =>
           renderForeignObjectNode({ ...rd3tProps, foreignObjectProps, handleClick })
         }
-        pathFunc={straightPathFunc}
         translate={translate}
         nodeSize={nodeSize}
         orientation={"vertical"}
