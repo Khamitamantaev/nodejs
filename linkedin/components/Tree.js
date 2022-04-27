@@ -85,7 +85,7 @@ export default function OrgChartTree({ data, userId }) {
                     <button className='hover:bg-sky-700 rounded-[8px] ml-10' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>Просмотр</button>
                   </> :
                   <>
-                    <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>{nodeDatum.name}</button>
+                    <button className='hover:bg-sky-700 rounded-[8px] ml-16' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>{nodeDatum.name}</button>
                   </>
                 }
               </div> :
