@@ -57,6 +57,7 @@ export default function Rodoslovnaya({ data, userData }) {
   const { data: session } = useSession()
   // const [trees, setTrees] = useRecoilState(userTreeList)
   useEffect(async () => {
+    console.log(session.user.email)
     if (currentTree) {
       const fetchTree = async () => {
         const response = await fetch(`/api/tree/${currentTree}`, {
@@ -110,7 +111,8 @@ export default function Rodoslovnaya({ data, userData }) {
         <div className="flex flex-col md:flex-row gap-5 ">
           <UserTrees data={data} handleAddClick={handleAddClick} />
         </div>
-        <OrgChartTree data={tree} userId={userData}/>
+        {session.user.email === 'khamitamantaev@gmail.com' ? <OrgChartTree data={tree} userId={userData}/> : <>В разработке</> }
+        
         <AnimatePresence>
           {modalOpen && (
             <Modal handleClose={() => setModalOpen(false)} type={modalType} />
