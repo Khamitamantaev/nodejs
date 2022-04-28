@@ -223,61 +223,92 @@ const Modal = ({ handleClose, type }) => {
           </div>
           {currentBranch.imageBranch ? <div className="p-4"><img className="rounded-full" width={180} height={180} src={currentBranch.imageBranch} /></div> : <div className="p-4"><img className="rounded-full" width={180} height={180} src='/tree/tree.jpg' /></div>}
           <div className="p-4">
-            <textarea
-              value={currentBranch.description}
-              disabled={true}
-              className="
-              form-control
-              block
-              w-full
-              px-3
-              py-1.5
-              text-base
-              font-normal
-              text-gray-700
-              bg-white bg-clip-padding
-              border border-solid border-gray-300
-              rounded
-              transition
-              ease-in-out
-              m-0
-              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                     "
-              id="exampleFormControlTextarea1"
-              rows="3"
-              placeholder="Описание"
-            ></textarea>
             <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>Code</Typography>
-          
-        </AccordionSummary>
-        <AccordionDetails>
-        <div className="mt-4">
-            {currentBranch.code? <CopyBlock
-          language={language}
-          text={currentBranch.code}
-          showLineNumbers={lineNumbers}
-          theme={dracula}
-          wrapLines={true}
-          codeBlock
-        />:<CopyBlock
-        text={"No Code"}
-        theme={dracula}
-        wrapLines={true}
-        codeBlock
-      />}
-            </div>
-        </AccordionDetails>
-      </Accordion>
-            
-           
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Description</Typography>
+
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="mt-4">
+                  {currentBranch.description ? <textarea
+                    value={currentBranch.description}
+                    disabled={true}
+                    className="
+                      form-control
+                      block
+                      w-full
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding
+                      border border-solid border-gray-300
+                      rounded
+                      transition
+                      ease-in-out
+                      m-0
+                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                     "
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    placeholder="Описание"
+                  ></textarea> : <>No Description</>}
+                </div>
+              </AccordionDetails>
+            </Accordion>
+
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Code</Typography>
+
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="mt-4">
+                  {currentBranch.code ? <CopyBlock
+                    language={language}
+                    text={currentBranch.code}
+                    showLineNumbers={lineNumbers}
+                    theme={dracula}
+                    wrapLines={true}
+                    codeBlock
+                  /> : <CopyBlock
+                    text={"No Code"}
+                    theme={dracula}
+                    wrapLines={true}
+                    codeBlock
+                  />}
+                </div>
+              </AccordionDetails>
+            </Accordion>
+
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Url</Typography>
+
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="mt-4">
+                  {currentBranch.url ? <a>{currentBranch.url}</a> : <>No url</>}
+                </div>
+              </AccordionDetails>
+            </Accordion>
+
+
           </div>
-          
+
           {/* <div className="p-4 space-y-2">
             {currentBranch.imageBranch ? <img className="w-full cursor-pointer" ></img> : <div>Без картинки</div>}
           </div> */}

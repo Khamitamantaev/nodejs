@@ -23,7 +23,8 @@ export default async function handler(req, res) {
           parentID: req.body.parentID,
           imageBranch: req.body.imageBranch,
           description: req.body.description,
-          code: req.body.code
+          code: req.body.code,
+          url: req.body.url
         })
         console.log(newBranch)
 

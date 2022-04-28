@@ -21,6 +21,7 @@ name: String,
 slug: String,
 description: String,
 code: String,
+url: String,
 rootUser: {
    type: mongoose.Schema.Types.ObjectId,
    ref: 'User'

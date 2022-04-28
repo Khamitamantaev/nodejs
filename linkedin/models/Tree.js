@@ -43,6 +43,7 @@ const TreeSchema = new mongoose.Schema({
       imageBranch: String, 
       description: String,
       code: String,
+      url: String,
       name: String,
       slug: String
    }]

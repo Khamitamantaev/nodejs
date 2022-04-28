@@ -48,7 +48,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                     </defs>
                 </> :
                 <>
-                   <motion.image
+                    <motion.image
                         onClick={toggleNode}
                         onMouseEnter={actionVisible}
                         onMouseOut={actionNotVisible}

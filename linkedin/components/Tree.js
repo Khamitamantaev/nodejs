@@ -23,7 +23,8 @@ export default function OrgChartTree({ data, userId }) {
       name: nodeDatum.name,
       imageBranch: nodeDatum.imageBranch,
       description: nodeDatum.description,
-      code: nodeDatum.code
+      code: nodeDatum.code,
+      url: nodeDatum.url
     })
     setButtonsVis(false)
     setModalOpen(true);
@@ -35,7 +36,8 @@ export default function OrgChartTree({ data, userId }) {
       _id: nodeDatum._id,
       name: nodeDatum.name,
       imageBranch: nodeDatum.imageBranch,
-      code: nodeDatum.code
+      code: nodeDatum.code,
+      url: nodeDatum.url
     })
     setModalOpen(true);
     setModalType("deleteBranch");
@@ -49,7 +51,8 @@ export default function OrgChartTree({ data, userId }) {
       imageBranch: nodeDatum.imageBranch,
       description: nodeDatum.description,
       rootUser: nodeDatum.rootUser,
-      code: nodeDatum.code
+      code: nodeDatum.code,
+      url: nodeDatum.url
     })
     setModalOpen(true);
     setModalType("editBranch");

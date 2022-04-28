@@ -7,13 +7,14 @@ import { handleBranchState } from "../../atoms/branchAtom";
 import { handlePostState } from "../../atoms/postAtom";
 import { selectedTreeState } from "../../atoms/treeAtom";
 import { CopyBlock, dracula } from "react-code-blocks";
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Input, Typography } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function AddBranchForm() {
   const [input, setInput] = useState("");
   const [description, setDescription] = useState("");
   const [code, setCode] = useState("");
+  const [url, setUrl] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const { data: session } = useSession();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
@@ -31,7 +32,8 @@ function AddBranchForm() {
         parentID: currentBranch._id,
         imageBranch: photoUrl,
         description: description,
-        code: code
+        code: code,
+        url: url
       }),
       headers: {
         "Content-Type": "application/json",
@@ -64,6 +66,13 @@ function AddBranchForm() {
         value={code}
         onChange={(e) => setCode(e.target.value)}
       />
+      <input
+        type="text"
+        placeholder="Url"
+        className="bg-transparent focus:outline-none truncate max-w-xs md:max-w-sm dark:placeholder-white/75"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+      />
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -74,14 +83,14 @@ function AddBranchForm() {
         </AccordionSummary>
         <AccordionDetails>
           <CopyBlock
-          text={code}
-          theme={dracula}
-          wrapLines={true}
-          codeBlock
-        />
+            text={code}
+            theme={dracula}
+            wrapLines={true}
+            codeBlock
+          />
         </AccordionDetails>
       </Accordion>
-      
+
       <input
         type="text"
         placeholder="Add a photo URL (optional)"

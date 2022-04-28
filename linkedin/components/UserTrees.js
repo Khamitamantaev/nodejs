@@ -72,7 +72,7 @@ const UserTrees = ({data, handleAddClick}) => {
 
         <div className="sidebarButton">
           <Button onClick={handleAddClick} disabled={disableTreeBut} className="leading-2 text-xs">
-            Добавить дерево 
+            Добавить  
           </Button>
         </div>
 
