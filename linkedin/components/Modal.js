@@ -218,10 +218,11 @@ const Modal = ({ handleClose, type }) => {
               <CloseRoundedIcon className="h-7 w-7 dark:text-white/75" />
             </IconButton>
           </div>
-          <div className="p-4 space-y-2">
-            {currentBranch.name ? <h2 className="text-xl">{currentBranch.name}</h2> : ""}
+          <div className="p-4 flex items-center">
+            
+            {currentBranch.imageBranch ? <div className="p-4"><img className="" width={222} height={222} src={currentBranch.imageBranch} /></div> : <div className="p-4"><img className="" width={222} height={222} src='/tree/tree.jpg' /></div>}
           </div>
-          {currentBranch.imageBranch ? <div className="p-4"><img className="rounded-full" width={180} height={180} src={currentBranch.imageBranch} /></div> : <div className="p-4"><img className="rounded-full" width={180} height={180} src='/tree/tree.jpg' /></div>}
+          {currentBranch.name ? <h2 className="text-xl p-6">{currentBranch.name}</h2> : ""}
           <div className="p-4">
             <Accordion>
               <AccordionSummary
