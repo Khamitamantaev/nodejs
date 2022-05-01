@@ -8,8 +8,8 @@ function Widgets({ articles }) {
     <div className="hidden xl:inline space-y-2">
       {/* News */}
       <div className="bg-white dark:bg-[#1D2226] py-2.5 rounded-lg space-y-2 w-11/12 overflow-hidden border border-gray-300 dark:border-none">
-        <div className="flex items-center justify-between font-bold px-2.5">
-          <h4>Khammerson News</h4>
+        {/* <div className="flex items-center justify-between font-bold px-2.5">
+          <h4>Khammerson Новости</h4>
           <InfoRoundedIcon className="h-5 w-5" />
         </div>
 
@@ -31,19 +31,19 @@ function Widgets({ articles }) {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
       {/* Ads */}
-      <div className="bg-white dark:bg-[#1D2226] w-11/12 h-64 px-2.5 rounded-lg sticky top-20 border border-gray-300 dark:border-none">
+      {/* <div className="bg-white dark:bg-[#1D2226] w-11/12 h-64 px-2.5 rounded-lg sticky top-20 border border-gray-300 dark:border-none">
         <div className="relative w-full h-full">
-          {/* <Image
+          <Image
             src="https://rb.gy/kbfeaa"
             layout="fill"
             objectFit="contain"
             priority
-          /> */}
+          />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -230,7 +230,7 @@ const Modal = ({ handleClose, type }) => {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography>Description</Typography>
+                <Typography>Описание</Typography>
 
               </AccordionSummary>
               <AccordionDetails>
@@ -258,7 +258,7 @@ const Modal = ({ handleClose, type }) => {
                     id="exampleFormControlTextarea1"
                     rows="3"
                     placeholder="Описание"
-                  ></textarea> : <>No Description</>}
+                  ></textarea> : <>Нет отписания</>}
                 </div>
               </AccordionDetails>
             </Accordion>
@@ -269,7 +269,7 @@ const Modal = ({ handleClose, type }) => {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography>Code</Typography>
+                <Typography>Код</Typography>
 
               </AccordionSummary>
               <AccordionDetails>
@@ -297,7 +297,7 @@ const Modal = ({ handleClose, type }) => {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography>Url</Typography>
+                <Typography>Ссылка</Typography>
 
               </AccordionSummary>
               <AccordionDetails>

@@ -8,6 +8,7 @@ import { handlePostState } from "../../atoms/postAtom";
 import { handleTreeState, selectedTreeState, useSSRTreesState } from "../../atoms/treeAtom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { InputLabel, MenuItem, Select } from "@mui/material";
 
 
 
@@ -39,7 +40,6 @@ const AddTreeForm = () => {
       <Form>
         <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Tree name" name="treeName"/>
         <ErrorMessage name="treeName" />
-
         <Field className="mt-3" as="select" name="isPrivate">
              <option value="1">Private</option>
              <option value="0">Public</option>

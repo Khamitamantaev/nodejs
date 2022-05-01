@@ -111,8 +111,8 @@ export default function Rodoslovnaya({ data, userData }) {
         <div className="flex flex-col md:flex-row gap-5 ">
           <UserTrees data={data} handleAddClick={handleAddClick} />
         </div>
-        {session.user.email === 'khamitamantaev@gmail.com' ? <OrgChartTree data={tree} userId={userData}/> : <>В разработке</> }
-        
+        {/* {session.user.email === 'khamitamantaev@gmail.com' ? <OrgChartTree data={tree} userId={userData}/> : <>В разработке</> } */}
+          <OrgChartTree data={tree} userId={userData}/>
         <AnimatePresence>
           {modalOpen && (
             <Modal handleClose={() => setModalOpen(false)} type={modalType} />

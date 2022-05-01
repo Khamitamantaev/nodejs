@@ -1,4 +1,4 @@
-import { Avatar, IconButton } from "@mui/material";
+import { Avatar, Button, IconButton } from "@mui/material";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ThumbUpOffAltOutlinedIcon from "@mui/icons-material/ThumbUpOffAltOutlined";
@@ -14,7 +14,7 @@ import TimeAgo from "timeago-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { selectedTreeState, useSSRTreesState } from "../atoms/treeAtom";
-
+import SendIcon from '@mui/icons-material/Send';
 function Post({ post, modalPost }) {
   const { data: session } = useSession();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
@@ -45,26 +45,30 @@ function Post({ post, modalPost }) {
 
   return (
     <div
-      className={`bg-white dark:bg-[#1D2226] ${
-        modalPost ? "rounded-r-lg" : "rounded-lg"
-      } space-y-2 py-2.5 border border-gray-300 dark:border-none`}
+      className={`bg-white dark:bg-[#1D2226] ${modalPost ? "rounded-r-lg" : "rounded-lg"
+        } space-y-2 py-2.5 border border-gray-300 dark:border-none`}
     >
       <div className="flex items-center px-2.5 cursor-pointer">
         <Avatar src={post.userImg} className="!h-10 !w-10 cursor-pointer" />
         <div className="mr-auto ml-2 leading-none">
-        <Link href="/rodoslovnaya">
-        <h6 className="font-medium hover:text-blue-500 hover:underline" onClick={() => handleClickPublicPage(post._id, post)} >
+
+          <h6 className="font-medium hover:text-blue-500"  >
             {post.name}
           </h6>
-        </Link>
-          
-          <p className="text-sm dark:text-white/75 opacity-80">{post.email}</p>
+
+
+          {/* <p className="text-sm dark:text-white/75 opacity-80">{post.email}</p>
           <TimeAgo
             datetime={post.createdAt}
             className="text-xs dark:text-white/75 opacity-80"
-          />
+          /> */}
         </div>
-        {modalPost ? (
+        <Link href="/rodoslovnaya">
+          <Button onClick={() => handleClickPublicPage(post._id, post)} className="w-40" variant="contained" endIcon={<SendIcon color='primary' />}>
+            Открыть
+          </Button>
+        </Link>
+        {/* {modalPost ? (
           <IconButton onClick={() => setModalOpen(false)}>
             <CloseRoundedIcon className="dark:text-white/75 h-7 w-7" />
           </IconButton>
@@ -72,7 +76,7 @@ function Post({ post, modalPost }) {
           <IconButton>
             <MoreHorizRoundedIcon className="dark:text-white/75 h-7 w-7" />
           </IconButton>
-        )}
+        )} */}
       </div>
 
       {post.input && (
