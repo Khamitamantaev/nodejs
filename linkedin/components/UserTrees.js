@@ -88,18 +88,16 @@ const UserTrees = ({ data, handleAddClick }) => {
           {trees && trees.length ? (
             <ul>
               {trees.map(tree => (
-                <li key={tree._id} className="flex flex-row p-2">
-                  <Grid container sx={{ color: 'text.primary' }}>
+                <li key={tree._id} className="flex p-2 gap-2">
+                  {/* <Grid container sx={{ color: 'text.primary' }}>
                     <Grid item xs={4}>
                       <Typography>{tree.isPrivate === true ? 'Приватное' : 'Публичное'}</Typography>
                     </Grid>
-                  </Grid>
+                  </Grid> */}
                   <p onClick={() => handleTreeNameClick(tree._id)} className="sidebarLink">{tree.name}</p>
-                  <div className=''>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path onClick={() => handleTreeClick(tree._id)} stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                  </div>
+                  <Typography>{tree.isPrivate === true ? 'Private' : 'Public'}</Typography>
+                  <button onClick={() => handleTreeClick(tree._id)}>Удалить</button>
+                
 
                 </li>
               ))}
@@ -108,19 +106,18 @@ const UserTrees = ({ data, handleAddClick }) => {
           {data && data.length ? (
             <ul>
               {data.map(tree => (
-                <li key={tree._id} className="">
-                  <Grid container sx={{ color: 'text.primary' }}>
+                <li key={tree._id} className="flex p-2 gap-2">
+                  {/* <Grid container sx={{ color: 'text.primary' }}>
                     <Grid item xs={4}>
                       <Typography>Filled</Typography>
                     </Grid>
                     <Grid item xs={8}>
                       <DeleteIcon />
                     </Grid>
-                  </Grid>
+                  </Grid> */}
                   <p className="basis-1/2 sidebarLink" onClick={() => handleTreeNameClick(tree._id)}>{tree.name}</p>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path onClick={() => handleTreeClick(tree._id)} stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                  </svg>
+                  <Typography>{tree.isPrivate === true ? 'Private' : 'Public'}</Typography>
+                  <button onClick={() => handleTreeClick(tree._id)}>Удалить</button>
                 </li>
               ))}
             </ul>) : <p className="sidebarLink">Groups</p>}
