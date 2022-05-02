@@ -7,8 +7,9 @@ import { buttonsVisible } from '../atoms/branchAtom';
 import { modalState, modalTypeState } from '../atoms/modalAtom';
 import { selectedTreeState } from '../atoms/treeAtom';
 import { useCenteredTree } from "./helpers";
-import { motion } from 'framer-motion'
+import { animate, motion } from 'framer-motion'
 import Circle from './svg/Circle';
+import Div from './svg/Div';
 export default function OrgChartTree({ data, userId }) {
   const [translate, containerRef] = useCenteredTree();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
@@ -77,33 +78,7 @@ export default function OrgChartTree({ data, userId }) {
     <g onMouseLeave={animateNotVisible} className="">
       <Circle animateVisible={animateVisible} buttonsVis={buttonsVis} nodeDatum={nodeDatum} toggleNode={toggleNode} />
       <foreignObject {...foreignObjectProps} >
-        {buttonsVis ?
-          <motion.div animate={{ x: 0, y: 0 }} transition={{ ease: "easeOut", duration: 3 }}>
-            {nodeDatum._id ?
-              <div >
-                {nodeDatum.rootUser === userId ?
-                  <>
-                    <button className='hover:bg-sky-700 rounded-[8px] ml-16' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить</button>
-                    <button className='hover:bg-sky-700 rounded-[8px] ml-12' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить</button>
-                    <button className='hover:bg-sky-700 rounded-[8px] ml-10' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>Просмотр</button>
-                  </> :
-                  <>
-                    <button className='hover:bg-sky-700 rounded-[8px] ml-16' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>{nodeDatum.name}</button>
-                  </>
-                }
-              </div> :
-              <div >
-                <button className='hover:bg-sky-700 rounded-[8px] ml-16' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить </button>
-                <button className='hover:bg-sky-700 rounded-[8px] ml-12' disabled={true} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить </button>
-                <button className='hover:bg-sky-700 rounded-[8px] ml-10' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
-              </div>
-            }
-          </motion.div>
-          :
-          <motion.div animate={{ x: 0, y: 0, opacity: 0.75 }} transition={{ ease: "easeOut", duration: 3 }}>
-            <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
-          </motion.div>}
-
+         <Div userId={userId} actionVisible={animateVisible} buttonsVis={buttonsVis} handleClick={handleClick} handleDeleteClick={handleDeleteClick} handleTestClick={handleTestClick} nodeDatum={nodeDatum}/>
       </foreignObject>
     </g>
   );
@@ -127,7 +102,7 @@ export default function OrgChartTree({ data, userId }) {
         translate={translate}
         nodeSize={nodeSize}
         orientation={"vertical"}
-        depthFactor={180}
+        depthFactor={222}
       />
     </div>
   );

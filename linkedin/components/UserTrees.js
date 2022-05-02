@@ -95,9 +95,9 @@ const UserTrees = ({ data, handleAddClick }) => {
                     </Grid>
                   </Grid> */}
                   <p onClick={() => handleTreeNameClick(tree._id)} className="sidebarLink">{tree.name}</p>
-                  <Typography>{tree.isPrivate === true ? 'Private' : 'Public'}</Typography>
-                  <button onClick={() => handleTreeClick(tree._id)}>Удалить</button>
-                
+                  {/* <Typography>{tree.isPrivate === true ? 'Private' : 'Public'}</Typography>
+                  <button onClick={() => handleTreeClick(tree._id)}>Удалить</button> */}
+                  <Button onClick={() => handleTreeClick(tree._id)} variant="outlined" startIcon={<DeleteIcon />}></Button>
 
                 </li>
               ))}
@@ -107,17 +107,12 @@ const UserTrees = ({ data, handleAddClick }) => {
             <ul>
               {data.map(tree => (
                 <li key={tree._id} className="flex p-2 gap-2">
-                  {/* <Grid container sx={{ color: 'text.primary' }}>
-                    <Grid item xs={4}>
-                      <Typography>Filled</Typography>
-                    </Grid>
-                    <Grid item xs={8}>
-                      <DeleteIcon />
-                    </Grid>
-                  </Grid> */}
-                  <p className="basis-1/2 sidebarLink" onClick={() => handleTreeNameClick(tree._id)}>{tree.name}</p>
-                  <Typography>{tree.isPrivate === true ? 'Private' : 'Public'}</Typography>
-                  <button onClick={() => handleTreeClick(tree._id)}>Удалить</button>
+                  <p className="basis-1/2 sidebarLink " onClick={() => handleTreeNameClick(tree._id)}>{tree.name}</p>
+                  {/* <Typography>{tree.isPrivate === true ? 'Private' : 'Public'}</Typography>
+                  <button onClick={() => handleTreeClick(tree._id)}>Удалить</button> */}
+                  <Button onClick={() => handleTreeClick(tree._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                    Удалить
+                  </Button>
                 </li>
               ))}
             </ul>) : <p className="sidebarLink">Groups</p>}
