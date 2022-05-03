@@ -31,7 +31,7 @@ function Feed({ posts }) {
 
   return (
     <div className="space-y-6 pb-24 max-w-lg">
-      <Input />
+      {/* <Input /> */}
       {/* Posts */}
       {!useSSRPosts
         ? realtimePosts.map((post) => <Post key={post._id} post={post} />)

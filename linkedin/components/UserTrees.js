@@ -88,16 +88,11 @@ const UserTrees = ({ data, handleAddClick }) => {
           {trees && trees.length ? (
             <ul>
               {trees.map(tree => (
-                <li key={tree._id} className="flex p-2 gap-2">
-                  {/* <Grid container sx={{ color: 'text.primary' }}>
-                    <Grid item xs={4}>
-                      <Typography>{tree.isPrivate === true ? 'Приватное' : 'Публичное'}</Typography>
-                    </Grid>
-                  </Grid> */}
+                <li key={tree._id} className="flex items-center px-10 cursor-pointer w-40">
+                  
                   <p onClick={() => handleTreeNameClick(tree._id)} className="sidebarLink">{tree.name}</p>
-                  {/* <Typography>{tree.isPrivate === true ? 'Private' : 'Public'}</Typography>
-                  <button onClick={() => handleTreeClick(tree._id)}>Удалить</button> */}
-                  <Button onClick={() => handleTreeClick(tree._id)} variant="outlined" startIcon={<DeleteIcon />}></Button>
+                 
+                  <Button class onClick={() => handleTreeClick(tree._id)} variant="outlined" startIcon={<DeleteIcon />}></Button>
 
                 </li>
               ))}
@@ -106,10 +101,8 @@ const UserTrees = ({ data, handleAddClick }) => {
           {data && data.length ? (
             <ul>
               {data.map(tree => (
-                <li key={tree._id} className="flex p-2 gap-2">
+                <li key={tree._id} className="flex items-center px-10 cursor-pointer w-40">
                   <p className="basis-1/2 sidebarLink " onClick={() => handleTreeNameClick(tree._id)}>{tree.name}</p>
-                  {/* <Typography>{tree.isPrivate === true ? 'Private' : 'Public'}</Typography>
-                  <button onClick={() => handleTreeClick(tree._id)}>Удалить</button> */}
                   <Button onClick={() => handleTreeClick(tree._id)} variant="outlined" startIcon={<DeleteIcon />}>
                     Удалить
                   </Button>
