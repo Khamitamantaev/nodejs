@@ -6,7 +6,7 @@ const Div = ({ userId, buttonsVis, handleClick, handleTestClick, handleDeleteCli
     return (
         <>
             {buttonsVis  ?
-                <motion.div animate={buttonsVis ? { x: 0, y: 0} : { x: -90, y: 0 }} transition={{ ease: "easeOut", duration: 3 }}>
+                <motion.div>
                     {nodeDatum._id ?
                         <div >
                             {nodeDatum.rootUser === userId ?
@@ -29,7 +29,7 @@ const Div = ({ userId, buttonsVis, handleClick, handleTestClick, handleDeleteCli
                 </motion.div>
 
                 :
-                <motion.div  animate={{ x: -40, y: 0}} transition={{ ease: "easeOut", duration: 3 }}>
+                <motion.div>
                     <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
                 </motion.div>
             }

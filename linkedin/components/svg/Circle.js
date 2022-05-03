@@ -23,7 +23,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                         onMouseEnter={actionVisible}
                         onMouseOut={actionNotVisible}
                         animate={buttonsVis ? { x: -50, y: -50, scale: scale } : { x: -50, y: -50, scale: scale }}
-                        transition={{ ease: "easeOut", duration: 2 }}
+                        transition={{ ease: "easeOut", duration: 1 }}
                         x={0}
                         y={19}
                         width='100'
@@ -34,8 +34,8 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                     <defs>
                         <clipPath id='circleView'>
                             <motion.circle
-                                animate={buttonsVis ? { scale: 2 } : { scale: 0.8 }}
-                                transition={{ ease: "easeOut", duration: 2 }}
+                                animate={buttonsVis ? { scale: 2.5 } : { scale: 0.8 }}
+                                transition={{ ease: "easeOut", duration: 1 }}
                                 onClick={toggleNode}
                                 cx={50}
                                 cy={54}
@@ -53,7 +53,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                         onMouseEnter={actionVisible}
                         onMouseOut={actionNotVisible}
                         animate={buttonsVis ? { x: -50, y: -50, scale: scale } : { x: -50, y: -50, scale: scale }}
-                        transition={{ ease: "easeOut", duration: 4 }}
+                        transition={{ ease: "easeOut", duration: 1 }}
                         x={0}
                         y={19}
                         width='100'
@@ -65,9 +65,9 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                         <clipPath id='circleView'>
 
                             <motion.circle
-                                animate={buttonsVis ? { scale: 1.3 } : { scale: 0.8 }}
+                                animate={buttonsVis ? { scale: 2.5 } : { scale: 0.8 }}
 
-                                transition={{ ease: "easeOut", duration: 2 }}
+                                transition={{ ease: "easeOut", duration: 1 }}
                                 onClick={toggleNode}
                                 cx={50}
                                 cy={54}
