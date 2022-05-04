@@ -44,6 +44,7 @@ const TreeSchema = new mongoose.Schema({
       description: String,
       code: String,
       url: String,
+      rootConfirm: Boolean,
       name: String,
       slug: String
    }]

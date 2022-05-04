@@ -16,6 +16,7 @@ const Div = ({ userId, buttonsVis, handleClick, handleTestClick, handleDeleteCli
                                     <motion.button className='hover:bg-sky-700 rounded-[8px] ml-10' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>Просмотр</motion.button >
                                 </> :
                                 <>
+                                    <motion.button className='hover:bg-sky-700 rounded-[8px] ml-16' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить</motion.button >
                                     <motion.button className='hover:bg-sky-700 rounded-[8px] ml-16' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>{nodeDatum.name}</motion.button>
                                 </>
                             }

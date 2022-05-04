@@ -16,20 +16,30 @@ export default async function handler(req, res) {
         let parentBranch = await Branch.findById(req.body.parentID).exec()
         let children = parentBranch.branches;
 
+        
         const newBranch = await Branch.create({
           name: req.body.name,
-          rootUser: user._id,
           treeID: req.body.treeID,
           parentID: req.body.parentID,
           imageBranch: req.body.imageBranch,
           description: req.body.description,
           code: req.body.code,
-          url: req.body.url
+          url: req.body.url,
+          rootConfirm: true
         })
         console.log(newBranch)
+        
 
         let currentTree = await Tree.findById(req.body.treeID).exec();
-
+        if(currentTree.rootUser === user._id) {
+          newBranch.rootUser === user._id
+          newBranch.rootConfirm === true
+          console.log(newBranch)
+        } else {
+          newBranch.rootUser === currentTree.rootUser
+          newBranch.rootConfirm === false
+          console.log(newBranch)
+        }
         let treebranches = currentTree.branches;
         treebranches.push(newBranch)
         children.push(newBranch)

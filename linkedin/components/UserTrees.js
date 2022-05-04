@@ -103,9 +103,7 @@ const UserTrees = ({ data, handleAddClick }) => {
               {data.map(tree => (
                 <li key={tree._id} className="flex items-center px-10 cursor-pointer w-40">
                   <p className="basis-1/2 sidebarLink " onClick={() => handleTreeNameClick(tree._id)}>{tree.name}</p>
-                  <Button onClick={() => handleTreeClick(tree._id)} variant="outlined" startIcon={<DeleteIcon />}>
-                    Удалить
-                  </Button>
+                  <Button onClick={() => handleTreeClick(tree._id)} variant="outlined" startIcon={<DeleteIcon />}></Button>
                 </li>
               ))}
             </ul>) : <p className="sidebarLink">Groups</p>}
