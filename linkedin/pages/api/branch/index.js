@@ -13,11 +13,14 @@ export default async function handler(req, res) {
     case 'POST':
       try {
         const user = await User.findOne({ email: session.user.email })
-        let parentBranch = await Branch.findById(req.body.parentID).exec()
-        let children = parentBranch.branches;
-
-        
-        const newBranch = await Branch.create({
+        let currentTree = await Tree.findById(req.body.treeID).exec();
+        const userID = user._id.toString()
+        const currentTREE = currentTree.rootUser.toString()
+        if (userID === currentTREE) {
+          let parentBranch = await Branch.findById(req.body.parentID).exec()
+          let children = parentBranch.branches;
+          const newBranch = await Branch.create({
+          rootUser: user._id,
           name: req.body.name,
           treeID: req.body.treeID,
           parentID: req.body.parentID,
@@ -27,19 +30,9 @@ export default async function handler(req, res) {
           url: req.body.url,
           rootConfirm: true
         })
-        console.log(newBranch)
-        
-
-        let currentTree = await Tree.findById(req.body.treeID).exec();
-        if(currentTree.rootUser === user._id) {
-          newBranch.rootUser === user._id
-          newBranch.rootConfirm === true
-          console.log(newBranch)
-        } else {
-          newBranch.rootUser === currentTree.rootUser
-          newBranch.rootConfirm === false
-          console.log(newBranch)
-        }
+        console.log(currentTree.rootUser)
+        console.log(user._id)
+     
         let treebranches = currentTree.branches;
         treebranches.push(newBranch)
         children.push(newBranch)
@@ -47,6 +40,30 @@ export default async function handler(req, res) {
         await Tree.findByIdAndUpdate(currentTree.id, { branches: treebranches }, { useFindAndModify: false });
         newBranch.save()
         res.status(201).json({ success: true, newBranch: newBranch })
+        }
+        else {
+          let parentBranch = await Branch.findById(req.body.parentID).exec()
+          let children = parentBranch.branches;
+          const newBranch = await Branch.create({
+          rootUser: currentTree.rootUser,
+          name: req.body.name,
+          treeID: req.body.treeID,
+          parentID: req.body.parentID,
+          imageBranch: req.body.imageBranch,
+          description: req.body.description,
+          code: req.body.code,
+          url: req.body.url,
+          rootConfirm: false
+        })
+        console.log(newBranch.rootUser)
+        let treebranches = currentTree.branches;
+        treebranches.push(newBranch)
+        children.push(newBranch)
+        await Branch.findByIdAndUpdate(req.body.parentID, { branches: children }, { useFindAndModify: false });
+        await Tree.findByIdAndUpdate(currentTree.id, { branches: treebranches }, { useFindAndModify: false });
+        newBranch.save()
+        res.status(201).json({ success: true, newBranch: newBranch })
+        }
       } catch (error) {
         res.status(400).json({ success: false })
       }

@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from '@mui/material';
+import { Button, Grid, IconButton, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import { modalState, modalTypeState } from '../atoms/modalAtom';
@@ -89,10 +89,12 @@ const UserTrees = ({ data, handleAddClick }) => {
             <ul>
               {trees.map(tree => (
                 <li key={tree._id} className="flex items-center px-10 cursor-pointer w-40">
-                  
+
                   <p onClick={() => handleTreeNameClick(tree._id)} className="sidebarLink">{tree.name}</p>
-                 
-                  <Button class onClick={() => handleTreeClick(tree._id)} variant="outlined" startIcon={<DeleteIcon />}></Button>
+                  <IconButton className='' onClick={() => handleTreeClick(tree._id)} aria-label="delete" size="small">
+                    <DeleteIcon fontSize="inherit" />
+                  </IconButton>
+                  {/* <Button  variant="outlined" startIcon={<DeleteIcon />}></Button> */}
 
                 </li>
               ))}
@@ -103,7 +105,10 @@ const UserTrees = ({ data, handleAddClick }) => {
               {data.map(tree => (
                 <li key={tree._id} className="flex items-center px-10 cursor-pointer w-40">
                   <p className="basis-1/2 sidebarLink " onClick={() => handleTreeNameClick(tree._id)}>{tree.name}</p>
-                  <Button onClick={() => handleTreeClick(tree._id)} variant="outlined" startIcon={<DeleteIcon />}></Button>
+                  <IconButton className='' onClick={() => handleTreeClick(tree._id)} aria-label="delete" size="small">
+                    <DeleteIcon fontSize="inherit" />
+                  </IconButton>
+                  {/* <Button className='w-4' onClick={() => handleTreeClick(tree._id)} variant="outlined" startIcon={<DeleteIcon />}></Button> */}
                 </li>
               ))}
             </ul>) : <p className="sidebarLink">Groups</p>}
