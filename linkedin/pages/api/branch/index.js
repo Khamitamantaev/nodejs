@@ -30,8 +30,6 @@ export default async function handler(req, res) {
           url: req.body.url,
           rootConfirm: true
         })
-        console.log(currentTree.rootUser)
-        console.log(user._id)
      
         let treebranches = currentTree.branches;
         treebranches.push(newBranch)
@@ -55,7 +53,6 @@ export default async function handler(req, res) {
           url: req.body.url,
           rootConfirm: false
         })
-        console.log(newBranch.rootUser)
         let treebranches = currentTree.branches;
         treebranches.push(newBranch)
         children.push(newBranch)
