@@ -32,7 +32,7 @@ const AddTreeForm = () => {
       initialValues={{ treeName: '', isPrivate: '0'}}
       validationSchema={Yup.object({
         treeName: Yup.string()
-          .max(10, 'Must be 10 characters or less')
+          .max(14, 'Не более 14 символов')
           .required('Required'),
       })}
       onSubmit={onSubmitTree}
