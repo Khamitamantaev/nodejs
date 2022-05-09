@@ -23,6 +23,7 @@ description: String,
 code: String,
 url: String,
 rootConfirm: Boolean,
+IsMain: Boolean,
 rootUser: {
    type: mongoose.Schema.Types.ObjectId,
    ref: 'User'

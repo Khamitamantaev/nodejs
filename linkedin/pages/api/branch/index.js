@@ -28,7 +28,8 @@ export default async function handler(req, res) {
           description: req.body.description,
           code: req.body.code,
           url: req.body.url,
-          rootConfirm: true
+          rootConfirm: true,
+          isMain: req.body.isMain
         })
      
         let treebranches = currentTree.branches;
@@ -51,7 +52,8 @@ export default async function handler(req, res) {
           description: req.body.description,
           code: req.body.code,
           url: req.body.url,
-          rootConfirm: false
+          rootConfirm: false,
+          isMain: false
         })
         let treebranches = currentTree.branches;
         treebranches.push(newBranch)

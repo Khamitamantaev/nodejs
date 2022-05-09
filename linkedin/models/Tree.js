@@ -19,6 +19,8 @@ function slugify(string) {
 const TreeSchema = new mongoose.Schema({
    name: String,
    slug: String,
+   treeImage: String,
+   isMain: Boolean,
    isPrivate: {type: Boolean, default: true },
    rootUser: {
       type: mongoose.Schema.Types.ObjectId,
