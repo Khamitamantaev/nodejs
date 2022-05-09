@@ -93,7 +93,7 @@ export default function OrgChartTree({ data, userId }) {
   const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: 0 };
 
   return (
-    <div id="treeWrapper" style={{ width: '64em', height: '40em' }}>
+    <div className="rounded-[10px] bg-gradient-to-r from-violet-500 to-fuchsia-500" id="treeWrapper" style={{ width: '64em', height: '40em' }}>
       <Tree
         data={data}
         renderCustomNodeElement={(rd3tProps) =>
