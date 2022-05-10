@@ -71,7 +71,7 @@ export async function getServerSideProps(context) {
   const user = await db.collection("users").findOne({ email: session.user.email })
   const trees = await db
     .collection("trees")
-    .find({ rootUser: user._id, isPrivate: false })
+    .find({isPrivate: false })
     .sort({ timestamp: -1 })
     .toArray()
 

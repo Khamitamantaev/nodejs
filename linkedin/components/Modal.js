@@ -17,6 +17,7 @@ import { CopyBlock, dracula } from "react-code-blocks";
 import { sample } from "./codeblock";
 import { useState } from "react";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import AddTreeUserForm from "./Form/addTreeUserForm";
 const dropIn = {
   hidden: {
     y: "-100vh",
@@ -371,7 +372,10 @@ const Modal = ({ handleClose, type }) => {
           </div>
 
           <div className="p-4 space-y-2">
-            <AddTreeForm />
+            {session?.user?.email === 'khamitamantaev@gmail.com' ? 
+            <AddTreeForm /> : <AddTreeUserForm/>
+          }
+            
           </div>
         </motion.div>
       )}
