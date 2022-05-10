@@ -17,6 +17,7 @@
     "axios": "^0.26.1",
     "formik": "^2.2.9",
     "framer-motion": "^5.5.7",
+    "hashids": "^2.2.10",
     "mongodb": "^4.3.0",
     "mongoose": "^6.2.6",
     "next": "12.0.7",
