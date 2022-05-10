@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import WorkIcon from '@mui/icons-material/Work';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const spring = {
   type: "spring",
   stiffness: 700,
@@ -56,9 +57,10 @@ function Header() {
         <HeaderLink Icon={GroupIcon} text="My Network" href="/rodoslovnaya" feed />
         {/* <HeaderLink Icon={BusinessCenterIcon} text="Jobs" feed hidden />
         <HeaderLink Icon={ChatIcon} text="Messaging" feed />
-        <HeaderLink Icon={NotificationsIcon} text="Notifications" feed />
+        <HeaderLink Icon={NotificationsIcon} text="Notifications" feed /> */}
+        <HeaderLink Icon={AccountCircleIcon} text="Profile" feed />
         
-        <HeaderLink Icon={AppsOutlinedIcon} text="Work" feed hidden /> */}
+        {/* <HeaderLink Icon={AppsOutlinedIcon} text="Work" feed hidden /> */}
         <HeaderLink Icon={LogoutIcon} text="Logout" href="/home" feed avatar hidden />
         {/* Dark mode toggle */}
         {mounted && (
