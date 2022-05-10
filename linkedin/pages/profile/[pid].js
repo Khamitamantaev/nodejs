@@ -1,7 +1,9 @@
+import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Header from '../../components/Header'
+import { connectToDatabase } from '../../util/mongodb'
 
-const Profile = () => {
+export default function Profile({ userData})  {
   const router = useRouter()
   const { pid } = router.query
 
@@ -17,7 +19,7 @@ const Profile = () => {
               <div className="image overflow-hidden">
                 <img className="h-auto w-full mx-auto" src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg" alt="" />
               </div>
-              <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{pid}</h1>
+              {/* <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{userData}</h1> */}
               <h3 className="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
               <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
                 consectetur adipisicing elit.
@@ -187,4 +189,35 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export async function getServerSideProps(context) {
+  // Check if the user is authenticated on the server...
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/home",
+      },
+    };
+  }
+
+  
+
+  const { db } = await connectToDatabase();
+  const user = await db.collection("users").findOne({ email: session.user.email})
+  const trees = await db
+    .collection("trees")
+    .find({ rootUser: user._id})
+    .sort({ timestamp: -1 })
+    .toArray()
+  return {
+    props: {
+      session,
+      data: trees.map((tree) => ({
+        _id: tree._id.toString(),
+        name: tree.name
+      })),
+      userData: user._id.toString()
+    },
+  };
+}

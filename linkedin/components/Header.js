@@ -20,7 +20,7 @@ const spring = {
   damping: 30,
 };
 
-function Header() {
+export default function Header() {
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme, theme } = useTheme();
 
@@ -58,7 +58,7 @@ function Header() {
         {/* <HeaderLink Icon={BusinessCenterIcon} text="Jobs" feed hidden />
         <HeaderLink Icon={ChatIcon} text="Messaging" feed />
         <HeaderLink Icon={NotificationsIcon} text="Notifications" feed /> */}
-        <HeaderLink Icon={AccountCircleIcon} text="Profile" feed />
+        <HeaderLink Icon={AccountCircleIcon} text="Profile" href="/profile" feed /> 
         
         {/* <HeaderLink Icon={AppsOutlinedIcon} text="Work" feed hidden /> */}
         <HeaderLink Icon={LogoutIcon} text="Logout" href="/home" feed avatar hidden />
@@ -87,4 +87,4 @@ function Header() {
   );
 }
 
-export default Header;
+
