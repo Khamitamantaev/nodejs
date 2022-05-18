@@ -105,10 +105,10 @@ export default function Rodoslovnaya({ data, userData }) {
     setModalType("addTree");
   }
 
-  const genericSearch = (element) => {
+  async function genericSearch(element){
     if(element.name === searchTree){
       return 'true'
-    }else {
+    } else {
       return 'false'
     } 
   }
