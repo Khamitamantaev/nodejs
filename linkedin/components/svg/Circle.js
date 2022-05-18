@@ -6,15 +6,18 @@ import { searchTreeState } from '../../atoms/treeAtom'
 const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
     const [scale, setScale] = useState(1.2)
     const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
+    const [scaleCircle, setScaleCircle] = useState(1.6)
 
     const actionVisible = () => {
         animateVisible()
-        setScale(4)
+        setScale(5.6)
+        setScaleCircle(7)
     }
 
     const actionNotVisible = () => {
         animateVisible()
         setScale(1.2)
+        setScaleCircle(1.6)
     }
 
     return (
@@ -37,7 +40,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                     <defs>
                         <clipPath id='circleView'>
                             <motion.circle
-                                animate={buttonsVis ? { scale: 1.4 } : { scale: 0.8 }}
+                                // animate={buttonsVis ? { scale: 1.4 } : { scale: 0.8 }}
                                 transition={{ ease: "easeOut", duration: 1 }}
                                 onClick={toggleNode}
                                 cx={50}
@@ -49,6 +52,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                             </motion.circle>
                         </clipPath>
                     </defs>
+                    <motion.circle  transition={{ ease: "easeOut", duration: 1.2 }} onMouseOut={actionNotVisible}  onMouseEnter={actionVisible} cy={3} r={22} animate={nodeDatum.name === searchTree ? { scale: scaleCircle, stroke: 'yellow' }: { scale: scaleCircle, stroke: 'none' }}  fill='none'></motion.circle>
                 </> :
                 <>
                     <motion.image
@@ -67,7 +71,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                     <defs>
                         <clipPath id='circleView'>
                             <motion.circle
-                                animate={buttonsVis ? { scale: 1.4 } : { scale: 0.8 }}
+                                // animate={buttonsVis ? { scale: 1.4 } : { scale: 0.8 }}
                                 transition={{ ease: "easeOut", duration: 1 }}
                                 onClick={toggleNode}
                                 cx={50}
@@ -79,6 +83,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                             </motion.circle>
                         </clipPath>
                     </defs>
+                    <motion.circle  transition={{ ease: "easeOut", duration: 1.2 }} onMouseOut={actionNotVisible} cy={3} r={22} onMouseEnter={actionVisible} animate={nodeDatum.name === searchTree ? { scale: scaleCircle , stroke: 'yellow' }: { scale: scaleCircle, stroke: 'none' }}  fill='none'></motion.circle>
                 </>
             }
         </>

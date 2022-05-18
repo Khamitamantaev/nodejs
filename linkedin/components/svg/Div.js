@@ -36,11 +36,11 @@ const Div = ({ userId, buttonsVis, handleClick, handleTestClick, handleDeleteCli
                 </motion.div>
                 :
                 <motion.div>
-                    {nodeDatum.name === searchTree ?
+                    {/* {nodeDatum.name === searchTree ?
                      <button className='hover:bg-sky-700 rounded-[8px] bg-amber-500' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button> 
                     : 
-                    <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>}
-
+                    <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>} */}
+                    <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
                 </motion.div>
             }
         </>
