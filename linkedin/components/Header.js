@@ -14,6 +14,8 @@ import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import WorkIcon from '@mui/icons-material/Work';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useRecoilState } from "recoil";
+import { searchTreeState } from "../atoms/treeAtom";
 const spring = {
   type: "spring",
   stiffness: 700,
@@ -23,9 +25,14 @@ const spring = {
 export default function Header() {
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme, theme } = useTheme();
-
+  const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
   // After mounting, we have access to the theme
   useEffect(() => setMounted(true), []);
+
+  const handleSearchBranch = (e) => {
+    console.log(e.target.value)
+    setSearchTree(e.target.value)
+  }
 
   return (
     <header className="sticky top-0 z-40 bg-white dark:bg-[#1D2226] flex items-center justify-around py-1.5 px-3 focus-within:shadow-lg">
@@ -45,7 +52,8 @@ export default function Header() {
           <SearchRoundedIcon />
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Поиск нужной ветки"
+            onChange={(e) => handleSearchBranch(e)}
             className="hidden md:inline-flex bg-transparent text-sm focus:outline-none placeholder-black/70 dark:placeholder-white/75 flex-grow"
           />
         </div>

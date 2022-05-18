@@ -16,7 +16,7 @@ import { Button, List, ListItem, ListItemButton, ListItemText } from "@mui/mater
 import { AddForm } from "../components/Form/AddTreeForm";
 import UserTrees from "../components/UserTrees";
 import { useEffect, useState } from "react";
-import { handleTreeState, selectedTreeState, userTree, userTreeList, useSSRTreesState } from "../atoms/treeAtom";
+import { handleTreeState, searchTreeState, selectedTreeState, userTree, userTreeList, useSSRTreesState } from "../atoms/treeAtom";
 import { handleBranchState } from "../atoms/branchAtom";
 
 const initialState = {
@@ -51,13 +51,14 @@ export default function Rodoslovnaya({ data, userData }) {
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const user_trees = useRecoilStateLoadable(userTreeList);
   const [tree, setTree] = useState(initialState)
+  const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
   const [handleBranch, setHandleBranch] = useRecoilState(handleBranchState);
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
 
   const { data: session } = useSession()
   // const [trees, setTrees] = useRecoilState(userTreeList)
   useEffect(async () => {
-    console.log(session.user.email)
+    // console.log(session.user.email)
     if (currentTree) {
       const fetchTree = async () => {
         const response = await fetch(`/api/tree/${currentTree}`, {
@@ -65,13 +66,20 @@ export default function Rodoslovnaya({ data, userData }) {
           headers: { "Content-Type": "application/json" },
         });
         const responseData = await response.json();
-        const nest = (items, _id = null, link = 'parentID') => items.filter(item => item[link] === _id).map(item => ({
-          ...item,
-          children: nest(items, item._id)
-        }))
+        const nest = (items, _id = null, link = 'parentID') =>
+          items.filter(item => item[link] === _id)
+            .map(item => ({
+              ...item,
+              search: genericSearch(item),
+              children: nest(items, item._id)
+            }))
         if (responseData.tree) {
           const json = nest(responseData.tree.branches)
           setTree(json)
+          console.log(json)
+          // var element = tree[0];
+          // var result = searchTreew(element, searchTree);
+          // console.log(result)
         } else {
           setTree(initialState)
         }
@@ -80,7 +88,7 @@ export default function Rodoslovnaya({ data, userData }) {
       };
       fetchTree();
     }
-  }, [currentTree, handleBranch, handleTree])
+  }, [currentTree, handleBranch, handleTree, searchTree])
 
 
   const router = useRouter();
@@ -97,6 +105,55 @@ export default function Rodoslovnaya({ data, userData }) {
     setModalType("addTree");
   }
 
+  const genericSearch = (element) => {
+    if(element.name === searchTree){
+      return 'true'
+    }else {
+      return 'false'
+    } 
+  }
+  
+
+  // function searchTreew(element, matchName) {
+  //   console.log(element)
+  //   console.log(matchName)
+  //   let arr = []
+  //   if(element && element.name === matchName) {
+  //     arr.push(element)
+  //     return arr
+  //   }
+  //   if(element && element.children) {
+  //     element.children.filter(element => element.name === matchName).forEach(element => {
+  //         arr.push(searchTreew(element, matchName))
+  //     });
+  //     return arr
+  //   }
+  //   // if(element && element.name === matchName) {
+  //   //   arr.push(element)
+  //   //   return element
+  //   // }
+  //   // else if(element && element.children !== null) {
+  //   //   var i;
+  //   //   var result = null;
+  //   //   for(i=0; result === null && i< element.children.length; i++) {
+  //   //     result = searchTreew(element.children[i], matchName)
+  //   //     arr.push(result)
+  //   //   }
+  //   //   return arr
+  //   // }
+  //   // else if (element && element.children !== null) {
+  //   //   var i;
+  //   //   var result = null;
+  //   //   for (i = 0; result === null && i < element.children.length; i++) {
+  //   //     result = searchTreew(element.children[i], matchName);
+  //   //     arr.push(result)
+  //   //   }
+  //   //   return arr
+
+  //   // }
+  //   return null
+  // }
+
 
 
   return (
@@ -112,7 +169,7 @@ export default function Rodoslovnaya({ data, userData }) {
           <UserTrees data={data} handleAddClick={handleAddClick} />
         </div>
         {/* {session.user.email === 'khamitamantaev@gmail.com' ? <OrgChartTree data={tree} userId={userData}/> : <>В разработке</> } */}
-          <OrgChartTree data={tree} userId={userData}/>
+        <OrgChartTree data={tree} userId={userData} />
         <AnimatePresence>
           {modalOpen && (
             <Modal handleClose={() => setModalOpen(false)} type={modalType} />
@@ -135,13 +192,13 @@ export async function getServerSideProps(context) {
     };
   }
 
-  
+
 
   const { db } = await connectToDatabase();
-  const user = await db.collection("users").findOne({ email: session.user.email})
+  const user = await db.collection("users").findOne({ email: session.user.email })
   const trees = await db
     .collection("trees")
-    .find({ rootUser: user._id})
+    .find({ rootUser: user._id })
     .sort({ timestamp: -1 })
     .toArray()
   return {

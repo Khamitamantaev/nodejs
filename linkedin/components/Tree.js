@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import { CurrentBranchState } from '../atoms/branchAtom';
 import { buttonsVisible } from '../atoms/branchAtom';
 import { modalState, modalTypeState } from '../atoms/modalAtom';
-import { selectedTreeState } from '../atoms/treeAtom';
+import { searchTreeState, selectedTreeState } from '../atoms/treeAtom';
 import { useCenteredTree } from "./helpers";
 import { animate, motion } from 'framer-motion'
 import Circle from './svg/Circle';
@@ -17,6 +17,7 @@ export default function OrgChartTree({ data, userId }) {
   const [currentBranch, setCurrentBranch] = useRecoilState(CurrentBranchState);
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const [buttonsVis, setButtonsVis] = useRecoilState(buttonsVisible)
+  const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
   const handleClick = (nodeDatum) => {
     console.log(nodeDatum)
     setCurrentBranch({
@@ -102,7 +103,7 @@ export default function OrgChartTree({ data, userId }) {
         translate={translate}
         nodeSize={nodeSize}
         orientation={"vertical"}
-        depthFactor={222}
+        depthFactor={190}
       />
     </div>
   );

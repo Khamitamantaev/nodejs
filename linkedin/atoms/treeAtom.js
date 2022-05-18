@@ -19,3 +19,8 @@ export const useSSRTreesState = atom({
   key: "useSSRTreesState",
   default: true,
 });
+
+export const searchTreeState = atom({
+  key: "searchTree",
+  default: ""
+})

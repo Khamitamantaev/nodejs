@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { useRecoilState } from 'recoil'
+import { searchTreeState } from '../../atoms/treeAtom'
 
-const Div = ({ userId, buttonsVis, handleClick, handleTestClick, handleDeleteClick, nodeDatum, actionVisible }) => {
+const Div = ({ userId, buttonsVis, handleClick, handleTestClick, handleDeleteClick, nodeDatum }) => {
+    const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
+    // useEffect(() => {
+    //     setP(nodeDatum.search) 
+    // },[nodeDatum])
 
     return (
         <>
-            {buttonsVis  ?
+            {buttonsVis ?
                 <motion.div>
                     {nodeDatum._id ?
-                        <div >
+                        <div>
                             {nodeDatum.rootUser === userId ?
                                 <>
                                     <motion.button className='hover:bg-sky-700 rounded-[8px] ml-16' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить</motion.button >
@@ -28,10 +34,13 @@ const Div = ({ userId, buttonsVis, handleClick, handleTestClick, handleDeleteCli
                         </div>
                     }
                 </motion.div>
-
                 :
                 <motion.div>
-                    <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
+                    {nodeDatum.name === searchTree ?
+                     <button className='hover:bg-sky-700 rounded-[8px] bg-amber-500' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button> 
+                    : 
+                    <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>}
+
                 </motion.div>
             }
         </>

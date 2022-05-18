@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { useRecoilState } from 'recoil'
+import { searchTreeState } from '../../atoms/treeAtom'
 
 const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
     const [scale, setScale] = useState(1.2)
+    const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
 
     const actionVisible = () => {
         animateVisible()
@@ -22,7 +25,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                         onClick={toggleNode}
                         onMouseEnter={actionVisible}
                         onMouseOut={actionNotVisible}
-                        animate={buttonsVis ? { x: -50, y: -50, scale: scale, rotate: 360 } : { x: -50, y: -50, scale: scale, rotate:360 }}
+                        animate={buttonsVis ? { x: -50, y: -50, scale: scale, rotate: 360 } : { x: -50, y: -50, scale: scale, rotate: 360 }}
                         transition={{ ease: "easeOut", duration: 1 }}
                         x={0}
                         y={19}
@@ -63,7 +66,6 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                     />
                     <defs>
                         <clipPath id='circleView'>
-
                             <motion.circle
                                 animate={buttonsVis ? { scale: 1.4 } : { scale: 0.8 }}
                                 transition={{ ease: "easeOut", duration: 1 }}
