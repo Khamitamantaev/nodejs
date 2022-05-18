@@ -70,7 +70,7 @@ export default function Rodoslovnaya({ data, userData }) {
           items.filter(item => item[link] === _id)
             .map(item => ({
               ...item,
-              search: genericSearch(item),
+              // search: genericSearch(item),
               children: nest(items, item._id)
             }))
         if (responseData.tree) {
@@ -104,14 +104,15 @@ export default function Rodoslovnaya({ data, userData }) {
     setModalOpen(true);
     setModalType("addTree");
   }
+  
 
-  async function genericSearch(element){
-    if(element.name === searchTree){
-      return 'true'
-    } else {
-      return 'false'
-    } 
-  }
+  // async function genericSearch(element){
+  //   if(element.name === searchTree){
+  //     return 'true'
+  //   } else {
+  //     return 'false'
+  //   } 
+  // }
   
 
   // function searchTreew(element, matchName) {

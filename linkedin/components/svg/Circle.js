@@ -52,7 +52,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                             </motion.circle>
                         </clipPath>
                     </defs>
-                    <motion.circle  transition={{ ease: "easeOut", duration: 1.2 }} onMouseOut={actionNotVisible}  onMouseEnter={actionVisible} cy={3} r={22} animate={nodeDatum.name === searchTree ? { scale: scaleCircle, stroke: 'yellow' }: { scale: scaleCircle, stroke: 'none' }}  fill='none'></motion.circle>
+                    {/* <motion.circle  transition={{ ease: "easeOut", duration: 1.2 }} onMouseOut={actionNotVisible}  onMouseEnter={actionVisible} cy={3} r={22} animate={nodeDatum.name === searchTree ? { scale: scaleCircle, stroke: 'yellow' }: { scale: scaleCircle, stroke: 'none' }}  fill='none'></motion.circle> */}
                 </> :
                 <>
                     <motion.image
@@ -83,7 +83,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                             </motion.circle>
                         </clipPath>
                     </defs>
-                    <motion.circle  transition={{ ease: "easeOut", duration: 1.2 }} onMouseOut={actionNotVisible} cy={3} r={22} onMouseEnter={actionVisible} animate={nodeDatum.name === searchTree ? { scale: scaleCircle , stroke: 'yellow' }: { scale: scaleCircle, stroke: 'none' }}  fill='none'></motion.circle>
+                    {/* <motion.circle  transition={{ ease: "easeOut", duration: 1.2 }} onMouseOut={actionNotVisible} cy={3} r={22} onMouseEnter={actionVisible} animate={nodeDatum.name === searchTree ? { scale: scaleCircle , stroke: 'yellow' }: { scale: scaleCircle, stroke: 'none' }}  fill='none'></motion.circle> */}
                 </>
             }
         </>

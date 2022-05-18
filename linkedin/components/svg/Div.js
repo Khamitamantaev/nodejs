@@ -5,9 +5,6 @@ import { searchTreeState } from '../../atoms/treeAtom'
 
 const Div = ({ userId, buttonsVis, handleClick, handleTestClick, handleDeleteClick, nodeDatum }) => {
     const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
-    // useEffect(() => {
-    //     setP(nodeDatum.search) 
-    // },[nodeDatum])
 
     return (
         <>
