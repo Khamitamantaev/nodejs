@@ -51,7 +51,7 @@ export default function Rodoslovnaya({ data, userData }) {
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const user_trees = useRecoilStateLoadable(userTreeList);
   const [tree, setTree] = useState(initialState)
-  const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
+  // const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
   const [handleBranch, setHandleBranch] = useRecoilState(handleBranchState);
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
 
@@ -70,25 +70,20 @@ export default function Rodoslovnaya({ data, userData }) {
           items.filter(item => item[link] === _id)
             .map(item => ({
               ...item,
-              // search: genericSearch(item),
               children: nest(items, item._id)
             }))
         if (responseData.tree) {
           const json = nest(responseData.tree.branches)
           setTree(json)
-          console.log(json)
-          // var element = tree[0];
-          // var result = searchTreew(element, searchTree);
-          // console.log(result)
         } else {
           setTree(initialState)
         }
         setHandleBranch(false)
         setHandleTree(false)
       };
-      fetchTree();
+     fetchTree();
     }
-  }, [currentTree, handleBranch, handleTree, searchTree])
+  }, [currentTree, handleBranch, handleTree])
 
 
   const router = useRouter();
@@ -104,7 +99,7 @@ export default function Rodoslovnaya({ data, userData }) {
     setModalOpen(true);
     setModalType("addTree");
   }
-  
+
 
   // async function genericSearch(element){
   //   if(element.name === searchTree){
