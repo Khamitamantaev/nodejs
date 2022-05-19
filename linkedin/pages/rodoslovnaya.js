@@ -51,7 +51,7 @@ export default function Rodoslovnaya({ data, userData }) {
   const [currentTree, setCurrentTree] = useRecoilState(selectedTreeState);
   const user_trees = useRecoilStateLoadable(userTreeList);
   const [tree, setTree] = useState(initialState)
-  // const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
+  const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
   const [handleBranch, setHandleBranch] = useRecoilState(handleBranchState);
   const [handleTree, setHandleTree] = useRecoilState(handleTreeState);
 
@@ -70,6 +70,7 @@ export default function Rodoslovnaya({ data, userData }) {
           items.filter(item => item[link] === _id)
             .map(item => ({
               ...item,
+              search: genericSearch(item),
               children: nest(items, item._id)
             }))
         if (responseData.tree) {
@@ -100,6 +101,12 @@ export default function Rodoslovnaya({ data, userData }) {
     setModalType("addTree");
   }
 
+  const genericSearch = (element) => {
+    if(element.name === searchTree) {
+      return true
+    }
+    return false
+  }
 
   // async function genericSearch(element){
   //   if(element.name === searchTree){
