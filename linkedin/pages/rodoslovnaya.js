@@ -70,11 +70,12 @@ export default function Rodoslovnaya({ data, userData }) {
           items.filter(item => item[link] === _id)
             .map(item => ({
               ...item,
-              search: genericSearch(item),
+              search: genericSearch(item.name),
               children: nest(items, item._id)
             }))
         if (responseData.tree) {
           const json = nest(responseData.tree.branches)
+          console.log(json)
           setTree(json)
         } else {
           setTree(initialState)
@@ -102,7 +103,7 @@ export default function Rodoslovnaya({ data, userData }) {
   }
 
   const genericSearch = (element) => {
-    if(element.name === searchTree) {
+    if(searchTree.includes(element.toString())) {
       return true
     }
     return false

@@ -11,7 +11,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
     const actionVisible = () => {
         animateVisible()
         setScale(5.6)
-        setScaleCircle(8)
+        setScaleCircle(4)
     }
 
     const actionNotVisible = () => {
@@ -52,7 +52,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                             </motion.circle>
                         </clipPath>
                     </defs>
-                    <motion.circle  transition={{ ease: "easeOut", duration: 1.2 }}  onMouseOut={actionNotVisible}  onMouseEnter={actionVisible} cy={3}  animate={nodeDatum.name === searchTree ? { scale: scaleCircle, stroke: 'yellow',r: 44 }: { scale: scaleCircle, stroke: 'none',r:22 }}  fill='none'></motion.circle>
+                    <motion.circle  transition={{ ease: "easeOut", duration: 1.2 }}  onMouseOut={actionNotVisible}  onMouseEnter={actionVisible} cy={3}  animate={searchTree.includes(nodeDatum.name) ? { scale: scaleCircle, stroke: 'yellow',r: 44 }: { scale: scaleCircle, stroke: 'none',r:22 }}  fill='none'></motion.circle>
                 </> :
                 <>
                     <motion.image
@@ -83,7 +83,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                             </motion.circle>
                         </clipPath>
                     </defs>
-                    <motion.circle  transition={{ ease: "easeOut", duration: 1.2 }} onMouseOut={actionNotVisible} cy={3}  onMouseEnter={actionVisible} animate={nodeDatum.name === searchTree ? { scale: scaleCircle , stroke: 'yellow',r:44 }: { scale: scaleCircle, stroke: 'none',r:22 }}  fill='none'></motion.circle>
+                    <motion.circle  transition={{ ease: "easeOut", duration: 1.2 }} onMouseOut={actionNotVisible} cy={3}  onMouseEnter={actionVisible} animate={searchTree.includes(nodeDatum.name)  ? { scale: scaleCircle , stroke: 'yellow',r:44 }: { scale: scaleCircle, stroke: 'none',r:22 }}  fill='none'></motion.circle>
                 </>
             }
         </>
