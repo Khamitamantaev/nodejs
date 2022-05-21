@@ -65,7 +65,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                         y={19}
                         width='100'
                         height='70'
-                        xlinkHref='/tree/tree.jpg'
+                        xlinkHref='/logo/NOIMAGE.png'
                         clipPath='url(#circleView)'
                     />
                     <defs>

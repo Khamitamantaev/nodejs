@@ -86,7 +86,7 @@ const UserTrees = ({ data, handleAddClick }) => {
       <div className="hidden md:flex bg-white dark:bg-[#1D2226] text-black/70 dark:text-white/75 rounded-lg overflow-hidden flex-col space-y-2 pt-2.5 sticky top-20 border border-gray-300 dark:border-none">
         {!useSSRTrees ? <div className="">
           {trees && trees.length ? (
-            <ul>
+            <ul >
               {trees.map(tree => (
                 <li key={tree._id} className="flex items-center px-10 cursor-pointer w-40">
 
@@ -101,7 +101,7 @@ const UserTrees = ({ data, handleAddClick }) => {
             </ul>) : <p className="sidebarLink">Groups</p>}
         </div> : <div className=''>
           {data && data.length ? (
-            <ul>
+            <ul className=''>
               {data.map(tree => (
                 <li key={tree._id} className="flex items-center px-10 cursor-pointer w-40">
                   <p className="basis-1/2 sidebarLink " onClick={() => handleTreeNameClick(tree._id)}>{tree.name}</p>
