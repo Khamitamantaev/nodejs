@@ -10,8 +10,8 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
 
     const actionVisible = () => {
         animateVisible()
-        setScale(5.6)
-        setScaleCircle(4)
+        setScale(4.6)
+        setScaleCircle(3.2)
     }
 
     const actionNotVisible = () => {
