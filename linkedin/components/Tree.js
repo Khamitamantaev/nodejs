@@ -19,7 +19,7 @@ export default function OrgChartTree({ data, userId }) {
   const [buttonsVis, setButtonsVis] = useRecoilState(buttonsVisible)
   const [searchTree, setSearchTree] = useRecoilState(searchTreeState)
   const handleClick = (nodeDatum) => {
-    console.log(nodeDatum)
+    // console.log(nodeDatum)
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,
@@ -46,7 +46,7 @@ export default function OrgChartTree({ data, userId }) {
   }
 
   const handleTestClick = (nodeDatum) => {
-    console.log(nodeDatum)
+    // console.log(nodeDatum)
     setCurrentBranch({
       _id: nodeDatum._id,
       name: nodeDatum.name,

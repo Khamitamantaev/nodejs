@@ -75,7 +75,7 @@ export default function Rodoslovnaya({ data, userData }) {
             }))
         if (responseData.tree) {
           const json = nest(responseData.tree.branches)
-          console.log(json)
+          // console.log(json)
           setTree(json)
         } else {
           setTree(initialState)
