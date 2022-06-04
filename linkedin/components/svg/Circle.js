@@ -40,7 +40,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                     <defs>
                         <clipPath id='circleView'>
                             <motion.circle
-                                animate={buttonsVis ? { scale: 1.4 } : { scale: 1.2 }}
+                                animate={buttonsVis ? { scale: 1.2 } : { scale: 0.8 }}
                                 transition={{ ease: "easeOut", duration: 1 }}
                                 onClick={toggleNode}
                                 cx={50}
@@ -71,7 +71,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                     <defs>
                         <clipPath id='circleView'>
                             <motion.circle
-                                animate={buttonsVis ? { scale: 1.4 } : { scale: 1.2 }}
+                                animate={buttonsVis ? { scale: 1.2 } : { scale: 0.8 }}
                                 transition={{ ease: "easeOut", duration: 1 }}
                                 onClick={toggleNode}
                                 cx={50}

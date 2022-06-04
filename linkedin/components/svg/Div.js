@@ -11,23 +11,23 @@ const Div = ({ userId, buttonsVis, handleClick, handleTestClick, handleDeleteCli
             {buttonsVis ?
                 <motion.div>
                     {nodeDatum._id ?
-                        <div>
+                        <div className='flex flex-col'>
                             {nodeDatum.rootUser === userId ?
                                 <>
-                                    <motion.button className='hover:bg-sky-700 rounded-[8px] ml-16' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить</motion.button >
-                                    <motion.button className='hover:bg-sky-700 rounded-[8px] ml-10 mt-4' disabled={!nodeDatum.parentID} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить</motion.button >
-                                    <motion.button className='hover:bg-sky-700 rounded-[8px] ml-6 mt-4' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>Просмотр</motion.button >
+                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32'  onClick={() => handleClick(nodeDatum)}>Добавить</motion.button >
+                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' disabled={!nodeDatum.parentID}  onClick={() => handleDeleteClick(nodeDatum)}>Удалить</motion.button >
+                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} >Просмотр</motion.button >
                                 </> :
                                 <>
-                                    <motion.button className='hover:bg-sky-700 rounded-[8px] ml-16' style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить</motion.button >
-                                    <motion.button className='hover:bg-sky-700 rounded-[8px] ml-16' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }}>{nodeDatum.name}</motion.button>
+                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32'  onClick={() => handleClick(nodeDatum)}>Добавить</motion.button >
+                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} >{nodeDatum.name}</motion.button>
                                 </>
                             }
                         </div> :
-                        <div >
-                            <motion.button className='hover:bg-sky-700 rounded-[8px] ml-16' disabled={true} style={{ width: "60%" }} onClick={() => handleClick(nodeDatum)}>Добавить </motion.button>
-                            <motion.button className='hover:bg-sky-700 rounded-[8px] ml-12' disabled={true} style={{ width: "65%" }} onClick={() => handleDeleteClick(nodeDatum)}>Удалить </motion.button>
-                            <motion.button className='hover:bg-sky-700 rounded-[8px] ml-10' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</motion.button>
+                        <div  className='flex flex-col'>
+                            <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' disabled={true}  onClick={() => handleClick(nodeDatum)}>Добавить </motion.button>
+                            <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' disabled={true}  onClick={() => handleDeleteClick(nodeDatum)}>Удалить </motion.button>
+                            <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID}>{nodeDatum.name}</motion.button>
                         </div>
                     }
                 </motion.div>
@@ -37,7 +37,7 @@ const Div = ({ userId, buttonsVis, handleClick, handleTestClick, handleDeleteCli
                      <button className='hover:bg-sky-700 rounded-[8px] bg-amber-500' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button> 
                     : 
                     <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>} */}
-                    <button className='hover:bg-sky-700 rounded-[8px]' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} style={{ width: "65%" }} >{nodeDatum.name}</button>
+                    <button className='hover:bg-sky-700 rounded-[8px] w-20 ml-12 ' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} >{nodeDatum.name}</button>
                 </motion.div>
             }
         </>
