@@ -28,7 +28,7 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                         onClick={toggleNode}
                         onMouseEnter={actionVisible}
                         onMouseOut={actionNotVisible}
-                        animate={buttonsVis ? { x: -50, y: -50, scale: scale, rotate: 360 } : { x: -50, y: -50, scale: scale, rotate: 360 }}
+                        animate={buttonsVis ? { x: -50, y: -50, scale: scale } : { x: -50, y: -50, scale: scale }}
                         transition={{ ease: "easeOut", duration: 1 }}
                         x={0}
                         y={19}
@@ -59,13 +59,13 @@ const Circle = ({ animateVisible, buttonsVis, nodeDatum, toggleNode }) => {
                         onClick={toggleNode}
                         onMouseEnter={actionVisible}
                         onMouseOut={actionNotVisible}
-                        animate={buttonsVis ? { x: -50, y: -50, scale: scale, rotate: 360 } : { x: -50, y: -50, scale: scale, rotate: 360 }}
+                        animate={buttonsVis ? { x: -50, y: -50, scale: scale } : { x: -50, y: -50, scale: scale }}
                         transition={{ ease: "easeOut", duration: 1 }}
                         x={0}
                         y={19}
                         width='100'
                         height='70'
-                        xlinkHref='/logo/NOIMAGE.png'
+                        xlinkHref='/logo/noimage.jpg'
                         clipPath='url(#circleView)'
                     />
                     <defs>

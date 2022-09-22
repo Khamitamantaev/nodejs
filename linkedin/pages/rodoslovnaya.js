@@ -21,27 +21,7 @@ import { handleBranchState } from "../atoms/branchAtom";
 
 const initialState = {
   name: "Пример",
-  children: [
-    {
-      name: "Пример",
-      children: [
-        {
-          name: "Пример",
-          children: []
-        },
-        {
-          name: "Пример",
-          children: []
-        }
-      ]
-    },
-
-    {
-      name: "Пример",
-      children: []
-    },
-
-  ]
+  children: []
 }
 
 
@@ -108,57 +88,6 @@ export default function Rodoslovnaya({ data, userData }) {
     }
     return false
   }
-
-  // async function genericSearch(element){
-  //   if(element.name === searchTree){
-  //     return 'true'
-  //   } else {
-  //     return 'false'
-  //   } 
-  // }
-  
-
-  // function searchTreew(element, matchName) {
-  //   console.log(element)
-  //   console.log(matchName)
-  //   let arr = []
-  //   if(element && element.name === matchName) {
-  //     arr.push(element)
-  //     return arr
-  //   }
-  //   if(element && element.children) {
-  //     element.children.filter(element => element.name === matchName).forEach(element => {
-  //         arr.push(searchTreew(element, matchName))
-  //     });
-  //     return arr
-  //   }
-  //   // if(element && element.name === matchName) {
-  //   //   arr.push(element)
-  //   //   return element
-  //   // }
-  //   // else if(element && element.children !== null) {
-  //   //   var i;
-  //   //   var result = null;
-  //   //   for(i=0; result === null && i< element.children.length; i++) {
-  //   //     result = searchTreew(element.children[i], matchName)
-  //   //     arr.push(result)
-  //   //   }
-  //   //   return arr
-  //   // }
-  //   // else if (element && element.children !== null) {
-  //   //   var i;
-  //   //   var result = null;
-  //   //   for (i = 0; result === null && i < element.children.length; i++) {
-  //   //     result = searchTreew(element.children[i], matchName);
-  //   //     arr.push(result)
-  //   //   }
-  //   //   return arr
-
-  //   // }
-  //   return null
-  // }
-
-
 
   return (
     <div className="bg-[#F3F2EF] dark:bg-black dark:text-white h-screen overflow-y-scroll md:space-y-6">

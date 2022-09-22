@@ -14,19 +14,19 @@ const Div = ({ userId, buttonsVis, handleClick, handleTestClick, handleDeleteCli
                         <div className='flex flex-col'>
                             {nodeDatum.rootUser === userId ?
                                 <>
-                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32'  onClick={() => handleClick(nodeDatum)}>Добавить</motion.button >
-                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' disabled={!nodeDatum.parentID}  onClick={() => handleDeleteClick(nodeDatum)}>Удалить</motion.button >
+                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-28 ml-32'  onClick={() => handleClick(nodeDatum)}>Добавить</motion.button >
+                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-24 ml-32' disabled={!nodeDatum.parentID}  onClick={() => handleDeleteClick(nodeDatum)}>Удалить</motion.button >
                                     <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} >Просмотр</motion.button >
                                 </> :
                                 <>
-                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32'  onClick={() => handleClick(nodeDatum)}>Добавить</motion.button >
-                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} >{nodeDatum.name}</motion.button>
+                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-28 ml-32'  onClick={() => handleClick(nodeDatum)}>Добавить</motion.button >
+                                    <motion.button className='hover:bg-sky-700 rounded-[8px] w-24 ml-32' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID} >{nodeDatum.name}</motion.button>
                                 </>
                             }
                         </div> :
                         <div  className='flex flex-col'>
-                            <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' disabled={true}  onClick={() => handleClick(nodeDatum)}>Добавить </motion.button>
-                            <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' disabled={true}  onClick={() => handleDeleteClick(nodeDatum)}>Удалить </motion.button>
+                            <motion.button className='hover:bg-sky-700 rounded-[8px] w-28 ml-32' disabled={true}  onClick={() => handleClick(nodeDatum)}>Добавить </motion.button>
+                            <motion.button className='hover:bg-sky-700 rounded-[8px] w-24 ml-32' disabled={true}  onClick={() => handleDeleteClick(nodeDatum)}>Удалить </motion.button>
                             <motion.button className='hover:bg-sky-700 rounded-[8px] w-20 ml-32' onClick={() => handleTestClick(nodeDatum)} disabled={!nodeDatum.parentID}>{nodeDatum.name}</motion.button>
                         </div>
                     }
